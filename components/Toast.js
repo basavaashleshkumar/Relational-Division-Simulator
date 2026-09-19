@@ -1,0 +1,114 @@
+/**
+ * Technical Toast Notification System
+ * Non-intrusive, developer-tool style feedback (Linear / Vercel style)
+ * High-contrast badges, click-to-dismiss, and smooth auto-dismissal
+ */
+
+class ToastManager {
+    constructor() {
+        this.container = null;
+        this.maxToasts = 5;
+        this.init();
+    }
+
+    init() {
+        if (typeof document === 'undefined') return;
+        let el = document.getElementById('toast-portal');
+        if (!el) {
+            if (!document.body) {
+                document.addEventListener('DOMContentLoaded', () => this.init(), { once: true });
+                return;
+            }
+            el = document.createElement('div');
+            el.id = 'toast-portal';
+            document.body.appendChild(el);
+        }
+        this.container = el;
+    }
+
+    show(message, type = 'info', duration = 3200) {
+        if (!this.container) this.init();
+        if (!this.container) {
+            if (typeof document !== 'undefined') {
+                document.addEventListener('DOMContentLoaded', () => this.show(message, type, duration), { once: true });
+            }
+            return;
+        }
+
+        // Limit concurrent toasts
+        while (this.container.children.length >= this.maxToasts) {
+            const oldest = this.container.firstElementChild;
+            if (oldest) this.container.removeChild(oldest);
+        }
+
+        const toast = document.createElement('div');
+        toast.className = 'tech-toast';
+        toast.style.cursor = 'pointer';
+        toast.title = 'Click to dismiss';
+
+        let icon = 'ℹ';
+        let badgeClass = 'tech-badge-cyan';
+        if (type === 'success') {
+            icon = '✓';
+            badgeClass = 'tech-badge-emerald';
+        } else if (type === 'error') {
+            icon = '✕';
+            badgeClass = 'tech-badge-rose';
+        } else if (type === 'warn') {
+            icon = '▲';
+            badgeClass = 'tech-badge-amber';
+        }
+
+        const badge = document.createElement('span');
+        badge.className = `tech-badge ${badgeClass}`;
+        badge.style.padding = '1px 5px';
+        badge.textContent = icon;
+
+        const text = document.createElement('span');
+        text.style.fontFamily = 'var(--font-sans)';
+        text.style.fontSize = '12px';
+        text.style.flex = '1';
+        text.textContent = String(message);
+
+        const closeBtn = document.createElement('span');
+        closeBtn.textContent = '×';
+        closeBtn.style.color = 'var(--text-faint)';
+        closeBtn.style.fontSize = '14px';
+        closeBtn.style.lineHeight = '1';
+        closeBtn.style.paddingLeft = '6px';
+
+        toast.appendChild(badge);
+        toast.appendChild(text);
+        toast.appendChild(closeBtn);
+
+        this.container.appendChild(toast);
+
+        let isDismissed = false;
+        const dismiss = () => {
+            if (isDismissed) return;
+            isDismissed = true;
+            clearTimeout(timeoutId);
+            toast.style.opacity = '0';
+            toast.style.transform = 'translateY(6px)';
+            toast.style.transition = 'opacity 0.15s ease, transform 0.15s ease';
+            setTimeout(() => {
+                if (toast.parentNode) {
+                    toast.parentNode.removeChild(toast);
+                }
+            }, 160);
+        };
+
+        toast.addEventListener('click', dismiss);
+        const timeoutId = setTimeout(dismiss, duration);
+    }
+
+    success(msg, duration) { this.show(msg, 'success', duration); }
+    error(msg, duration) { this.show(msg, 'error', duration); }
+    info(msg, duration) { this.show(msg, 'info', duration); }
+    warn(msg, duration) { this.show(msg, 'warn', duration); }
+}
+
+const toast = new ToastManager();
+if (typeof window !== 'undefined') {
+    window.toast = toast;
+}
