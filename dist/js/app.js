@@ -1,0 +1,545 @@
+/**
+ * BACSE202: Relational Division Simulator
+ * Master Application Coordinator & State Controller
+ */
+
+class App {
+    constructor() {
+        this.currentPresetKey = 'university';
+        this.relationR = null;
+        this.relationS = null;
+        this.executionTrace = null;
+        this.sqlObj = null;
+        this.currentThreshold = 75;
+        this.activeTab = 'simulator';
+
+        this.initTheme();
+        this.initEventListeners();
+        this.loadPreset(this.currentPresetKey);
+    }
+
+    /**
+     * Initialize Day/Night Mode (Criterion 3.E)
+     */
+    initTheme() {
+        const savedTheme = localStorage.getItem('bacse202_theme') || 'light';
+        this.setTheme(savedTheme);
+
+        const toggleBtn = document.getElementById('theme-toggle');
+        if (toggleBtn) {
+            toggleBtn.addEventListener('click', () => {
+                const isDark = document.documentElement.classList.contains('dark');
+                this.setTheme(isDark ? 'light' : 'dark');
+            });
+        }
+    }
+
+    setTheme(theme) {
+        const icon = document.getElementById('theme-icon');
+        if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+            document.documentElement.classList.remove('light');
+            if (icon) icon.textContent = '🌙';
+            localStorage.setItem('bacse202_theme', 'dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+            document.documentElement.classList.add('light');
+            if (icon) icon.textContent = '☀️';
+            localStorage.setItem('bacse202_theme', 'light');
+        }
+    }
+
+    /**
+     * Wire all event listeners
+     */
+    initEventListeners() {
+        // Tab Navigation
+        document.querySelectorAll('.nav-tab-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const tab = btn.getAttribute('data-tab');
+                if (tab) this.switchTab(tab);
+            });
+        });
+
+        // Preset selector
+        const presetSelect = document.getElementById('preset-selector');
+        if (presetSelect) {
+            presetSelect.addEventListener('change', (e) => {
+                this.loadPreset(e.target.value);
+            });
+        }
+
+        // Run Division Button
+        const runBtn = document.getElementById('btn-run-division');
+        if (runBtn) {
+            runBtn.addEventListener('click', () => this.executeDivision());
+        }
+
+        // Quick walkthrough button
+        const tourBtn = document.getElementById('btn-quick-tour');
+        if (tourBtn) {
+            tourBtn.addEventListener('click', () => {
+                document.getElementById('modal-tour').classList.add('open');
+            });
+        }
+        const closeTourBtn = document.getElementById('btn-close-tour');
+        if (closeTourBtn) {
+            closeTourBtn.addEventListener('click', () => {
+                document.getElementById('modal-tour').classList.remove('open');
+            });
+        }
+
+        // Jump to visualizer
+        const jumpVis = document.getElementById('btn-jump-visualizer');
+        if (jumpVis) {
+            jumpVis.addEventListener('click', () => {
+                this.switchTab('visualizer');
+            });
+        }
+
+        // Add Row to R
+        const addRBtn = document.getElementById('btn-add-r-row');
+        if (addRBtn) {
+            addRBtn.addEventListener('click', () => this.addRowToR());
+        }
+
+        // Add Row to S
+        const addSBtn = document.getElementById('btn-add-s-row');
+        if (addSBtn) {
+            addSBtn.addEventListener('click', () => this.addRowToS());
+        }
+
+        // Threshold Slider
+        const slider = document.getElementById('threshold-slider');
+        if (slider) {
+            slider.addEventListener('input', (e) => {
+                this.currentThreshold = parseInt(e.target.value, 10);
+                document.getElementById('threshold-val').textContent = `${this.currentThreshold}%`;
+                document.getElementById('partial-threshold-display').textContent = this.currentThreshold;
+                this.updateCoverageTab();
+            });
+        }
+
+        // Run Tests Button
+        const runTestsBtn = document.getElementById('btn-run-tests');
+        if (runTestsBtn) {
+            runTestsBtn.addEventListener('click', () => this.runTestSuite());
+        }
+
+        // Copy SQL Buttons
+        document.querySelectorAll('.btn-copy-sql').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetId = btn.getAttribute('data-target');
+                const target = document.getElementById(targetId);
+                if (target) {
+                    navigator.clipboard.writeText(target.textContent);
+                    const originalText = btn.textContent;
+                    btn.textContent = '✓ Copied!';
+                    setTimeout(() => { btn.textContent = originalText; }, 1800);
+                }
+            });
+        });
+
+        // Download Modal open / close
+        const dlModalBtn = document.getElementById('btn-download-modal');
+        const dlModal = document.getElementById('modal-download');
+        const dlClose = document.getElementById('btn-close-download');
+
+        if (dlModalBtn && dlModal) {
+            dlModalBtn.addEventListener('click', () => dlModal.classList.add('open'));
+        }
+        if (dlClose && dlModal) {
+            dlClose.addEventListener('click', () => dlModal.classList.remove('open'));
+        }
+
+        // Export Actions
+        const expPdf = document.getElementById('btn-export-pdf');
+        if (expPdf) {
+            expPdf.addEventListener('click', () => {
+                ReportGenerator.printPDF(this.executionTrace, this.relationR, this.relationS, this.sqlObj);
+            });
+        }
+
+        const expDoc = document.getElementById('btn-export-doc');
+        if (expDoc) {
+            expDoc.addEventListener('click', () => {
+                ReportGenerator.downloadWordDoc(this.executionTrace, this.relationR, this.relationS, this.sqlObj);
+            });
+        }
+
+        const expTxt = document.getElementById('btn-export-txt');
+        if (expTxt) {
+            expTxt.addEventListener('click', () => {
+                ReportGenerator.downloadText(this.executionTrace, this.relationR, this.relationS, this.sqlObj);
+            });
+        }
+
+        const expAllCsv = document.getElementById('btn-export-all-csv');
+        if (expAllCsv) {
+            expAllCsv.addEventListener('click', () => {
+                ReportGenerator.downloadCSV(this.relationR, `${this.relationR.name}.csv`);
+                ReportGenerator.downloadCSV(this.relationS, `${this.relationS.name}.csv`);
+                if (this.executionTrace && this.executionTrace.T5) {
+                    ReportGenerator.downloadCSV(this.executionTrace.T5, `Result_Division_${this.relationR.name}.csv`);
+                }
+            });
+        }
+
+        const csvR = document.getElementById('btn-csv-r');
+        if (csvR) csvR.addEventListener('click', () => ReportGenerator.downloadCSV(this.relationR, `${this.relationR.name}.csv`));
+
+        const csvS = document.getElementById('btn-csv-s');
+        if (csvS) csvS.addEventListener('click', () => ReportGenerator.downloadCSV(this.relationS, `${this.relationS.name}.csv`));
+
+        const csvRes = document.getElementById('btn-csv-result');
+        if (csvRes) csvRes.addEventListener('click', () => {
+            if (this.executionTrace) ReportGenerator.downloadCSV(this.executionTrace.T5, `Result_${this.relationR.name}_DIV_${this.relationS.name}.csv`);
+        });
+
+        // Close modal when clicking on overlay background
+        [document.getElementById('modal-download'), document.getElementById('modal-tour')].forEach(m => {
+            if (m) {
+                m.addEventListener('click', (e) => {
+                    if (e.target === m) m.classList.remove('open');
+                });
+            }
+        });
+    }
+
+    /**
+     * Switch active tab view
+     */
+    switchTab(tabKey) {
+        this.activeTab = tabKey;
+
+        // Update nav buttons
+        document.querySelectorAll('.nav-tab-btn').forEach(btn => {
+            if (btn.getAttribute('data-tab') === tabKey) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+
+        // Show matching pane
+        document.querySelectorAll('.tab-pane').forEach(pane => {
+            if (pane.id === `tab-${tabKey}`) {
+                pane.classList.remove('hidden');
+            } else {
+                pane.classList.add('hidden');
+            }
+        });
+
+        // Trigger tab-specific renders if necessary
+        if (tabKey === 'visualizer' && this.executionTrace) {
+            Visualizer.renderDAG(document.getElementById('dag-container'), this.executionTrace);
+        } else if (tabKey === 'coverage') {
+            this.updateCoverageTab();
+        } else if (tabKey === 'tests') {
+            this.runTestSuite();
+        }
+    }
+
+    /**
+     * Load a real-world preset
+     */
+    loadPreset(presetKey) {
+        const p = PRESETS[presetKey];
+        if (!p) return;
+
+        this.currentPresetKey = presetKey;
+        this.relationR = new Relation(p.rName, p.rAttrs, p.rTuples);
+        this.relationS = new Relation(p.sName, p.sAttrs, p.sTuples);
+
+        // Update UI descriptions
+        document.getElementById('preset-title').textContent = p.title;
+        document.getElementById('preset-desc').textContent = `${p.description} (Domain: ${p.domain})`;
+        document.getElementById('r-relation-name').textContent = p.rName;
+        document.getElementById('s-relation-name').textContent = p.sName;
+        document.getElementById('r-schema-display').textContent = `(${p.rAttrs.join(', ')})`;
+        document.getElementById('s-schema-display').textContent = `(${p.sAttrs.join(', ')})`;
+
+        this.renderTableR();
+        this.renderTableS();
+        this.executeDivision();
+    }
+
+    /**
+     * Render Table R in UI
+     */
+    renderTableR() {
+        const container = document.getElementById('table-r-container');
+        document.getElementById('r-cardinality-badge').textContent = `${this.relationR.cardinality} tuples`;
+
+        let html = `
+            <table class="w-full text-left text-xs border-collapse">
+                <thead class="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 uppercase font-semibold">
+                    <tr>
+                        <th class="py-2.5 px-3 border-b border-slate-200 dark:border-slate-700 w-10 text-center">#</th>
+        `;
+
+        this.relationR.attributes.forEach(attr => {
+            html += `<th class="py-2.5 px-3 border-b border-slate-200 dark:border-slate-700 font-mono">${attr}</th>`;
+        });
+
+        html += `
+                        <th class="py-2.5 px-3 border-b border-slate-200 dark:border-slate-700 w-12 text-center">Del</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+        `;
+
+        this.relationR.tuples.forEach((t, rowIdx) => {
+            html += `<tr><td class="py-1.5 px-3 text-center text-slate-400 font-mono text-2xs">${rowIdx + 1}</td>`;
+            this.relationR.attributes.forEach(attr => {
+                html += `
+                    <td class="py-1.5 px-3">
+                        <input type="text"
+                               class="w-full bg-transparent border-b border-transparent hover:border-slate-300 focus:border-indigo-500 focus:outline-none font-mono text-xs py-0.5"
+                               value="${t[attr]}"
+                               data-table="R"
+                               data-row="${rowIdx}"
+                               data-attr="${attr}">
+                    </td>
+                `;
+            });
+            html += `
+                <td class="py-1.5 px-3 text-center">
+                    <button class="text-slate-400 hover:text-rose-500 font-bold text-xs" onclick="app.deleteRowR(${rowIdx})">✕</button>
+                </td>
+            </tr>`;
+        });
+
+        html += `</tbody></table>`;
+        container.innerHTML = html;
+
+        // Attach change listeners to cells
+        container.querySelectorAll('input').forEach(input => {
+            input.addEventListener('change', (e) => {
+                const row = parseInt(e.target.getAttribute('data-row'), 10);
+                const attr = e.target.getAttribute('data-attr');
+                this.relationR.tuples[row][attr] = e.target.value.trim();
+                this.executeDivision();
+            });
+        });
+    }
+
+    /**
+     * Render Table S in UI
+     */
+    renderTableS() {
+        const container = document.getElementById('table-s-container');
+        document.getElementById('s-cardinality-badge').textContent = `${this.relationS.cardinality} tuples`;
+
+        let html = `
+            <table class="w-full text-left text-xs border-collapse">
+                <thead class="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 uppercase font-semibold">
+                    <tr>
+                        <th class="py-2.5 px-3 border-b border-slate-200 dark:border-slate-700 w-10 text-center">#</th>
+        `;
+
+        this.relationS.attributes.forEach(attr => {
+            html += `<th class="py-2.5 px-3 border-b border-slate-200 dark:border-slate-700 font-mono">${attr}</th>`;
+        });
+
+        html += `
+                        <th class="py-2.5 px-3 border-b border-slate-200 dark:border-slate-700 w-12 text-center">Del</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+        `;
+
+        this.relationS.tuples.forEach((t, rowIdx) => {
+            html += `<tr><td class="py-1.5 px-3 text-center text-slate-400 font-mono text-2xs">${rowIdx + 1}</td>`;
+            this.relationS.attributes.forEach(attr => {
+                html += `
+                    <td class="py-1.5 px-3">
+                        <input type="text"
+                               class="w-full bg-transparent border-b border-transparent hover:border-slate-300 focus:border-pink-500 focus:outline-none font-mono text-xs py-0.5"
+                               value="${t[attr]}"
+                               data-table="S"
+                               data-row="${rowIdx}"
+                               data-attr="${attr}">
+                    </td>
+                `;
+            });
+            html += `
+                <td class="py-1.5 px-3 text-center">
+                    <button class="text-slate-400 hover:text-rose-500 font-bold text-xs" onclick="app.deleteRowS(${rowIdx})">✕</button>
+                </td>
+            </tr>`;
+        });
+
+        html += `</tbody></table>`;
+        container.innerHTML = html;
+
+        container.querySelectorAll('input').forEach(input => {
+            input.addEventListener('change', (e) => {
+                const row = parseInt(e.target.getAttribute('data-row'), 10);
+                const attr = e.target.getAttribute('data-attr');
+                this.relationS.tuples[row][attr] = e.target.value.trim();
+                this.executeDivision();
+            });
+        });
+    }
+
+    deleteRowR(index) {
+        this.relationR.tuples.splice(index, 1);
+        this.renderTableR();
+        this.executeDivision();
+    }
+
+    deleteRowS(index) {
+        this.relationS.tuples.splice(index, 1);
+        this.renderTableS();
+        this.executeDivision();
+    }
+
+    addRowToR() {
+        const newTuple = {};
+        this.relationR.attributes.forEach(a => newTuple[a] = 'New');
+        this.relationR.tuples.push(newTuple);
+        this.renderTableR();
+        this.executeDivision();
+    }
+
+    addRowToS() {
+        const newTuple = {};
+        this.relationS.attributes.forEach(a => newTuple[a] = 'New');
+        this.relationS.tuples.push(newTuple);
+        this.renderTableS();
+        this.executeDivision();
+    }
+
+    /**
+     * Execute Relational Division and update all UI views
+     */
+    executeDivision() {
+        const alertBox = document.getElementById('status-alert');
+
+        try {
+            this.executionTrace = RelationalDivisionEngine.divide(this.relationR, this.relationS);
+            alertBox.classList.add('hidden');
+
+            const { T1, T2, T3, T4, T5, candidateAttrs, divisorAttrs, metrics, candidateAudit } = this.executionTrace;
+
+            // Update candidate attribute labels
+            document.getElementById('candidate-attrs-display').textContent = candidateAttrs.join(', ');
+
+            // Update Result Table
+            const resContainer = document.getElementById('result-table-container');
+            resContainer.innerHTML = Visualizer.renderTableHTML(T5, { highlightRows: T5.tuples.map((_, i) => i) });
+            document.getElementById('result-badge').textContent = `${metrics.qualifiedCount} Qualified`;
+
+            // Update Summary Stats
+            document.getElementById('metric-time').textContent = `${metrics.executionTimeMs} ms`;
+            document.getElementById('metric-candidates').textContent = metrics.totalCandidates;
+            document.getElementById('metric-qualified').textContent = metrics.qualifiedCount;
+            document.getElementById('metric-disqualified').textContent = metrics.disqualifiedCount;
+            document.getElementById('metric-divisor-size').textContent = metrics.divisorCount;
+            document.getElementById('metric-pairs-size').textContent = metrics.theoreticalPairsCount;
+            document.getElementById('metric-missing-size').textContent = metrics.missingPairsCount;
+
+            // Update Visualizer Stage Tables
+            document.getElementById('card-t1-count').textContent = `${T1.cardinality} candidates`;
+            document.getElementById('card-t1-table').innerHTML = Visualizer.renderTableHTML(T1);
+
+            document.getElementById('card-t2-count').textContent = `${T2.cardinality} pairs`;
+            document.getElementById('card-t2-table').innerHTML = Visualizer.renderTableHTML(T2);
+
+            document.getElementById('card-t3-count').textContent = `${T3.cardinality} missing`;
+            document.getElementById('card-t3-table').innerHTML = Visualizer.renderTableHTML(T3);
+
+            document.getElementById('card-t4-count').textContent = `${T4.cardinality} disqualified`;
+            document.getElementById('card-t4-table').innerHTML = Visualizer.renderTableHTML(T4);
+
+            document.getElementById('card-t5-count').textContent = `${T5.cardinality} qualified`;
+            document.getElementById('card-t5-table').innerHTML = Visualizer.renderTableHTML(T5);
+
+            // Update DAG and Tracer
+            Visualizer.renderDAG(document.getElementById('dag-container'), this.executionTrace);
+            Visualizer.renderTracer(document.getElementById('tracer-container'), candidateAudit, this.relationS);
+
+            // Update SQL Studio
+            this.sqlObj = SQLGenerator.generateAll(this.relationR, this.relationS, candidateAttrs, divisorAttrs);
+            document.getElementById('sql-code-notexists').textContent = this.sqlObj.doubleNotExists.sql;
+            document.getElementById('sql-code-groupby').textContent = this.sqlObj.groupByHaving.sql;
+            document.getElementById('sql-code-except').textContent = this.sqlObj.setDifference.sql;
+            document.getElementById('sql-code-exact').textContent = this.sqlObj.exactDivision.sql;
+
+            // Update Coverage Matrix
+            this.updateCoverageTab();
+
+        } catch (err) {
+            alertBox.classList.remove('hidden');
+            alertBox.className = 'p-3 rounded-lg text-xs font-medium border border-rose-300 bg-rose-50 text-rose-800 dark:bg-rose-950/40 dark:border-rose-900 dark:text-rose-200';
+            alertBox.textContent = `❌ ${err.message}`;
+        }
+    }
+
+    /**
+     * Update Coverage Matrix and Partial Division Tab
+     */
+    updateCoverageTab() {
+        if (!this.executionTrace) return;
+        const matrixContainer = document.getElementById('coverage-matrix-container');
+        Visualizer.renderCoverageMatrix(matrixContainer, this.executionTrace.candidateAudit);
+
+        // Filter candidates by threshold
+        const partial = RelationalDivisionEngine.dividePartial(this.relationR, this.relationS, this.currentThreshold);
+        document.getElementById('partial-count-badge').textContent = `${partial.partialCount} matches`;
+        const partialContainer = document.getElementById('partial-results-container');
+        partialContainer.innerHTML = Visualizer.renderTableHTML(partial.partialResult);
+    }
+
+    /**
+     * Run Automated Test Suite (Criterion 6)
+     */
+    runTestSuite() {
+        const res = TestSuiteRunner.runAll();
+
+        document.getElementById('test-stat-total').textContent = res.total;
+        document.getElementById('test-stat-passed').textContent = res.passed;
+        document.getElementById('test-stat-failed').textContent = res.failed;
+        document.getElementById('test-stat-time').textContent = `${res.totalDurationMs} ms`;
+
+        const listContainer = document.getElementById('tests-list-container');
+        let html = '';
+
+        res.results.forEach((t) => {
+            const badgeClass = t.passed
+                ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 border-emerald-300'
+                : 'bg-rose-100 text-rose-800 dark:bg-rose-950 dark:text-rose-300 border-rose-300';
+
+            html += `
+                <div class="p-4 rounded-xl border ${t.passed ? 'border-slate-200 dark:border-slate-800' : 'border-rose-300 bg-rose-50/20'} app-card space-y-2">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                        <div class="flex items-center space-x-2">
+                            <span class="font-mono text-2xs px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-bold">${t.id}</span>
+                            <h4 class="text-xs font-bold text-slate-900 dark:text-white">${t.name}</h4>
+                            <span class="text-2xs text-slate-400 font-medium">(${t.category})</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-2xs text-slate-400 font-mono">${t.durationMs} ms</span>
+                            <span class="px-2.5 py-0.5 rounded text-2xs font-bold border ${badgeClass}">
+                                ${t.passed ? '✓ PASS' : '✗ FAIL'}
+                            </span>
+                        </div>
+                    </div>
+                    <p class="text-2xs text-slate-500 dark:text-slate-400">${t.description}</p>
+                    <div class="p-2 rounded bg-slate-50 dark:bg-slate-800/80 font-mono text-2xs text-slate-700 dark:text-slate-300">
+                        ${t.details}
+                    </div>
+                </div>
+            `;
+        });
+
+        listContainer.innerHTML = html;
+    }
+}
+
+// Global App Instance
+let app;
+window.addEventListener('DOMContentLoaded', () => {
+    app = new App();
+});

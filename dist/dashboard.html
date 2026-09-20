@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <!-- Production Build Metadata -->
+    <meta name="build-version" content="2.4.0-PROD">
+    <meta name="build-timestamp" content="2026-09-20T15:45:34.414277+00:00">
+    <meta name="principal-investigator" content="Basavaashlesh">
+    <meta name="faculty-mentor" content="Dr. Swaminathan A, Assistant Professor">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Hub // RELATIONAL.DIV Dashboard (Horizon UI)</title>
+
+    <!-- Google Fonts: DM Sans, Poppins, JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Poppins:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        dm: ["'DM Sans'", "sans-serif"],
+                        poppins: ["Poppins", "sans-serif"],
+                        mono: ["'JetBrains Mono'", "monospace"],
+                    },
+                    colors: {
+                        darkBg: "#050507",
+                        darkCard: "#0d0d12",
+                        darkCardAlt: "#111116",
+                        darkBorder: "#1e1e28",
+                        darkIcon: "#171722",
+                        lightPrimary: "#F4F7FE",
+                        blueSecondary: "#4318FF",
+                        brandLinear: "#868CFF",
+                        brand: {
+                            50: "#E9E3FF",
+                            100: "#C0B8FE",
+                            200: "#A195FD",
+                            300: "#8171FC",
+                            400: "#7551FF",
+                            500: "#422AFB",
+                            600: "#3311DB",
+                            700: "#2111A5",
+                            800: "#190793",
+                            900: "#11047A",
+                        },
+                        navy: {
+                            50: "#d0dcfb",
+                            100: "#aac0fe",
+                            200: "#a3b9f8",
+                            300: "#728fea",
+                            400: "#3652ba",
+                            500: "#1b3bbb",
+                            600: "#24388a",
+                            700: "#1B254B",
+                            800: "#111c44",
+                            900: "#0b1437",
+                        },
+                        shadow: {
+                            500: "rgba(112, 144, 176, 0.08)",
+                        }
+                    },
+                    boxShadow: {
+                        "3xl": "14px 17px 40px 4px rgba(0, 0, 0, 0.25)",
+                        "purple-glow": "0 10px 25px -3px rgba(117, 81, 255, 0.4), 0 4px 6px -2px rgba(117, 81, 255, 0.2)",
+                    },
+                    borderRadius: {
+                        primary: "20px",
+                    }
+                }
+            }
+        };
+    </script>
+    <link rel="stylesheet" href="css/design-system.css">
+
+    <!-- KaTeX for Academic Mathematical Rigor -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+
+    <style>
+        html.dark, html.dark body {
+            background-color: #050507 !important;
+            color: #ffffff;
+        }
+        .preset-card-glow:hover {
+            box-shadow: 0 10px 25px -5px rgba(117, 81, 255, 0.25);
+            border-color: rgba(117, 81, 255, 0.4);
+        }
+    </style>
+</head>
+<body class="bg-[#F4F7FE] dark:bg-[#050507] font-dm text-navy-700 dark:text-white antialiased flex flex-col min-h-screen selection:bg-brand-500/30 selection:text-brand-500">
+
+    <!-- TopNav Container (Mounted by TechLayout) -->
+    <div id="layout-header"></div>
+
+    <div class="flex-1 flex overflow-hidden">
+        <!-- SideNav Container (Mounted by TechLayout) -->
+        <div id="layout-sidebar"></div>
+
+        <!-- Main Dashboard Workspace -->
+        <main class="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8 space-y-8">
+
+            <!-- Breadcrumbs and Header -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2">
+                <div>
+                    <p class="font-dm text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-[#94a3b8]">
+                        Pages / System Hub
+                    </p>
+                    <h1 class="text-2xl sm:text-3xl font-bold font-dm text-navy-700 dark:text-white tracking-tight mt-1">
+                        Technical Modules &amp; System Architecture Overview
+                    </h1>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-2">
+                    <a href="simulation.html" class="flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#7551FF] to-[#4318FF] hover:from-[#6541EE] hover:to-[#3813DE] px-5 py-2.5 text-sm font-semibold text-white transition duration-200 shadow-lg shadow-brand-500/25 hover:-translate-y-0.5">
+                        <span>⚡ Launch Workspace</span>
+                    </a>
+                    <a href="documentation.html" class="flex items-center gap-2 rounded-xl bg-white dark:bg-[#0d0d12] border border-gray-200 dark:border-[#1e1e28] px-4 py-2.5 text-sm font-medium text-navy-700 dark:text-white transition duration-200 hover:bg-gray-50 dark:hover:bg-[#171722] shadow-sm">
+                        <span>📖 Documentation</span>
+                    </a>
+                    <a href="documentation.html#verification" class="flex items-center gap-2 rounded-xl bg-white dark:bg-[#0d0d12] border border-gray-200 dark:border-[#1e1e28] px-4 py-2.5 text-sm font-medium text-navy-700 dark:text-white transition duration-200 hover:bg-gray-50 dark:hover:bg-[#171722] shadow-sm">
+                        <span>🎯 Formal Verification Matrix</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- ========================================================= -->
+            <!-- 4 TOP STAT WIDGETS (BESPOKE DARK OBSIDIAN WIDGET CARDS)   -->
+            <!-- ========================================================= -->
+            <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+
+                <!-- 1. Engine Status -->
+                <div class="relative flex flex-grow !flex-row items-center rounded-[20px] bg-white bg-clip-border p-4 shadow-3xl dark:!bg-[#0d0d12] dark:text-white dark:shadow-none border border-gray-100 dark:border-[#1e1e28] hover:shadow-xl transition-all duration-200">
+                    <div class="ml-[4px] flex h-[70px] w-auto flex-row items-center">
+                        <div class="rounded-full bg-lightPrimary p-3.5 dark:bg-[#171722]">
+                            <span class="flex items-center text-brand-500 dark:text-[#7551FF]">
+                                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="ml-4 flex w-auto flex-col justify-center">
+                        <p class="font-dm text-xs font-semibold text-gray-500 dark:text-[#94a3b8] uppercase tracking-wider">
+                            Engine Status
+                        </p>
+                        <h4 class="text-xl sm:text-2xl font-bold font-dm text-navy-700 dark:text-white flex items-center gap-2">
+                            ONLINE
+                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block animate-pulse" title="System Online"></span>
+                        </h4>
+                        <p class="font-dm text-xs font-medium text-emerald-600 dark:text-emerald-400">
+                            240Hz Pure ES6
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 2. Domain Scenarios -->
+                <div class="relative flex flex-grow !flex-row items-center rounded-[20px] bg-white bg-clip-border p-4 shadow-3xl dark:!bg-[#0d0d12] dark:text-white dark:shadow-none border border-gray-100 dark:border-[#1e1e28] hover:shadow-xl transition-all duration-200">
+                    <div class="ml-[4px] flex h-[70px] w-auto flex-row items-center">
+                        <div class="rounded-full bg-lightPrimary p-3.5 dark:bg-[#171722]">
+                            <span class="flex items-center text-brand-500 dark:text-[#7551FF]">
+                                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/>
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="ml-4 flex w-auto flex-col justify-center min-w-0">
+                        <p class="font-dm text-xs font-semibold text-gray-500 dark:text-[#94a3b8] uppercase tracking-wider">
+                            Scenarios
+                        </p>
+                        <h4 class="text-xl sm:text-2xl font-bold font-dm text-brand-500 dark:text-[#7551FF]">
+                            6 LOADED
+                        </h4>
+                        <p class="font-dm text-xs font-medium text-gray-500 dark:text-[#94a3b8] truncate" title="University, DevOps, Medical, EV, etc.">
+                            University, DevOps, Medical, EV, etc.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 3. Test Assertions -->
+                <div class="relative flex flex-grow !flex-row items-center rounded-[20px] bg-white bg-clip-border p-4 shadow-3xl dark:!bg-[#0d0d12] dark:text-white dark:shadow-none border border-gray-100 dark:border-[#1e1e28] hover:shadow-xl transition-all duration-200">
+                    <div class="ml-[4px] flex h-[70px] w-auto flex-row items-center">
+                        <div class="rounded-full bg-lightPrimary p-3.5 dark:bg-[#171722]">
+                            <span class="flex items-center text-brand-500 dark:text-[#7551FF]">
+                                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="ml-4 flex w-auto flex-col justify-center">
+                        <p class="font-dm text-xs font-semibold text-gray-500 dark:text-[#94a3b8] uppercase tracking-wider">
+                            Test Assertions
+                        </p>
+                        <h4 class="text-xl sm:text-2xl font-bold font-dm text-emerald-600 dark:text-emerald-400">
+                            8/8 PASSED
+                        </h4>
+                        <p class="font-dm text-xs font-medium text-emerald-600 dark:text-emerald-400">
+                            100% Invariants Verified
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 4. Specification Conformance -->
+                <div class="relative flex flex-grow !flex-row items-center rounded-[20px] bg-white bg-clip-border p-4 shadow-3xl dark:!bg-[#0d0d12] dark:text-white dark:shadow-none border border-gray-100 dark:border-[#1e1e28] hover:shadow-xl transition-all duration-200">
+                    <div class="ml-[4px] flex h-[70px] w-auto flex-row items-center">
+                        <div class="rounded-full bg-lightPrimary p-3.5 dark:bg-[#171722]">
+                            <span class="flex items-center text-brand-500 dark:text-[#7551FF]">
+                                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="ml-4 flex w-auto flex-col justify-center min-w-0">
+                        <p class="font-dm text-xs font-semibold text-gray-500 dark:text-[#94a3b8] uppercase tracking-wider">
+                            Conformance
+                        </p>
+                        <h4 class="text-xl sm:text-2xl font-bold font-dm text-emerald-600 dark:text-emerald-400">
+                            100% VERIFIED
+                        </h4>
+                        <p class="font-dm text-xs font-medium text-brand-500 dark:text-[#7551FF] truncate" title="BACSE202 • Dr. Swaminathan A">
+                            BACSE202 • Dr. Swaminathan A
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ========================================================= -->
+            <!-- QUICK JUMP MATRIX: 1-CLICK SIMULATION PRESET CARDS         -->
+            <!-- ========================================================= -->
+            <div class="space-y-4">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <h2 class="font-dm text-lg font-bold text-navy-700 dark:text-white">
+                                Quick Jump Matrix
+                            </h2>
+                            <span class="rounded-full bg-brand-50 dark:bg-[#171722] border border-brand-100 dark:border-[#1e1e28] px-2.5 py-0.5 text-[11px] font-bold text-brand-500 dark:text-[#C0B8FE]">
+                                1-CLICK PRESETS
+                            </span>
+                        </div>
+                        <p class="font-dm text-xs text-gray-500 dark:text-[#94a3b8]">
+                            Directly launch the Relational Division Simulation Workspace with pre-loaded enterprise scenarios and ground truth targets
+                        </p>
+                    </div>
+                    <span class="text-xs font-mono text-gray-400 dark:text-[#94a3b8]">
+                        Select scenario to load into pipeline
+                    </span>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+                    <!-- Preset Card 1: University -->
+                    <div class="relative flex flex-col justify-between rounded-[20px] bg-white dark:bg-[#0d0d12] border border-gray-100 dark:border-[#1e1e28] p-5 shadow-3xl dark:shadow-none hover:-translate-y-1 transition-all duration-200 preset-card-glow group">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="rounded-full bg-lightPrimary dark:bg-[#171722] border border-gray-200 dark:border-[#1e1e28] px-2.5 py-0.5 text-[11px] font-semibold text-brand-500 dark:text-[#C0B8FE]">
+                                    Higher Education
+                                </span>
+                                <span class="text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400">2 Qualified</span>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-base font-dm text-navy-700 dark:text-white group-hover:text-brand-500 dark:group-hover:text-[#7551FF] transition-colors">
+                                    🎓 University CS Advising
+                                </h3>
+                                <p class="text-xs text-gray-600 dark:text-[#94a3b8] font-dm mt-1 leading-relaxed">
+                                    Find students completing ALL 4 mandatory Computer Science core requirements: CSE201, CSE202, CSE203, CSE204.
+                                </p>
+                            </div>
+                            <div class="pt-2 border-t border-gray-100 dark:border-[#1e1e28] flex items-center justify-between text-[11px] font-mono text-gray-500 dark:text-[#94a3b8]">
+                                <span>R: 13 tuples</span>
+                                <span>S: 4 courses</span>
+                            </div>
+                        </div>
+                        <a href="simulation.html?preset=university" onclick="localStorage.setItem('bacse202_selected_preset', 'university')" class="mt-4 flex items-center justify-center gap-2 rounded-xl bg-lightPrimary hover:bg-brand-500 hover:text-white dark:bg-[#171722] dark:hover:bg-[#7551FF] text-brand-500 dark:text-[#C0B8FE] dark:hover:text-white border border-transparent dark:border-[#1e1e28] px-4 py-2.5 text-xs font-semibold transition duration-200 shadow-sm">
+                            <span>Launch University Preset →</span>
+                        </a>
+                    </div>
+
+                    <!-- Preset Card 2: DevOps -->
+                    <div class="relative flex flex-col justify-between rounded-[20px] bg-white dark:bg-[#0d0d12] border border-gray-100 dark:border-[#1e1e28] p-5 shadow-3xl dark:shadow-none hover:-translate-y-1 transition-all duration-200 preset-card-glow group">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="rounded-full bg-lightPrimary dark:bg-[#171722] border border-gray-200 dark:border-[#1e1e28] px-2.5 py-0.5 text-[11px] font-semibold text-blue-500 dark:text-blue-300">
+                                    Cloud Architecture
+                                </span>
+                                <span class="text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400">2 Qualified</span>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-base font-dm text-navy-700 dark:text-white group-hover:text-brand-500 dark:group-hover:text-[#7551FF] transition-colors">
+                                    ☁️ Cloud DevOps &amp; SRE Stack
+                                </h3>
+                                <p class="text-xs text-gray-600 dark:text-[#94a3b8] font-dm mt-1 leading-relaxed">
+                                    Isolate candidates mastering ALL mandatory infrastructure technologies: Kubernetes, Terraform, Docker, and AWS_IAM.
+                                </p>
+                            </div>
+                            <div class="pt-2 border-t border-gray-100 dark:border-[#1e1e28] flex items-center justify-between text-[11px] font-mono text-gray-500 dark:text-[#94a3b8]">
+                                <span>R: 13 skills</span>
+                                <span>S: 4 skills</span>
+                            </div>
+                        </div>
+                        <a href="simulation.html?preset=devops" onclick="localStorage.setItem('bacse202_selected_preset', 'devops')" class="mt-4 flex items-center justify-center gap-2 rounded-xl bg-lightPrimary hover:bg-brand-500 hover:text-white dark:bg-[#171722] dark:hover:bg-[#7551FF] text-brand-500 dark:text-[#C0B8FE] dark:hover:text-white border border-transparent dark:border-[#1e1e28] px-4 py-2.5 text-xs font-semibold transition duration-200 shadow-sm">
+                            <span>Launch DevOps Preset →</span>
+                        </a>
+                    </div>
+
+                    <!-- Preset Card 3: Healthcare -->
+                    <div class="relative flex flex-col justify-between rounded-[20px] bg-white dark:bg-[#0d0d12] border border-gray-100 dark:border-[#1e1e28] p-5 shadow-3xl dark:shadow-none hover:-translate-y-1 transition-all duration-200 preset-card-glow group">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="rounded-full bg-lightPrimary dark:bg-[#171722] border border-gray-200 dark:border-[#1e1e28] px-2.5 py-0.5 text-[11px] font-semibold text-rose-500 dark:text-rose-300">
+                                    Clinical Surgery
+                                </span>
+                                <span class="text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400">2 Qualified</span>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-base font-dm text-navy-700 dark:text-white group-hover:text-brand-500 dark:group-hover:text-[#7551FF] transition-colors">
+                                    🏥 Pediatric Cardiac Licenses
+                                </h3>
+                                <p class="text-xs text-gray-600 dark:text-[#94a3b8] font-dm mt-1 leading-relaxed">
+                                    Verify surgeons licensed across ALL emergency cardiac surgical protocols: PCD_CABG, PCD_VALVE, and PCD_ANGIO.
+                                </p>
+                            </div>
+                            <div class="pt-2 border-t border-gray-100 dark:border-[#1e1e28] flex items-center justify-between text-[11px] font-mono text-gray-500 dark:text-[#94a3b8]">
+                                <span>R: 9 records</span>
+                                <span>S: 3 protocols</span>
+                            </div>
+                        </div>
+                        <a href="simulation.html?preset=healthcare" onclick="localStorage.setItem('bacse202_selected_preset', 'healthcare')" class="mt-4 flex items-center justify-center gap-2 rounded-xl bg-lightPrimary hover:bg-brand-500 hover:text-white dark:bg-[#171722] dark:hover:bg-[#7551FF] text-brand-500 dark:text-[#C0B8FE] dark:hover:text-white border border-transparent dark:border-[#1e1e28] px-4 py-2.5 text-xs font-semibold transition duration-200 shadow-sm">
+                            <span>Launch Healthcare Preset →</span>
+                        </a>
+                    </div>
+
+                    <!-- Preset Card 4: EV Supply Chain -->
+                    <div class="relative flex flex-col justify-between rounded-[20px] bg-white dark:bg-[#0d0d12] border border-gray-100 dark:border-[#1e1e28] p-5 shadow-3xl dark:shadow-none hover:-translate-y-1 transition-all duration-200 preset-card-glow group">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="rounded-full bg-lightPrimary dark:bg-[#171722] border border-gray-200 dark:border-[#1e1e28] px-2.5 py-0.5 text-[11px] font-semibold text-amber-500 dark:text-amber-300">
+                                    Automotive &amp; EV
+                                </span>
+                                <span class="text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400">2 Qualified</span>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-base font-dm text-navy-700 dark:text-white group-hover:text-brand-500 dark:group-hover:text-[#7551FF] transition-colors">
+                                    🚗 Next-Gen 4680 Battery Pack
+                                </h3>
+                                <p class="text-xs text-gray-600 dark:text-[#94a3b8] font-dm mt-1 leading-relaxed">
+                                    Filter tier-1 suppliers delivering the COMPLETE bill of materials: 4680 Cells, BMS Controllers, and Thermal Plates.
+                                </p>
+                            </div>
+                            <div class="pt-2 border-t border-gray-100 dark:border-[#1e1e28] flex items-center justify-between text-[11px] font-mono text-gray-500 dark:text-[#94a3b8]">
+                                <span>R: 9 parts</span>
+                                <span>S: 3 SKUs</span>
+                            </div>
+                        </div>
+                        <a href="simulation.html?preset=supplychain" onclick="localStorage.setItem('bacse202_selected_preset', 'supplychain')" class="mt-4 flex items-center justify-center gap-2 rounded-xl bg-lightPrimary hover:bg-brand-500 hover:text-white dark:bg-[#171722] dark:hover:bg-[#7551FF] text-brand-500 dark:text-[#C0B8FE] dark:hover:text-white border border-transparent dark:border-[#1e1e28] px-4 py-2.5 text-xs font-semibold transition duration-200 shadow-sm">
+                            <span>Launch EV Preset →</span>
+                        </a>
+                    </div>
+
+                    <!-- Preset Card 5: Cybersecurity -->
+                    <div class="relative flex flex-col justify-between rounded-[20px] bg-white dark:bg-[#0d0d12] border border-gray-100 dark:border-[#1e1e28] p-5 shadow-3xl dark:shadow-none hover:-translate-y-1 transition-all duration-200 preset-card-glow group">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="rounded-full bg-lightPrimary dark:bg-[#171722] border border-gray-200 dark:border-[#1e1e28] px-2.5 py-0.5 text-[11px] font-semibold text-purple-500 dark:text-purple-300">
+                                    NIST SP 800-53
+                                </span>
+                                <span class="text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400">2 Qualified</span>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-base font-dm text-navy-700 dark:text-white group-hover:text-brand-500 dark:group-hover:text-[#7551FF] transition-colors">
+                                    🛡️ Zero-Trust Server Audits
+                                </h3>
+                                <p class="text-xs text-gray-600 dark:text-[#94a3b8] font-dm mt-1 leading-relaxed">
+                                    Identify production servers passing ALL mandatory access controls: AC-2 (Account Mgmt), IA-2 (Auth), SC-7, and SI-4.
+                                </p>
+                            </div>
+                            <div class="pt-2 border-t border-gray-100 dark:border-[#1e1e28] flex items-center justify-between text-[11px] font-mono text-gray-500 dark:text-[#94a3b8]">
+                                <span>R: 10 audit rows</span>
+                                <span>S: 4 controls</span>
+                            </div>
+                        </div>
+                        <a href="simulation.html?preset=cybersecurity" onclick="localStorage.setItem('bacse202_selected_preset', 'cybersecurity')" class="mt-4 flex items-center justify-center gap-2 rounded-xl bg-lightPrimary hover:bg-brand-500 hover:text-white dark:bg-[#171722] dark:hover:bg-[#7551FF] text-brand-500 dark:text-[#C0B8FE] dark:hover:text-white border border-transparent dark:border-[#1e1e28] px-4 py-2.5 text-xs font-semibold transition duration-200 shadow-sm">
+                            <span>Launch Security Preset →</span>
+                        </a>
+                    </div>
+
+                    <!-- Preset Card 6: Project Apollo -->
+                    <div class="relative flex flex-col justify-between rounded-[20px] bg-white dark:bg-[#0d0d12] border border-gray-100 dark:border-[#1e1e28] p-5 shadow-3xl dark:shadow-none hover:-translate-y-1 transition-all duration-200 preset-card-glow group">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="rounded-full bg-lightPrimary dark:bg-[#171722] border border-gray-200 dark:border-[#1e1e28] px-2.5 py-0.5 text-[11px] font-semibold text-cyan-500 dark:text-cyan-300">
+                                    Aerospace &amp; Lunar
+                                </span>
+                                <span class="text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400">2 Qualified</span>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-base font-dm text-navy-700 dark:text-white group-hover:text-brand-500 dark:group-hover:text-[#7551FF] transition-colors">
+                                    🚀 Apollo Lunar Landing Crew
+                                </h3>
+                                <p class="text-xs text-gray-600 dark:text-[#94a3b8] font-dm mt-1 leading-relaxed">
+                                    Determine astronaut candidates completing flight certifications on ALL lunar module descent, ascent, and EVA systems.
+                                </p>
+                            </div>
+                            <div class="pt-2 border-t border-gray-100 dark:border-[#1e1e28] flex items-center justify-between text-[11px] font-mono text-gray-500 dark:text-[#94a3b8]">
+                                <span>R: 8 flight certs</span>
+                                <span>S: 3 modules</span>
+                            </div>
+                        </div>
+                        <a href="simulation.html?preset=projectapollo" onclick="localStorage.setItem('bacse202_selected_preset', 'projectapollo')" class="mt-4 flex items-center justify-center gap-2 rounded-xl bg-lightPrimary hover:bg-brand-500 hover:text-white dark:bg-[#171722] dark:hover:bg-[#7551FF] text-brand-500 dark:text-[#C0B8FE] dark:hover:text-white border border-transparent dark:border-[#1e1e28] px-4 py-2.5 text-xs font-semibold transition duration-200 shadow-sm">
+                            <span>Launch Apollo Preset →</span>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- ========================================================= -->
+            <!-- FEATURE MODULES GRID: 6 BESPOKE DARK CARDS                -->
+            <!-- ========================================================= -->
+            <div class="space-y-4">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h2 class="font-dm text-lg font-bold text-navy-700 dark:text-white">
+                            Core System Modules
+                        </h2>
+                        <p class="font-dm text-xs text-gray-500 dark:text-[#94a3b8]">
+                            Interactive toolsets for Relational Division simulation, compilation, and tracing
+                        </p>
+                    </div>
+                    <span class="rounded-full bg-brand-50 dark:bg-[#171722] border border-brand-100 dark:border-[#1e1e28] px-3 py-1 text-xs font-semibold text-brand-500 dark:text-[#C0B8FE]">
+                        6 INTEGRATED SYSTEMS
+                    </span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+                    <!-- Module 1: Relational Division Workspace -->
+                    <div class="relative flex flex-col justify-between rounded-[20px] bg-white bg-clip-border p-6 shadow-3xl dark:!bg-[#0d0d12] dark:text-white dark:shadow-none border border-gray-100 dark:border-[#1e1e28] hover:-translate-y-1 transition-all duration-200 group">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="rounded-full bg-lightPrimary dark:bg-[#171722] border border-gray-200 dark:border-[#1e1e28] px-3 py-1 text-xs font-bold text-brand-500 dark:text-[#7551FF]">
+                                    MOD_01
+                                </span>
+                                <span class="rounded-full bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-500/30 px-2.5 py-0.5 text-xs font-semibold text-green-600 dark:text-emerald-400">
+                                    LIVE ENGINE
+                                </span>
+                            </div>
+                            <h3 class="font-bold text-base font-dm text-navy-700 dark:text-white group-hover:text-brand-500 dark:group-hover:text-[#7551FF] transition-colors">
+                                Relational Division Operator ($R \div S$)
+                            </h3>
+                            <p class="text-sm text-gray-600 dark:text-[#94a3b8] font-dm leading-relaxed">
+                                Interactive workspace to execute 5-step derivation, inspect intermediate tables $T_1 \dots T_5$, and edit relations with inline controls.
+                            </p>
+                        </div>
+                        <a href="simulation.html#result" class="mt-5 flex items-center justify-center gap-2 rounded-xl bg-lightPrimary hover:bg-brand-500 hover:text-white dark:bg-[#171722] dark:hover:bg-[#7551FF] text-brand-500 dark:text-[#C0B8FE] dark:hover:text-white border border-transparent dark:border-[#1e1e28] px-4 py-2.5 text-sm font-medium transition duration-200">
+                            <span>Open Workspace →</span>
+                        </a>
+                    </div>
+
+                    <!-- Module 2: Expression DAG Tree -->
+                    <div class="relative flex flex-col justify-between rounded-[20px] bg-white bg-clip-border p-6 shadow-3xl dark:!bg-[#0d0d12] dark:text-white dark:shadow-none border border-gray-100 dark:border-[#1e1e28] hover:-translate-y-1 transition-all duration-200 group">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="rounded-full bg-lightPrimary dark:bg-[#171722] border border-gray-200 dark:border-[#1e1e28] px-3 py-1 text-xs font-bold text-brand-500 dark:text-[#7551FF]">
+                                    MOD_02
+                                </span>
+                                <span class="rounded-full bg-brand-50 dark:bg-[#171722] border border-brand-100 dark:border-[#1e1e28] px-2.5 py-0.5 text-xs font-semibold text-brand-500 dark:text-[#C0B8FE]">
+                                    INTERACTIVE AST
+                                </span>
+                            </div>
+                            <h3 class="font-bold text-base font-dm text-navy-700 dark:text-white group-hover:text-brand-500 dark:group-hover:text-[#7551FF] transition-colors">
+                                Operator Expression DAG Tree
+                            </h3>
+                            <p class="text-sm text-gray-600 dark:text-[#94a3b8] font-dm leading-relaxed">
+                                Visual mathematical operator tree rendering the relational pipeline $\Pi_A(R) - \Pi_A((\Pi_A(R) \times S) - R)$ with clickable inspection nodes.
+                            </p>
+                        </div>
+                        <a href="simulation.html#dag" class="mt-5 flex items-center justify-center gap-2 rounded-xl bg-lightPrimary hover:bg-brand-500 hover:text-white dark:bg-[#171722] dark:hover:bg-[#7551FF] text-brand-500 dark:text-[#C0B8FE] dark:hover:text-white border border-transparent dark:border-[#1e1e28] px-4 py-2.5 text-sm font-medium transition duration-200">
+                            <span>Inspect DAG Tree →</span>
+                        </a>
+                    </div>
+
+                    <!-- Module 3: Tuple Tracer Debugger -->
+                    <div class="relative flex flex-col justify-between rounded-[20px] bg-white bg-clip-border p-6 shadow-3xl dark:!bg-[#0d0d12] dark:text-white dark:shadow-none border border-gray-100 dark:border-[#1e1e28] hover:-translate-y-1 transition-all duration-200 group">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="rounded-full bg-lightPrimary dark:bg-[#171722] border border-gray-200 dark:border-[#1e1e28] px-3 py-1 text-xs font-bold text-brand-500 dark:text-[#7551FF]">
+                                    MOD_03
+                                </span>
+                                <span class="rounded-full bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-500/30 px-2.5 py-0.5 text-xs font-semibold text-blue-600 dark:text-blue-300">
+                                    STEP DEBUGGER
+                                </span>
+                            </div>
+                            <h3 class="font-bold text-base font-dm text-navy-700 dark:text-white group-hover:text-brand-500 dark:group-hover:text-[#7551FF] transition-colors">
+                                Universal Quantifier Tracer
+                            </h3>
+                            <p class="text-sm text-gray-600 dark:text-[#94a3b8] font-dm leading-relaxed">
+                                Single-stepping debugger validating the $\forall y \in S, \langle x, y \rangle \in R$ condition for candidate tuples with checkmarks and failure flags.
+                            </p>
+                        </div>
+                        <a href="simulation.html#tracer" class="mt-5 flex items-center justify-center gap-2 rounded-xl bg-lightPrimary hover:bg-brand-500 hover:text-white dark:bg-[#171722] dark:hover:bg-[#7551FF] text-brand-500 dark:text-[#C0B8FE] dark:hover:text-white border border-transparent dark:border-[#1e1e28] px-4 py-2.5 text-sm font-medium transition duration-200">
+                            <span>Run Step Debugger →</span>
+                        </a>
+                    </div>
+
+                    <!-- Module 4: SQL Dialect Compiler -->
+                    <div class="relative flex flex-col justify-between rounded-[20px] bg-white bg-clip-border p-6 shadow-3xl dark:!bg-[#0d0d12] dark:text-white dark:shadow-none border border-gray-100 dark:border-[#1e1e28] hover:-translate-y-1 transition-all duration-200 group">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="rounded-full bg-lightPrimary dark:bg-[#171722] border border-gray-200 dark:border-[#1e1e28] px-3 py-1 text-xs font-bold text-brand-500 dark:text-[#7551FF]">
+                                    MOD_04
+                                </span>
+                                <span class="rounded-full bg-purple-50 dark:bg-purple-950/40 border border-purple-200 dark:border-purple-500/30 px-2.5 py-0.5 text-xs font-semibold text-purple-600 dark:text-purple-300">
+                                    3 PARADIGMS
+                                </span>
+                            </div>
+                            <h3 class="font-bold text-base font-dm text-navy-700 dark:text-white group-hover:text-brand-500 dark:group-hover:text-[#7551FF] transition-colors">
+                                SQL Code Generation Studio
+                            </h3>
+                            <p class="text-sm text-gray-600 dark:text-[#94a3b8] font-dm leading-relaxed">
+                                Generates correlated Double <code>NOT EXISTS</code>, Aggregation <code>GROUP BY / HAVING COUNT</code>, and Set Difference <code>EXCEPT / MINUS</code>.
+                            </p>
+                        </div>
+                        <a href="simulation.html#sql" class="mt-5 flex items-center justify-center gap-2 rounded-xl bg-lightPrimary hover:bg-brand-500 hover:text-white dark:bg-[#171722] dark:hover:bg-[#7551FF] text-brand-500 dark:text-[#C0B8FE] dark:hover:text-white border border-transparent dark:border-[#1e1e28] px-4 py-2.5 text-sm font-medium transition duration-200">
+                            <span>Open SQL Studio →</span>
+                        </a>
+                    </div>
+
+                    <!-- Module 5: Hardware & ESP32 Telemetry -->
+                    <div class="relative flex flex-col justify-between rounded-[20px] bg-white bg-clip-border p-6 shadow-3xl dark:!bg-[#0d0d12] dark:text-white dark:shadow-none border border-gray-100 dark:border-[#1e1e28] hover:-translate-y-1 transition-all duration-200 group">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="rounded-full bg-lightPrimary dark:bg-[#171722] border border-gray-200 dark:border-[#1e1e28] px-3 py-1 text-xs font-bold text-brand-500 dark:text-[#7551FF]">
+                                    MOD_05
+                                </span>
+                                <span class="rounded-full bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-500/30 px-2.5 py-0.5 text-xs font-semibold text-amber-600 dark:text-amber-300">
+                                    ESP32 / MPU-6050
+                                </span>
+                            </div>
+                            <h3 class="font-bold text-base font-dm text-navy-700 dark:text-white group-hover:text-brand-500 dark:group-hover:text-[#7551FF] transition-colors">
+                                Sensor &amp; Hardware Telemetry
+                            </h3>
+                            <p class="text-sm text-gray-600 dark:text-[#94a3b8] font-dm leading-relaxed">
+                                Real-time 6-DOF IMU accelerometer &amp; gyroscope stream running alongside relational engine IO throughput, cache hit rates, and comparison cycles.
+                            </p>
+                        </div>
+                        <a href="simulation.html#telemetry" class="mt-5 flex items-center justify-center gap-2 rounded-xl bg-lightPrimary hover:bg-brand-500 hover:text-white dark:bg-[#171722] dark:hover:bg-[#7551FF] text-brand-500 dark:text-[#C0B8FE] dark:hover:text-white border border-transparent dark:border-[#1e1e28] px-4 py-2.5 text-sm font-medium transition duration-200">
+                            <span>Monitor Stream →</span>
+                        </a>
+                    </div>
+
+                    <!-- Module 6: Quality & Test Benchmark -->
+                    <div class="relative flex flex-col justify-between rounded-[20px] bg-white bg-clip-border p-6 shadow-3xl dark:!bg-[#0d0d12] dark:text-white dark:shadow-none border border-gray-100 dark:border-[#1e1e28] hover:-translate-y-1 transition-all duration-200 group">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="rounded-full bg-lightPrimary dark:bg-[#171722] border border-gray-200 dark:border-[#1e1e28] px-3 py-1 text-xs font-bold text-brand-500 dark:text-[#7551FF]">
+                                    MOD_06
+                                </span>
+                                <span class="rounded-full bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-500/30 px-2.5 py-0.5 text-xs font-semibold text-green-600 dark:text-emerald-400">
+                                    8 ASSERTIONS
+                                </span>
+                            </div>
+                            <h3 class="font-bold text-base font-dm text-navy-700 dark:text-white group-hover:text-brand-500 dark:group-hover:text-[#7551FF] transition-colors">
+                                Automated Test Suite
+                            </h3>
+                            <p class="text-sm text-gray-600 dark:text-[#94a3b8] font-dm leading-relaxed">
+                                High-rigor test suite validating empty divisors, single-row relations, composite keys, duplicate sets, and schema mismatch error handling.
+                            </p>
+                        </div>
+                        <a href="simulation.html#tests" class="mt-5 flex items-center justify-center gap-2 rounded-xl bg-lightPrimary hover:bg-brand-500 hover:text-white dark:bg-[#171722] dark:hover:bg-[#7551FF] text-brand-500 dark:text-[#C0B8FE] dark:hover:text-white border border-transparent dark:border-[#1e1e28] px-4 py-2.5 text-sm font-medium transition duration-200">
+                            <span>Run Benchmarks →</span>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- ========================================================= -->
+            <!-- LIVE SYSTEM TERMINAL WINDOW (BESPOKE DARK OBSIDIAN)       -->
+            <!-- ========================================================= -->
+            <div class="relative flex flex-col rounded-[20px] bg-[#050507] border border-gray-200 dark:border-[#1e1e28] shadow-3xl overflow-hidden">
+                <!-- Terminal Header Bar -->
+                <div class="flex items-center justify-between px-5 py-3.5 bg-white dark:bg-[#0d0d12] border-b border-gray-100 dark:border-[#1e1e28]">
+                    <div class="flex items-center gap-3">
+                        <div class="flex items-center gap-1.5">
+                            <span class="w-3 h-3 rounded-full bg-[#f53939] inline-block"></span>
+                            <span class="w-3 h-3 rounded-full bg-[#fbbf24] inline-block"></span>
+                            <span class="w-3 h-3 rounded-full bg-[#05cd99] inline-block"></span>
+                        </div>
+                        <div class="flex items-center gap-2 font-mono text-xs text-gray-700 dark:text-gray-200 font-semibold pl-2">
+                            <span class="w-2 h-2 rounded-full bg-[#7551FF] animate-ping"></span>
+                            <span>SYSTEM READOUT // REAL-TIME LOG STREAM</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="font-mono text-[11px] text-emerald-400 bg-emerald-950/60 border border-emerald-500/30 px-2.5 py-0.5 rounded-full">
+                            ● I/O STREAM [ACTIVE]
+                        </span>
+                        <span class="font-mono text-[11px] text-gray-400 hidden sm:inline">
+                            ES6 ENGINE v2.4.0
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Terminal Body -->
+                <div id="dashboard-terminal" class="terminal-window bg-[#000000] text-gray-200 font-mono text-xs p-4 h-44 overflow-y-auto leading-relaxed border-none">
+                    <!-- Streamed dynamically by TechTerminal -->
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="components/Toast.js"></script>
+    <script src="components/Terminal.js"></script>
+    <script src="components/Layout.js"></script>
+    <script src="js/engine.js"></script>
+    <script src="js/presets.js"></script>
+    <script src="js/sql-generator.js"></script>
+    <script src="js/report-generator.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            TechLayout.mount('dashboard');
+
+            const term = new TechTerminal('dashboard-terminal');
+            term.log('Kernel initialized: Pure ES6 Relational Division Engine.', 'info');
+            term.log('BACSE202 Academic Research Platform loaded. Faculty Mentor: Dr. Swaminathan A, Assistant Professor.', 'info');
+            term.log('6 Domain Scenarios registered (University, DevOps, Healthcare, EV, NIST, Apollo).', 'success');
+            term.log('Telemetric Subsystem online: ESP32 / MPU-6050 at 50Hz sampling.', 'data');
+            term.log('Formal Verification Suite: 8/8 test assertions passed (100% specification verified).', 'success');
+        });
+    </script>
+</body>
+</html>

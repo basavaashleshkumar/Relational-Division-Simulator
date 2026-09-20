@@ -1,0 +1,195 @@
+{
+  "project": "Relational Division Operator Academic Research Platform",
+  "version": "2.4.0-PROD",
+  "course": "BACSE202 \u2014 Database Management Systems & Formal Query Verification",
+  "principalInvestigator": "Basavaashlesh",
+  "facultyMentor": "Dr. Swaminathan A, Assistant Professor",
+  "department": "Department of Computer Science and Engineering, SCOPE",
+  "buildTimestamp": "2026-09-20T15:45:34.414277+00:00",
+  "specification": "ANSI/ISO/IEC 9075 SQL & Codd (1970/1972) Relational Completeness",
+  "files": [
+    {
+      "path": "README.md",
+      "sizeBytes": 12391,
+      "sha256": "5425c8a78b5b7b10fed3cd369d3825336c1c467dd5bf94acd37f2709a09063dc"
+    },
+    {
+      "path": "dashboard.html",
+      "sizeBytes": 49468,
+      "sha256": "deb936c4178c8964be9870e8f2d66d4213e6667e4875daf9b86884060a7736f6"
+    },
+    {
+      "path": "documentation.html",
+      "sizeBytes": 74285,
+      "sha256": "bed1a76f7dbd0eb1614c84d3c590500a14c379ccb5886a6809336627f2150af2"
+    },
+    {
+      "path": "index.html",
+      "sizeBytes": 22858,
+      "sha256": "42d11c18477c5a3d0c8fbe150611856ecb8c9a3339f831109829e239a2213e65"
+    },
+    {
+      "path": "run-dist.bat",
+      "sizeBytes": 565,
+      "sha256": "d6ae170d8ec80e44f5285e1a341a3eaee50696dc32857103fbcda33062486394"
+    },
+    {
+      "path": "serve.py",
+      "sizeBytes": 2682,
+      "sha256": "ec6fb4f2a45ad7815595bae5bcfa5f81e0b262265624b9b0707a4dcd705e5eed"
+    },
+    {
+      "path": "simulation.html",
+      "sizeBytes": 73891,
+      "sha256": "b361705fba5dcc020c5b34b39d6061cc19408c1e8938663ca292d4faf2265c35"
+    },
+    {
+      "path": "components/Layout.js",
+      "sizeBytes": 111404,
+      "sha256": "b18a56786c87a107e9a20ad00cb399f8416eb7a356774a507718334f178b4bfc"
+    },
+    {
+      "path": "components/Layout.min.js",
+      "sizeBytes": 106998,
+      "sha256": "371d66e500adddb1071d3ac2655d38d1213644391f9d2028815436c6a93084fb"
+    },
+    {
+      "path": "components/Terminal.js",
+      "sizeBytes": 3324,
+      "sha256": "30a008ce3d36731ad3abcc65a91af1f605f34dc26e7c751563ecac1d57f90ecb"
+    },
+    {
+      "path": "components/Terminal.min.js",
+      "sizeBytes": 2985,
+      "sha256": "2edd87b919b7980bfd558d2a22d8f4079f72642f0ac4b1a0af51dacef554daab"
+    },
+    {
+      "path": "components/Toast.js",
+      "sizeBytes": 3898,
+      "sha256": "5d75bae9010ac9138d802f9f17d7cb0ccf06bb5cc697d8b4d79a044ad1995448"
+    },
+    {
+      "path": "components/Toast.min.js",
+      "sizeBytes": 3669,
+      "sha256": "e0f021004ba8dd24791901a2c3d8bffe15420ed9917ddfde0438a0f100a40fd3"
+    },
+    {
+      "path": "css/design-system.css",
+      "sizeBytes": 50327,
+      "sha256": "4723c01bb83fdf01df23e67924b78527b76c5a8bee6a6edefd3beba9e39f30fa"
+    },
+    {
+      "path": "css/design-system.min.css",
+      "sizeBytes": 35816,
+      "sha256": "5a43b3e248893fb43b5c0c4f79499d98129191472deeaa2a436c748e34e218d8"
+    },
+    {
+      "path": "css/styles.css",
+      "sizeBytes": 12611,
+      "sha256": "58c0150f499990326e5cb759d009ba8c3f545e2a21b206b957132a209b7efb84"
+    },
+    {
+      "path": "css/styles.min.css",
+      "sizeBytes": 8562,
+      "sha256": "2992d018ff9da2e898d992d411ebbb6a6d15fc2ef023ac920e3664cb2045541c"
+    },
+    {
+      "path": "js/app.js",
+      "sizeBytes": 23778,
+      "sha256": "3e65fba18047c7b5d68db3797626a1b6fdc136647d4fc46cfde233481381b242"
+    },
+    {
+      "path": "js/app.min.js",
+      "sizeBytes": 22231,
+      "sha256": "a98754854aece1e76309bc7af0d7aa9280925a873636b3275a9d425bf6c0371f"
+    },
+    {
+      "path": "js/engine.js",
+      "sizeBytes": 16629,
+      "sha256": "0831ceeab428ed9311a121a16974c6e70c85c9f06d3d795202f5711278a24124"
+    },
+    {
+      "path": "js/engine.min.js",
+      "sizeBytes": 12182,
+      "sha256": "e4971ec16e1c07997b5c489891efb95a88d96e0b79854b8d93cf25b25d7e1d4a"
+    },
+    {
+      "path": "js/presets.js",
+      "sizeBytes": 11009,
+      "sha256": "3a75d2f53ea85eb9b7b730bd499f66bed574cc5dba9e0b2b473bd3347f4ffe6e"
+    },
+    {
+      "path": "js/presets.min.js",
+      "sizeBytes": 10838,
+      "sha256": "7f43160ff360d352d9592607b894060cfa8951f5d518094c9ce1b626b6cfc745"
+    },
+    {
+      "path": "js/relational-division-core.bundle.min.js",
+      "sizeBytes": 135460,
+      "sha256": "831fd3b64d02d93f08f85baf5fc599597b2ba50a8d7f01ac4790d95b53a49081"
+    },
+    {
+      "path": "js/report-generator.js",
+      "sizeBytes": 89140,
+      "sha256": "08ab0920673aa99180a5eb853b53fa795b016dbd814c778dbd2d022af4cf10d9"
+    },
+    {
+      "path": "js/report-generator.min.js",
+      "sizeBytes": 85080,
+      "sha256": "854da945077359be5f3b059de06fbb27f9e4b89c6faf49ed9a373399d536bf6b"
+    },
+    {
+      "path": "js/sim-workspace.js",
+      "sizeBytes": 36158,
+      "sha256": "81ef7ce38352397468ca1198e6e93a11712bdfeb4bdf56256996fa54fa4212d2"
+    },
+    {
+      "path": "js/sim-workspace.min.js",
+      "sizeBytes": 34175,
+      "sha256": "1edec79d2bb4dad0b6c82766490748582907c9497b2afd3d37b2ea2ee3160796"
+    },
+    {
+      "path": "js/sql-generator.js",
+      "sizeBytes": 9954,
+      "sha256": "d742a0b828bc429a23c068fa0593b7768d8ed567c20b096f067723f90b977ff4"
+    },
+    {
+      "path": "js/sql-generator.min.js",
+      "sizeBytes": 8807,
+      "sha256": "b75aafd5deec5bdaa72d290e9094dd2fda1d5db2257a65b4f90d9cab426f8740"
+    },
+    {
+      "path": "js/telemetry.js",
+      "sizeBytes": 4710,
+      "sha256": "2b4ab8f399984a95f227005a242bddf9f6f98e1927c8a68e9165e57b206037ff"
+    },
+    {
+      "path": "js/telemetry.min.js",
+      "sizeBytes": 4065,
+      "sha256": "eb69fb60238267b7228ebda75c1adde7dc7315c28b77b6e87dc64ba0c33ba9d3"
+    },
+    {
+      "path": "js/test-suite.js",
+      "sizeBytes": 14296,
+      "sha256": "deff3a4f654f7723289764b4b4f1a76108b09595afdd8c3b391448899a8d582c"
+    },
+    {
+      "path": "js/test-suite.min.js",
+      "sizeBytes": 14018,
+      "sha256": "08114162987c7b5c62057aa6a6ea1e60635ae095faf0112b47eefa537494f0b0"
+    },
+    {
+      "path": "js/visualizer.js",
+      "sizeBytes": 30756,
+      "sha256": "91cb984f5bc8ecc6c6ce9d7a073ce9c5eda541f5f00118e947ce067944e1b0a8"
+    },
+    {
+      "path": "js/visualizer.min.js",
+      "sizeBytes": 28575,
+      "sha256": "24aaf15385abd0bba08191a3ce7d10c55695c305295598e415defbb4f15e0d88"
+    }
+  ],
+  "totalFiles": 36,
+  "totalSizeBytes": 1167595,
+  "verificationStatus": "PASSED (8/8 boundary invariants verified)"
+}
