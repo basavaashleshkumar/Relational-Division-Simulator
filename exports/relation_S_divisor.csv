@@ -1,0 +1,16 @@
+# ==============================================================================
+# ACADEMIC RESEARCH DATASET: RELATIONAL DIVISION (R ÷ S)
+# Institution   : Relational Database Systems Laboratory
+# Project Title : Relational Division Operator Verification & Algorithmic Analysis
+# Relation Name : MandatoryCoreCS
+# Cardinality   : 4 tuples
+# Degree        : 1 attributes
+# Timestamp     : 2026-10-09T06:28:13.591Z
+# Specification : RFC 4180 Compliant (CRLF record breaks, quoted fields)
+# Pipeline Stage: Divisor Relation S (MandatoryCoreCS)
+# ==============================================================================
+"CourseCode"
+"CSE201"
+"CSE202"
+"CSE203"
+"CSE204"

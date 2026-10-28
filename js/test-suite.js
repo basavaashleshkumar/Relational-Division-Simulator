@@ -1,5 +1,5 @@
 /**
- * BACSE202: Relational Division Simulator
+ * Relational Division Simulator
  * Automated Formal Verification Suite & Boundary Invariance Benchmark
  * Evaluates algebraic correctness, mathematical invariants, and error resilience
  */

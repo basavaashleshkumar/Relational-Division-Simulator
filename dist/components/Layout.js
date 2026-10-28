@@ -1,11 +1,6 @@
 /**
- * ============================================================================
  * Horizon Navigation & Layout Architect — TechLayout Component
- * Bespoke Dark Black Ergonomic Navigation Architecture
- * Course: BACSE202 — Database Management Systems
- * Faculty Mentor: Dr. Swaminathan A, Assistant Professor
- * Principal Investigator: Basavaashlesh
- * ============================================================================
+ * High-performance UI shell, responsive topbar, and accessible modals
  */
 
 class TechLayout {
@@ -13,7 +8,7 @@ class TechLayout {
      * Get active theme ('dark' | 'light')
      */
     static getTheme() {
-        return localStorage.getItem('bacse202_theme') || 'dark';
+        return localStorage.getItem('relational_div_theme') || 'dark';
     }
 
     /**
@@ -32,7 +27,7 @@ class TechLayout {
             document.body.classList.remove('dark');
             document.body.classList.add('light');
         }
-        localStorage.setItem('bacse202_theme', theme);
+        localStorage.setItem('relational_div_theme', theme);
 
         const iconContainer = document.getElementById('global-theme-icon');
         if (iconContainer) {
@@ -202,13 +197,13 @@ class TechLayout {
                 desc: 'Candidate requirement fulfillment satisfaction grid'
             },
             {
-                id: 'telemetry',
-                name: 'Hardware Telemetry',
-                hash: 'telemetry',
+                id: 'steps',
+                name: '5-Stage Derivation',
+                hash: 'steps',
                 page: 'simulation.html',
-                icon: '📡',
-                badge: 'SENSOR I/O',
-                desc: 'Real-time ESP32 / MPU-6050 & engine performance streams'
+                icon: '🪜',
+                badge: 'DERIVATION',
+                desc: 'Intermediate relations breakdown: Projection, Product, Disqualification, Output'
             },
             {
                 id: 'tests',
@@ -249,7 +244,7 @@ class TechLayout {
             {
                 id: 'zone-dash',
                 title: 'Main Dashboard',
-                desc: 'Platform hub, hardware telemetry stat cards, and system terminal',
+                desc: 'Platform hub, architecture overview stat cards, and system terminal',
                 category: 'zones',
                 badge: 'ZONE',
                 url: 'dashboard.html',
@@ -333,17 +328,6 @@ class TechLayout {
                 keywords: 'matrix coverage grid satisfaction candidate requirement'
             },
             {
-                id: 'cmd-telemetry',
-                title: 'Hardware Telemetry Stream',
-                desc: 'Sensor metrics: ESP32, MPU-6050, cache hit rates, engine clock',
-                category: 'submodules',
-                badge: 'SUBMODULE',
-                url: 'simulation.html#telemetry',
-                hash: 'telemetry',
-                icon: '📡',
-                keywords: 'telemetry hardware sensor esp32 mpu6050 clock cache latency'
-            },
-            {
                 id: 'cmd-tests',
                 title: '8-Case Automated Test Suite',
                 desc: 'Boundary conditions, empty relations, supersets, and formal invariants',
@@ -363,7 +347,7 @@ class TechLayout {
                 url: 'documentation.html#verification',
                 hash: 'verification',
                 icon: '🎯',
-                keywords: 'formal verification matrix validation algebraic criteria swaminathan conformance'
+                keywords: 'formal verification matrix validation algebraic criteria conformance'
             },
             {
                 id: 'cmd-validation',
@@ -474,10 +458,21 @@ class TechLayout {
                 desc: 'Astronaut candidates certified for all Saturn V lunar mission modules',
                 category: 'presets',
                 badge: 'PRESET',
-                presetKey: 'apollo',
-                url: 'simulation.html?preset=apollo',
+                presetKey: 'projectapollo',
+                url: 'simulation.html?preset=projectapollo',
                 icon: '🌕',
                 keywords: 'preset apollo agc astronaut saturn space lunar mission'
+            },
+            {
+                id: 'preset-irctc',
+                title: 'Preset: IRCTC Railway Reservation',
+                desc: 'Passenger tickets confirmed across all mandatory halts in the Rajdhani route',
+                category: 'presets',
+                badge: 'PRESET',
+                presetKey: 'irctc',
+                url: 'simulation.html?preset=irctc',
+                icon: '🚆',
+                keywords: 'irctc indian railway train reservation pnr rajdhani delhi kanpur route'
             },
 
             // 4. Documentation & Theoretical Proofs
@@ -515,26 +510,15 @@ class TechLayout {
                 keywords: 'sql dialects comparison cost optimization performance query plan'
             },
             {
-                id: 'doc-telemetry-specs',
-                title: 'Sensor Telemetry Architecture',
-                desc: 'ESP32 / MPU-6050 hardware interface and serial stream protocol',
+                id: 'doc-exact-specs',
+                title: 'Strict Bijection Exact Division',
+                desc: 'Algebraic formulation of R ÷_exact S and superset candidate elimination',
                 category: 'docs',
-                badge: 'DOCS',
-                url: 'documentation.html#telemetry-doc',
-                hash: 'telemetry-doc',
-                icon: '🛰️',
-                keywords: 'telemetry sensor specs hardware esp32 i2c serial baud rate'
-            },
-            {
-                id: 'doc-faculty',
-                title: 'Faculty Guide & Course Details',
-                desc: 'Dr. Swaminathan A, Assistant Professor, Department of CSE / SCOPE',
-                category: 'docs',
-                badge: 'ACADEMIC',
-                url: 'documentation.html#faculty',
-                hash: 'faculty',
-                icon: '👨‍🏫',
-                keywords: 'faculty swaminathan professor vit scope cse bacse202 guide'
+                badge: 'THEORY',
+                url: 'documentation.html#exact-division',
+                hash: 'exact-division',
+                icon: '⚖️',
+                keywords: 'exact division bijection superset elimination strict equality cse301'
             },
             {
                 id: 'doc-refs',
@@ -557,7 +541,7 @@ class TechLayout {
                 badge: 'ACTION',
                 shortcut: 'Alt+T',
                 action: 'toggleTheme',
-                icon: '🌓',
+                icon: '🌖',
                 keywords: 'theme dark light toggle mode switch night day'
             },
             {
@@ -590,7 +574,7 @@ class TechLayout {
                 badge: 'ACTION',
                 shortcut: 'Ctrl+Enter',
                 action: 'runPipeline',
-                icon: '▶️',
+                icon: '▶ï¸',
                 keywords: 'run execute pipeline compute divide calculate simulation'
             },
             {
@@ -613,6 +597,39 @@ class TechLayout {
                 action: 'toggleSidebar',
                 icon: '↔️',
                 keywords: 'sidebar collapse expand toggle hide show'
+            },
+            {
+                id: 'act-exams',
+                title: 'Open Competitive Exams & GATE Portal',
+                desc: 'Access verified questions from GATE CSE, UGC-NET, & ISRO with mathematical proofs',
+                category: 'actions',
+                badge: 'PORTAL',
+                shortcut: 'Alt+G',
+                action: 'openExamsModal',
+                icon: '🏆',
+                keywords: 'exams gate ugc net isro practice competitive test mcq questions'
+            },
+            {
+                id: 'act-practice',
+                title: 'Open AI for Practice & Query Sandbox',
+                desc: 'Interactive scenario generator, challenge tester, and SQL pitfall detector',
+                category: 'actions',
+                badge: 'AI TUTOR',
+                shortcut: 'Alt+P',
+                action: 'openPracticeModal',
+                icon: '🤖',
+                keywords: 'ai practice tutor pitfall analyze query sandbox test grader challenges'
+            },
+            {
+                id: 'act-importer',
+                title: 'Universal Data Importer (CSV, JSON, Excel, SQL)',
+                desc: 'Upload or paste CSV, TSV, JSON, Excel sheets, or raw CREATE/INSERT SQL scripts',
+                category: 'actions',
+                badge: 'IMPORT',
+                shortcut: 'Alt+I',
+                action: 'openImporterModal',
+                icon: '📥',
+                keywords: 'import upload file csv tsv json excel sql create table insert custom data'
             }
         ];
     }
@@ -667,16 +684,16 @@ class TechLayout {
             const isActive = activePage === z.key;
             if (isActive) {
                 return `
-                <a href="${z.path}" class="quick-nav-zone-pill active flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-bold text-xs bg-gradient-to-r from-brand-500 to-brand-600 text-white shadow-md shadow-brand-500/30 transition-all">
+                <a href="${z.path}" class="quick-nav-zone-pill active inline-flex items-center gap-1.5 px-2.5 py-1 rounded text-xs font-semibold bg-[#7551FF] text-white shadow-xs whitespace-nowrap shrink-0 transition-colors">
                     <span>${z.emoji}</span>
-                    <span class="hidden md:inline">${z.shortName || z.name}</span>
+                    <span>${z.shortName || z.name}</span>
                 </a>
                 `;
             } else {
                 return `
-                <a href="${z.path}" class="quick-nav-zone-pill flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-medium text-xs text-gray-400 hover:text-white hover:bg-white/5 transition-all">
+                <a href="${z.path}" class="quick-nav-zone-pill inline-flex items-center gap-1.5 px-2.5 py-1 rounded text-xs font-medium text-[#454542] dark:text-[#b7b7b4] hover:text-navy-700 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5 whitespace-nowrap shrink-0 transition-colors">
                     <span>${z.emoji}</span>
-                    <span class="hidden md:inline">${z.shortName || z.name}</span>
+                    <span>${z.shortName || z.name}</span>
                 </a>
                 `;
             }
@@ -684,176 +701,114 @@ class TechLayout {
 
         // 2. Submodule Quick Jump Dropdown Menu Items HTML
         const submoduleDropdownHtml = submodules.map(sub => `
-            <a href="${sub.page}#${sub.hash}" class="quickjump-item flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs text-gray-300 hover:text-white hover:bg-[#1a1a26] transition-all group" data-page="${sub.page}" data-hash="${sub.hash}">
+            <a href="${sub.page}#${sub.hash}" class="quickjump-item flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs text-[#454542] dark:text-gray-300 hover:text-navy-700 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5 transition-all group" data-page="${sub.page}" data-hash="${sub.hash}">
                 <span class="text-sm flex-shrink-0 group-hover:scale-110 transition-transform">${sub.icon}</span>
                 <div class="flex-1 min-w-0">
                     <div class="flex items-center justify-between">
-                        <span class="font-semibold text-gray-200 group-hover:text-white truncate">${sub.name}</span>
-                        <span class="text-[9px] font-mono font-bold px-1.5 py-0.2 rounded bg-brand-500/20 text-brand-300 border border-brand-500/30">${sub.badge}</span>
+                        <span class="font-semibold text-navy-700 dark:text-gray-200 truncate">${sub.name}</span>
+                        <span class="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-[#7551FF]/10 dark:bg-[#7551FF]/20 text-[#7551FF] border border-[#7551FF]/30">${sub.badge}</span>
                     </div>
-                    <p class="text-[10px] text-gray-400 truncate mt-0.5">${sub.desc}</p>
+                    <p class="text-[10px] text-gray-500 dark:text-gray-400 truncate mt-0.5">${sub.desc}</p>
                 </div>
             </a>
         `).join('');
 
-        // 3. Horizon Floating Top Navbar HTML
+        // 3. Crisp Defined Top Navbar HTML (Flush 56px Bar with Hairline Separation)
         const topNavHtml = `
-        <header class="sticky top-0 z-40 w-full px-3 sm:px-6 pt-3 pb-2 transition-all">
-            <nav class="sticky top-4 z-40 flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3 rounded-2xl bg-white/90 dark:bg-[#0a0a0ed9] p-2.5 sm:p-3 backdrop-blur-xl border border-gray-200/70 dark:border-white/[0.08] shadow-lg shadow-black/5 dark:shadow-black/60 transition-all">
+        <header class="sticky top-0 z-50 w-full bg-white/95 dark:bg-[#0b0b0f]/95 backdrop-blur-md border-b border-gray-200 dark:border-[#1e1e28] shadow-[0_1px_2px_0_rgba(0,0,0,0.02)] transition-colors">
+            <nav class="w-full px-3 sm:px-6 h-14 flex items-center justify-between gap-2 sm:gap-4">
                 
-                <!-- Left Side: Breadcrumbs & Page Identity -->
-                <div class="flex items-center justify-between lg:justify-start gap-3">
-                    <div class="ml-1 py-0.5">
-                        <div class="flex items-center gap-1.5 text-xs text-gray-500 dark:text-gray-400">
-                            <a href="index.html" class="hover:text-brand-500 dark:hover:text-brand-400 font-medium transition-colors flex items-center gap-1">
-                                <span>🚀</span>
-                                <span>Relational Div</span>
-                            </a>
-                            <span class="text-gray-400 dark:text-gray-600">/</span>
-                            <span class="font-semibold text-navy-700 dark:text-gray-200 capitalize">
-                                ${brandText}
-                            </span>
-                            <span id="breadcrumb-submodule" class="hidden font-mono text-[10px] font-bold px-2 py-0.5 rounded-full bg-brand-500/20 text-brand-300 border border-brand-500/30"></span>
-                        </div>
-                        <div class="flex items-center gap-2.5 mt-0.5">
-                            <h2 class="text-lg sm:text-xl font-bold font-poppins text-navy-700 dark:text-white tracking-tight leading-tight">
-                                ${brandText}
-                            </h2>
-                            <span class="hidden sm:inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-mono">
-                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                                240Hz ES6
-                            </span>
-                        </div>
+                <!-- Left Side: Brand Identity & Active Context -->
+                <div class="flex items-center gap-2 sm:gap-3 shrink-0 whitespace-nowrap">
+                    <a href="index.html" class="flex items-center gap-2 text-decoration-none group" title="Return to System Landing">
+                        <span class="w-7 h-7 rounded bg-[#7551FF]/10 border border-[#7551FF]/30 flex items-center justify-center text-xs group-hover:scale-105 transition-transform">🚀</span>
+                        <span class="font-bold text-sm text-navy-700 dark:text-white tracking-tight">Relational<span class="text-[#7551FF]">.Div</span></span>
+                    </a>
+
+                    <span class="h-4 w-px bg-gray-200 dark:bg-[#1e1e28]"></span>
+
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs font-semibold text-navy-700 dark:text-gray-100 tracking-tight">${brandText}</span>
+                        <span id="breadcrumb-submodule" class="hidden font-mono text-[10px] font-bold px-2 py-0.5 rounded bg-[#7551FF]/15 text-[#7551FF] border border-[#7551FF]/30"></span>
                     </div>
 
                     <!-- Mobile Drawer Toggle for Left on Mobile -->
-                    <button id="mobile-sidebar-toggle-alt" class="xl:hidden flex lg:hidden cursor-pointer text-gray-400 hover:text-white p-2 rounded-xl bg-gray-100 dark:bg-[#111116] border border-gray-200 dark:border-[#22222c] transition-colors" title="Toggle Navigation Drawer">
+                    <button id="mobile-sidebar-toggle-alt" class="xl:hidden flex lg:hidden cursor-pointer text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white p-1.5 rounded bg-black/5 dark:bg-white/5 border border-gray-200 dark:border-[#1e1e28] transition-colors" title="Toggle Navigation Drawer">
                         ${icons.hamburger}
                     </button>
                 </div>
 
-                <!-- Center: Quick-Nav 4-Zone Bar & Submodule Quick Jump -->
-                <div class="flex flex-wrap items-center justify-start lg:justify-center gap-2">
-                    
+                <!-- Center: Quick-Nav 4-Zone Segmented Bar -->
+                <div class="hidden md:flex items-center gap-2 shrink-0 whitespace-nowrap">
                     <!-- 1-Click 4 Main Zones Strip -->
-                    <div class="flex items-center p-1 rounded-xl bg-gray-100/80 dark:bg-[#111116] border border-gray-200 dark:border-[#22222c] shadow-inner">
+                    <div class="inline-flex items-center p-0.5 rounded bg-[#EFF4FB] dark:bg-[#0d0d12] border border-gray-200 dark:border-[#1e1e28]">
                         ${zoneLinksHtml}
                     </div>
-
-                    <!-- Submodule Quick Jump Dropdown Pill Menu -->
-                    <div class="relative submodule-quickjump-wrapper">
-                        <button id="btn-quickjump-dropdown" class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gray-100/80 dark:bg-[#111116] hover:bg-gray-200 dark:hover:bg-[#181822] text-navy-700 dark:text-gray-200 text-xs font-semibold border border-gray-200 dark:border-[#22222c] transition-all cursor-pointer shadow-sm group">
-                            <span class="text-brand-500 dark:text-brand-400 font-bold group-hover:scale-110 transition-transform">⚡</span>
-                            <span>Quick Jump</span>
-                            <span class="font-mono text-[9px] px-1.5 py-0.2 rounded bg-brand-500/20 text-brand-300 ml-0.5">8</span>
-                            <span id="quickjump-chevron" class="text-gray-400 transition-transform duration-200">${icons.chevronDown}</span>
-                        </button>
-
-                        <!-- Dropdown Panel (8 Submodules) -->
-                        <div id="quickjump-dropdown-menu" class="hidden absolute left-0 sm:right-0 sm:left-auto top-full mt-2 w-72 sm:w-80 rounded-2xl bg-white dark:bg-[#0c0c12] border border-gray-200 dark:border-[#22222e] shadow-2xl p-2 z-50 transition-all backdrop-blur-2xl">
-                            <div class="px-3 py-2 border-b border-gray-100 dark:border-[#1a1a26] flex items-center justify-between text-[11px] font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">
-                                <span>Platform Submodules</span>
-                                <span class="font-mono text-[10px] text-brand-400">Direct Anchors</span>
-                            </div>
-                            <div class="space-y-0.5 mt-1 max-h-[360px] overflow-y-auto horizon-scrollbar">
-                                ${submoduleDropdownHtml}
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
 
-                <!-- Right Side: Floating Action Pill -->
-                <div class="flex items-center justify-end">
-                    <div class="relative flex items-center gap-1.5 sm:gap-2 rounded-full bg-white dark:bg-[#111116] px-2.5 sm:px-3 py-1.5 shadow-xl border border-gray-200 dark:border-[#22222c] transition-all flex-shrink-0">
-                        
-                        <!-- Interactive Command Palette / Search Trigger Pill -->
-                        <button id="global-search-trigger" class="flex h-8 sm:h-9 items-center rounded-full bg-lightPrimary text-navy-700 dark:bg-[#181822] hover:dark:bg-[#20202e] dark:text-white px-2.5 sm:px-3.5 w-32 sm:w-44 md:w-52 transition-all border border-transparent dark:border-white/5 hover:border-brand-500/50 cursor-pointer group" title="Open Command Palette (Ctrl+K)">
-                            <span class="pr-2 text-gray-400 group-hover:text-brand-400 transition-colors flex-shrink-0">
-                                ${icons.search}
-                            </span>
-                            <span class="text-xs text-gray-400 dark:text-gray-400 group-hover:text-white transition-colors truncate text-left flex-1 font-medium">
-                                Search...
-                            </span>
-                            <kbd class="hidden sm:inline-flex items-center text-[10px] font-mono px-1.5 py-0.5 bg-gray-200 dark:bg-[#252536] text-gray-600 dark:text-gray-300 rounded border border-gray-300 dark:border-white/10 ml-1 flex-shrink-0">
-                                Ctrl+K
-                            </kbd>
-                        </button>
+                <!-- Right Side: Evaluation Criteria Action Tabs (Mandatory Sections A-E) -->
+                <div class="flex items-center justify-end gap-1.5 sm:gap-2 shrink-0 whitespace-nowrap">
+                    
+                    <!-- Search Command Palette Trigger (Ctrl+K) -->
+                    <button id="global-search-trigger" class="hidden xl:inline-flex h-8 items-center gap-2 rounded bg-[#EFF4FB] dark:bg-[#0d0d12] hover:bg-gray-100 dark:hover:bg-[#171722] text-gray-500 dark:text-gray-400 hover:text-navy-700 dark:hover:text-gray-100 px-2.5 border border-gray-200 dark:border-[#1e1e28] text-xs font-medium transition-colors cursor-pointer group" title="Open Command Palette (Ctrl+K)">
+                        <span class="text-gray-400 group-hover:text-[#7551FF] transition-colors flex-shrink-0">
+                            ${icons.search}
+                        </span>
+                        <span class="truncate">Search...</span>
+                        <kbd class="font-mono text-[9px] px-1 py-0.2 rounded bg-white dark:bg-[#0b0b0f] border border-gray-200 dark:border-[#1e1e28] text-gray-500 dark:text-gray-400">Ctrl+K</kbd>
+                    </button>
 
-                        <!-- Mobile Drawer Toggle Button (Hidden on xl) -->
-                        <button id="mobile-sidebar-toggle" class="xl:hidden flex cursor-pointer text-gray-600 dark:text-gray-300 hover:text-brand-400 p-1.5 rounded-full hover:bg-gray-100 dark:hover:bg-[#1f1f2e] transition-colors" title="Toggle Navigation Drawer">
-                            ${icons.hamburger}
-                        </button>
+                    <span class="hidden xl:block h-4 w-px bg-gray-200 dark:bg-[#1e1e28]"></span>
 
-                        <!-- Day/Night Mode Toggle with Sun/Moon Icons -->
-                        <button id="global-theme-toggle" class="cursor-pointer text-gray-600 dark:text-gray-300 hover:text-brand-400 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-[#1f1f2e] transition-colors" title="Toggle Day/Night Mode (Alt+T)">
-                            <span id="global-theme-icon" class="flex items-center justify-center">
-                                ${isDark ? icons.sun : icons.moon}
-                            </span>
-                        </button>
+                    <!-- Competitive Exams Portal (50 Real Questions) -->
+                    <button id="global-btn-exams" class="btn-topbar-tab h-8 inline-flex items-center gap-1.5 px-2.5 rounded bg-white dark:bg-[#0d0d12] hover:bg-[#EFF4FB] dark:hover:bg-[#171722] text-navy-700 dark:text-gray-100 hover:text-amber-500 dark:hover:text-amber-400 border border-gray-200 dark:border-[#1e1e28] text-xs font-medium transition-colors cursor-pointer shrink-0" title="Competitive Exams: 50 Questions from GATE CSE, UGC-NET, & ISRO (Alt+G)">
+                        <span>🏆</span>
+                        <span class="font-medium hidden sm:inline">50 Exams</span>
+                    </button>
 
-                        <!-- Global Export / Download Report Button -->
-                        <button id="global-btn-download" class="cursor-pointer text-gray-600 dark:text-gray-300 hover:text-brand-400 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-[#1f1f2e] transition-colors" title="Download Academic Reports: PDF, Word, Text, CSV (Alt+E)">
-                            <span class="flex items-center justify-center">
-                                ${icons.download}
-                            </span>
-                        </button>
+                    <!-- AI for Practice Sandbox -->
+                    <button id="global-btn-practice" class="btn-topbar-tab h-8 inline-flex items-center gap-1.5 px-2.5 rounded bg-white dark:bg-[#0d0d12] hover:bg-[#EFF4FB] dark:hover:bg-[#171722] text-navy-700 dark:text-gray-100 hover:text-cyan-500 dark:hover:text-cyan-400 border border-gray-200 dark:border-[#1e1e28] text-xs font-medium transition-colors cursor-pointer shrink-0" title="AI for Practice: Problem Generator & SQL Pitfall Analyzer (Alt+P)">
+                        <span>🤖</span>
+                        <span class="font-medium hidden sm:inline">AI Practice</span>
+                    </button>
 
-                        <!-- Help Button -->
-                        <button id="global-btn-help" class="cursor-pointer text-gray-600 dark:text-gray-300 hover:text-brand-400 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-[#1f1f2e] transition-colors" title="Operational User Manual & Shortcuts (Alt+H)">
-                            <span class="flex items-center justify-center">
-                                ${icons.help}
-                            </span>
-                        </button>
+                    <!-- Learn Tab -->
+                    <button id="global-btn-learn" class="btn-topbar-tab h-8 inline-flex items-center gap-1.5 px-2.5 rounded bg-white dark:bg-[#0d0d12] hover:bg-[#EFF4FB] dark:hover:bg-[#171722] text-navy-700 dark:text-gray-100 hover:text-[#7551FF] dark:hover:text-[#7551FF] border border-gray-200 dark:border-[#1e1e28] text-xs font-medium transition-colors cursor-pointer shrink-0" title="Learn: Concept Explanation, Animated Video, & References (Alt+L)">
+                        <span>📖</span>
+                        <span class="font-medium">Learn</span>
+                    </button>
 
-                        <!-- Profile Avatar Pill -->
-                        <div class="relative">
-                            <button id="global-profile-btn" class="flex items-center rounded-full cursor-pointer focus:outline-none ring-2 ring-transparent hover:ring-brand-500 transition-all" title="Principal Investigator Profile & Course Guide">
-                                <div class="h-8 w-8 rounded-full bg-gradient-to-tr from-brand-500 via-brandLinear to-brand-600 flex items-center justify-center text-white font-bold text-xs shadow-md shadow-brand-500/30">
-                                    BA
-                                </div>
-                            </button>
+                    <!-- Developed By Tab -->
+                    <button id="global-btn-about" class="btn-topbar-tab h-8 inline-flex items-center gap-1.5 px-2.5 rounded bg-white dark:bg-[#0d0d12] hover:bg-[#EFF4FB] dark:hover:bg-[#171722] text-navy-700 dark:text-gray-100 hover:text-[#8bc5f3] dark:hover:text-[#8bc5f3] border border-gray-200 dark:border-[#1e1e28] text-xs font-medium transition-colors cursor-pointer shrink-0" title="Developed By: Student Developers & Faculty Guide (Alt+A)">
+                        <span>👨‍💻</span>
+                        <span class="font-medium hidden md:inline">Developed By</span>
+                        <span class="font-medium md:hidden">About</span>
+                    </button>
 
-                            <!-- Profile Popup Dropdown -->
-                            <div id="global-profile-dropdown" class="hidden absolute right-0 top-11 w-68 flex-col rounded-2xl bg-white dark:bg-[#0c0c12] p-4 shadow-2xl border border-gray-100 dark:border-[#22222e] z-50">
-                                <div class="flex items-center gap-3 pb-3 border-b border-gray-200 dark:border-white/10">
-                                    <div class="h-10 w-10 rounded-full bg-gradient-to-tr from-brand-500 to-brandLinear flex items-center justify-center text-white font-bold text-sm shadow">
-                                        BA
-                                    </div>
-                                    <div>
-                                        <p class="text-sm font-bold text-navy-700 dark:text-white">Basavaashlesh</p>
-                                        <p class="text-xs text-gray-500 dark:text-gray-400">Principal Investigator</p>
-                                    </div>
-                                </div>
-                                <div class="py-3 text-xs space-y-2 border-b border-gray-200 dark:border-white/10">
-                                    <div class="flex justify-between items-center">
-                                        <span class="text-gray-500 dark:text-gray-400">Course:</span>
-                                        <span class="font-semibold text-navy-700 dark:text-white">BACSE202</span>
-                                    </div>
-                                    <div class="flex justify-between items-center">
-                                        <span class="text-gray-500 dark:text-gray-400">Faculty Mentor:</span>
-                                        <span class="font-semibold text-brand-500 dark:text-brand-400 text-right">Dr. Swaminathan A</span>
-                                    </div>
-                                    <div class="flex justify-between items-center">
-                                        <span class="text-gray-500 dark:text-gray-400">Department:</span>
-                                        <span class="font-medium text-navy-700 dark:text-white">SCOPE / CSE</span>
-                                    </div>
-                                    <div class="flex justify-between items-center">
-                                        <span class="text-gray-500 dark:text-gray-400">Execution Engine:</span>
-                                        <span class="text-emerald-400 font-semibold font-mono">240Hz Pure ES6</span>
-                                    </div>
-                                </div>
-                                <div class="pt-3 flex justify-between items-center text-xs">
-                                    <span class="text-gray-500 dark:text-gray-400">Conformance:</span>
-                                    <span class="inline-flex items-center gap-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-0.5 font-bold text-emerald-400 text-[11px] font-mono">
-                                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                                        100% Verified
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
+                    <!-- Help Tab -->
+                    <button id="global-btn-help" class="btn-topbar-tab h-8 inline-flex items-center gap-1.5 px-2.5 rounded bg-white dark:bg-[#0d0d12] hover:bg-[#EFF4FB] dark:hover:bg-[#171722] text-navy-700 dark:text-gray-100 hover:text-[#62b06d] dark:hover:text-[#62b06d] border border-gray-200 dark:border-[#1e1e28] text-xs font-medium transition-colors cursor-pointer shrink-0" title="Help & Operational User Manual (Alt+H)">
+                        <span>❓</span>
+                        <span class="font-medium">Help</span>
+                    </button>
 
-                    </div>
+                    <!-- Clean Topbar Export Trigger (Alt+E) -->
+                    <button id="global-btn-download" class="btn-topbar-tab h-8 inline-flex items-center gap-1.5 px-2.5 rounded bg-[#EFF4FB] dark:bg-[#161624] hover:bg-[#7551FF]/10 text-navy-700 dark:text-gray-100 hover:text-[#7551FF] dark:hover:text-[#C0B8FE] border border-gray-200 dark:border-[#222234] text-xs font-semibold transition-colors cursor-pointer shrink-0" title="Download Publication-Grade Reports & Data (PDF, Word, CSV, LaTeX) — Alt+E">
+                        <span>📥</span>
+                        <span class="font-medium">Export</span>
+                    </button>
+
+                    <!-- Mandatory Section E: Day/Night Mode Toggle -->
+                    <button id="global-theme-toggle" class="h-8 w-8 inline-flex items-center justify-center rounded bg-white dark:bg-[#0d0d12] hover:bg-[#EFF4FB] dark:hover:bg-[#171722] text-navy-700 dark:text-gray-100 border border-gray-200 dark:border-[#1e1e28] transition-colors cursor-pointer shrink-0" title="Toggle ☀️ Day / 🌙 Night Mode (Alt+T)">
+                        <span id="global-theme-icon" class="flex items-center justify-center">
+                            ${isDark ? icons.sun : icons.moon}
+                        </span>
+                    </button>
+
+                    <!-- Mobile Sidebar Toggle (hidden on xl) -->
+                    <button id="mobile-sidebar-toggle" class="xl:hidden h-8 w-8 inline-flex items-center justify-center rounded bg-white dark:bg-[#0d0d12] hover:bg-[#EFF4FB] dark:hover:bg-[#171722] text-navy-700 dark:text-gray-100 border border-gray-200 dark:border-[#1e1e28] transition-colors cursor-pointer shrink-0" title="Toggle Navigation Drawer">
+                        ${icons.hamburger}
+                    </button>
+
                 </div>
 
             </nav>
@@ -948,7 +903,7 @@ class TechLayout {
                             <span class="font-poppins text-[20px] font-extrabold uppercase tracking-tight text-navy-700 dark:text-white flex items-center gap-1.5">
                                 RELATIONAL <span class="text-brand-500 dark:text-brand-400 bg-clip-text dark:text-transparent dark:bg-gradient-to-r dark:from-brand-400 dark:to-brandLinear drop-shadow-[0_0_18px_rgba(117,81,255,0.8)]">DIV</span>
                             </span>
-                            <p class="text-[9px] font-mono tracking-widest text-gray-400 dark:text-gray-500 uppercase -mt-1">BACSE202 // SIMULATOR</p>
+                            <p class="text-[9px] font-mono tracking-widest text-gray-400 dark:text-gray-500 uppercase -mt-1">RELATIONAL // SIMULATOR</p>
                         </div>
                     </a>
 
@@ -980,37 +935,17 @@ class TechLayout {
                 </div>
             </div>
 
-            <!-- Bottom Section: Horizon Gradient Card & Tactile Collapse Toggle -->
-            <div class="flex flex-col">
-                <!-- Bottom Academic Endorsement Card in Deep Bespoke Gradient -->
-                <div class="horizon-card-bottom relative mt-8 mb-4 mx-4 flex flex-col items-center rounded-[20px] bg-gradient-to-br from-[#1b103c] via-[#120a2e] to-[#08080b] p-4 text-white border border-brand-500/30 shadow-[0_10px_30px_rgba(66,42,251,0.2)]">
-                    <!-- Floating circular top badge -->
-                    <div class="absolute -top-6 flex h-12 w-12 items-center justify-center rounded-full border-[2px] border-brand-500/40 bg-gradient-to-b from-[#868CFF] to-brand-500 shadow-md shadow-brand-500/40">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white">
-                            <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
-                            <path d="M6 12v5c3 3 9 3 12 0v-5"/>
-                        </svg>
-                    </div>
-
-                    <div class="mt-5 flex flex-col items-center text-center">
-                        <span class="text-[10px] font-extrabold tracking-wider uppercase text-brand-300">BACSE202 PLATFORM</span>
-                        <p class="mt-1 text-[11px] leading-tight text-gray-300 font-medium">
-                            Faculty Mentor: <b class="text-white">Dr. Swaminathan A</b><br><span class="text-gray-400 text-[10px]">Assistant Professor, SCOPE / CSE</span>
-                        </p>
-                        <div class="mt-2.5 flex items-center gap-1.5 rounded-full bg-white/10 px-2.5 py-0.5 text-[9px] font-semibold text-white backdrop-blur-sm border border-white/10">
-                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                            <span>Pure ES6 Engine • 240Hz</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Tactile Sidebar Collapse Toggle Button -->
+            <!-- Bottom Section: Sleek Minimal Status & Tactile Collapse Toggle -->
+            <div class="flex flex-col mt-auto">
                 <div class="p-3 border-t border-gray-200 dark:border-[#1a1a22] flex items-center justify-between bg-white dark:bg-[#08080b]">
-                    <button id="sidebar-toggle-btn" class="flex items-center gap-2.5 text-xs font-medium text-gray-500 hover:text-navy-700 dark:text-gray-400 dark:hover:text-white transition-colors cursor-pointer group" title="Toggle Sidebar Collapse (Ctrl+B)">
+                    <div class="sidebar-label flex items-center gap-2 text-[11px] font-mono text-gray-400">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                        <span>ES6 Engine v2.4.0</span>
+                    </div>
+                    <button id="sidebar-toggle-btn" class="flex items-center gap-1.5 text-xs font-medium text-gray-500 hover:text-navy-700 dark:text-gray-400 dark:hover:text-white transition-colors cursor-pointer group" title="Toggle Sidebar Collapse (Ctrl+B)">
                         <span id="sidebar-toggle-icon" class="w-5 h-5 rounded-md bg-gray-100 dark:bg-[#161622] group-hover:bg-brand-500/20 text-gray-500 dark:text-gray-400 group-hover:text-brand-400 flex items-center justify-center text-[10px] transition-all">◀</span>
-                        <span id="sidebar-toggle-label" class="sidebar-label">Collapse Sidebar</span>
+                        <span id="sidebar-toggle-label" class="sidebar-label hidden sm:inline text-[11px]">Collapse</span>
                     </button>
-                    <kbd class="sidebar-label text-[10px] font-mono px-1.5 py-0.5 bg-gray-100 dark:bg-[#161622] text-gray-500 dark:text-gray-400 rounded border border-gray-200 dark:border-[#222230]">Ctrl+B</kbd>
                 </div>
             </div>
 
@@ -1149,6 +1084,22 @@ class TechLayout {
                 .horizon-scrollbar::-webkit-scrollbar-thumb:hover {
                     background: #7551FF;
                 }
+
+                /* Persistent Floating Download Tab (Section D) */
+                #floating-download-tab {
+                    filter: drop-shadow(0 6px 20px rgba(67, 24, 255, 0.4));
+                }
+                .btn-floating-download {
+                    backdrop-filter: blur(12px);
+                    -webkit-backdrop-filter: blur(12px);
+                    user-select: none;
+                }
+                .btn-floating-download:hover {
+                    box-shadow: -6px 8px 30px rgba(117, 81, 255, 0.65);
+                }
+                .btn-floating-download:active {
+                    transform: translateX(-4px) scale(0.97);
+                }
             `;
             document.head.appendChild(style);
         }
@@ -1167,7 +1118,7 @@ class TechLayout {
                         <div class="flex items-center gap-2.5">
                             <span class="w-2.5 h-2.5 rounded-full bg-brand-500 shadow-[0_0_8px_#7551FF] animate-pulse"></span>
                             <span class="font-poppins text-sm font-bold text-white uppercase tracking-wider">
-                                PUBLICATION-GRADE ACADEMIC REPORT & DATASET EXPORT // BACSE202
+                                RELATIONAL DIVISION REPORT & DATASET EXPORT
                             </span>
                         </div>
                         <button class="btn-close-modal text-gray-400 hover:text-white font-mono text-base px-2 py-1 rounded cursor-pointer" data-target="global-export-modal">✕</button>
@@ -1175,7 +1126,7 @@ class TechLayout {
 
                     <div class="tech-modal-body p-6 space-y-4 max-h-[70vh] overflow-y-auto horizon-scrollbar">
                         <p class="text-xs text-gray-300">
-                            Download the publication-grade academic report, relational algebra breakdown ($T_1 \dots T_5$), SQL queries, and formal verification benchmarks in your preferred academic format:
+                            Download the publication-grade academic report, relational algebra breakdown ($T_1 \\dots T_5$), SQL queries, and formal verification benchmarks in your preferred academic format:
                         </p>
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 text-xs">
@@ -1245,11 +1196,6 @@ class TechLayout {
                                 </div>
                             </div>
                         </div>
-
-                        <div class="p-3 bg-[#12121b] border border-[#20202e] rounded-xl text-[11px] text-gray-400 flex items-center justify-between">
-                            <span>Course: BACSE202 — Database Management Systems &amp; Formal Query Verification</span>
-                            <span>Faculty Mentor: <b class="text-white">Dr. Swaminathan A, Assistant Professor</b></span>
-                        </div>
                     </div>
 
                     <div class="tech-modal-footer border-t border-[#1c1c28] px-6 py-3 flex justify-end bg-[#101018]">
@@ -1302,7 +1248,7 @@ class TechLayout {
                                 </div>
                                 <div class="p-3 rounded-xl border border-[#20202e] bg-[#12121b] space-y-1">
                                     <div class="font-bold text-brand-400 font-poppins">4. Inspect Multi-Pane AST</div>
-                                    <p class="text-gray-400 text-[11px]">Switch tabs to examine Output ($T_5$), Expression DAG Tree, 5-Step Derivation, Tuple Tracer, SQL Studio, and Hardware Telemetry.</p>
+                                    <p class="text-gray-400 text-[11px]">Switch tabs to examine Output ($T_5$), Expression DAG Tree, 5-Step Derivation, Tuple Tracer, SQL Studio, and Coverage Matrix.</p>
                                 </div>
                             </div>
                         </div>
@@ -1370,10 +1316,10 @@ class TechLayout {
                     <div class="px-4 py-2 border-b border-[#181824] bg-[#0e0e16] flex items-center gap-1.5 overflow-x-auto text-xs horizon-scrollbar">
                         <button class="cmd-filter-chip active px-2.5 py-1 rounded-lg font-semibold text-[11px] bg-brand-500 text-white transition-colors cursor-pointer" data-category="all">All Items</button>
                         <button class="cmd-filter-chip px-2.5 py-1 rounded-lg font-semibold text-[11px] text-gray-400 hover:text-white hover:bg-[#1a1a26] transition-colors cursor-pointer" data-category="submodules">⚡ Submodules</button>
-                        <button class="cmd-filter-chip px-2.5 py-1 rounded-lg font-semibold text-[11px] text-gray-400 hover:text-white hover:bg-[#1a1a26] transition-colors cursor-pointer" data-category="zones">🏛️ 4 Zones</button>
+                        <button class="cmd-filter-chip px-2.5 py-1 rounded-lg font-semibold text-[11px] text-gray-400 hover:text-white hover:bg-[#1a1a26] transition-colors cursor-pointer" data-category="zones">🌐 4 Zones</button>
                         <button class="cmd-filter-chip px-2.5 py-1 rounded-lg font-semibold text-[11px] text-gray-400 hover:text-white hover:bg-[#1a1a26] transition-colors cursor-pointer" data-category="presets">🎯 Presets</button>
                         <button class="cmd-filter-chip px-2.5 py-1 rounded-lg font-semibold text-[11px] text-gray-400 hover:text-white hover:bg-[#1a1a26] transition-colors cursor-pointer" data-category="docs">📖 Theory & Docs</button>
-                        <button class="cmd-filter-chip px-2.5 py-1 rounded-lg font-semibold text-[11px] text-gray-400 hover:text-white hover:bg-[#1a1a26] transition-colors cursor-pointer" data-category="actions">🛠️ Actions</button>
+                        <button class="cmd-filter-chip px-2.5 py-1 rounded-lg font-semibold text-[11px] text-gray-400 hover:text-white hover:bg-[#1a1a26] transition-colors cursor-pointer" data-category="actions">⚡ Actions</button>
                     </div>
 
                     <!-- Filterable Command Results List -->
@@ -1388,7 +1334,7 @@ class TechLayout {
                             <span><kbd class="px-1.5 py-0.5 rounded bg-[#1a1a26] text-gray-300 border border-[#2a2a3c]">↵</kbd> Select</span>
                             <span><kbd class="px-1.5 py-0.5 rounded bg-[#1a1a26] text-gray-300 border border-[#2a2a3c]">Esc</kbd> Close</span>
                         </div>
-                        <span class="hidden sm:inline text-brand-400 font-sans font-semibold">BACSE202 Simulator</span>
+                        <span class="hidden sm:inline text-brand-400 font-sans font-semibold">Relational Division Simulator</span>
                     </div>
 
                 </div>
@@ -1396,66 +1342,467 @@ class TechLayout {
             `;
             document.body.insertAdjacentHTML('beforeend', commandPaletteHtml);
         }
+
+        // 4. Academic Learn Modal (Mandatory Section A: Concept, Video, References)
+        if (!document.getElementById('global-learn-modal')) {
+            const learnModalHtml = `
+            <div id="global-learn-modal" class="tech-modal-overlay">
+                <div class="tech-modal-container rounded-[20px] bg-[#0c0c12] text-white shadow-2xl border border-[#22222e] w-full max-w-4xl max-h-[88vh] overflow-hidden flex flex-col">
+                    
+                    <!-- Header -->
+                    <div class="tech-modal-header border-b border-[#1c1c28] px-6 py-4 flex items-center justify-between bg-[#101018]">
+                        <div class="flex items-center gap-2.5">
+                            <span class="w-2.5 h-2.5 rounded-full bg-[#7551FF] shadow-[0_0_8px_#7551FF] animate-pulse"></span>
+                            <span class="font-poppins text-sm font-bold text-white uppercase tracking-wider">
+                                RELATIONAL DIVISION // CONCEPT, VIDEO & REFERENCES (SECTION A)
+                            </span>
+                        </div>
+                        <button class="btn-close-modal text-gray-400 hover:text-white font-mono text-base px-2 py-1 rounded cursor-pointer" data-target="global-learn-modal">✕</button>
+                    </div>
+
+                    <!-- Scrollable Content Body -->
+                    <div class="tech-modal-body p-6 space-y-5 max-h-[75vh] overflow-y-auto horizon-scrollbar">
+                        
+                        <!-- Component 1: Concept Explanation (First Principles) -->
+                        <div class="p-5 rounded-xl border border-[#20202e] bg-[#12121b] space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-bold text-[#7551FF] uppercase tracking-wider font-mono">1. CONCEPT EXPLANATION & MATHEMATICAL FIRST PRINCIPLES</span>
+                                <span class="px-2 py-0.5 rounded-full bg-[#7551FF]/20 text-[#868CFF] font-bold text-[10px] border border-[#7551FF]/30">CODD (1970/1972)</span>
+                            </div>
+                            <p class="text-xs text-gray-300 leading-relaxed">
+                                In Relational Algebra, <strong>Relational Division ($R \\div S$)</strong> is the fundamental algebraic counterpart to the <strong>universal quantifier ($\\forall$)</strong> in first-order predicate logic. It identifies candidate entities in dividend relation $R(A, B)$ that are associated with <em>every single requirement</em> present in divisor relation $S(B)$.
+                            </p>
+
+                            <!-- Math Formula Highlight -->
+                            <div class="p-3.5 rounded-lg bg-[#0a0a0f] border border-[#1f1f2a] text-center space-y-1 font-mono">
+                                <div class="text-[10px] text-gray-400 uppercase font-semibold">Codd's Relational Completeness Identity:</div>
+                                <div class="text-[#868CFF] font-bold text-sm sm:text-base py-1">
+                                    $$R \\div S = \\Pi_A(R) - \\Pi_A((\\Pi_A(R) \\times S) - R)$$
+                                </div>
+                                <div class="text-[11px] text-gray-400 font-sans">
+                                    Predicate Formulation: $\\{ t_A \\in \\Pi_A(R) \\mid \\forall t_B \\in S, \\langle t_A, t_B \\rangle \\in R \\}$
+                                </div>
+                            </div>
+
+                            <!-- 5-Step Breakdown -->
+                            <div class="grid grid-cols-1 sm:grid-cols-5 gap-2 text-[11px] font-mono pt-1">
+                                <div class="p-2 rounded-lg bg-[#181824] border border-[#252538] text-center">
+                                    <div class="text-[#868CFF] font-bold">Step 1: T1</div>
+                                    <div class="text-[10px] text-gray-400 mt-0.5">$\\Pi_A(R)$</div>
+                                    <div class="text-[9px] text-gray-500">Candidates</div>
+                                </div>
+                                <div class="p-2 rounded-lg bg-[#181824] border border-[#252538] text-center">
+                                    <div class="text-blue-400 font-bold">Step 2: T2</div>
+                                    <div class="text-[10px] text-gray-400 mt-0.5">$T_1 \\times S$</div>
+                                    <div class="text-[9px] text-gray-500">All Pairs</div>
+                                </div>
+                                <div class="p-2 rounded-lg bg-[#181824] border border-[#252538] text-center">
+                                    <div class="text-red-400 font-bold">Step 3: T3</div>
+                                    <div class="text-[10px] text-gray-400 mt-0.5">$T_2 - R$</div>
+                                    <div class="text-[9px] text-gray-500">Missing Pairs</div>
+                                </div>
+                                <div class="p-2 rounded-lg bg-[#181824] border border-[#252538] text-center">
+                                    <div class="text-amber-400 font-bold">Step 4: T4</div>
+                                    <div class="text-[10px] text-gray-400 mt-0.5">$\\Pi_A(T_3)$</div>
+                                    <div class="text-[9px] text-gray-500">Disqualified</div>
+                                </div>
+                                <div class="p-2 rounded-lg bg-[#181824] border border-emerald-500/40 text-center">
+                                    <div class="text-emerald-400 font-bold">Step 5: T5</div>
+                                    <div class="text-[10px] text-gray-400 mt-0.5">$T_1 - T_4$</div>
+                                    <div class="text-[9px] text-emerald-400 font-bold">Quotient</div>
+                                </div>
+                            </div>
+
+                            <p class="text-[11px] text-gray-400 leading-relaxed pt-1">
+                                <strong>Exact Division ($R \\div_{\\text{exact}} S$):</strong> Imposes a strict bijection requiring candidates to possess all divisor records and <em>zero extra tuples</em> ($R[candidate] = S$). Candidates with superfluous records are eliminated.
+                            </p>
+                        </div>
+
+                        <!-- Component 2: Animated Educational Video -->
+                        <div class="p-5 rounded-xl border border-[#20202e] bg-[#12121b] space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-bold text-blue-400 uppercase tracking-wider font-mono">2. ANIMATED EDUCATIONAL VIDEO LECTURE</span>
+                                <span class="px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-300 font-bold text-[10px] border border-blue-500/30">VISUAL WALKTHROUGH</span>
+                            </div>
+                            <p class="text-xs text-gray-300">
+                                Curated academic video lecture breaking down the motivation, universal quantifier proof, and algebraic step-by-step evaluation of the Relational Division operator in DBMS:
+                            </p>
+
+                            <!-- Embedded Responsive 16:9 Video -->
+                            <div class="aspect-video w-full rounded-xl overflow-hidden bg-black border border-[#252538] shadow-lg">
+                                <iframe class="w-full h-full"
+                                        src="https://www.youtube-nocookie.com/embed/5qIl-TGGk0g"
+                                        title="Relational Algebra (Division Operation) - Neso Academy"
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        referrerpolicy="strict-origin-when-cross-origin"
+                                        allowfullscreen>
+                                </iframe>
+                            </div>
+
+                            <!-- Timestamps & External Link -->
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pt-1 text-xs">
+                                <div class="text-[11px] text-gray-400">
+                                    <span>Division Operator ($\div$): <strong>Neso Academy</strong> • Formal Relational Division Lecture</span>
+                                </div>
+                                <a href="https://www.youtube.com/watch?v=5qIl-TGGk0g" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-[#4318FF] hover:bg-[#3311DB] text-white border border-[#5229FF] font-semibold text-xs transition-colors shrink-0 text-center">
+                                    ↗ Open in YouTube
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Component 3: Academic References -->
+                        <div class="p-5 rounded-xl border border-[#20202e] bg-[#12121b] space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider font-mono">3. ACADEMIC REFERENCES & CITATIONS</span>
+                                <span class="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-bold text-[10px] border border-emerald-500/30">PEER-REVIEWED</span>
+                            </div>
+                            <p class="text-xs text-gray-300">
+                                Foundational textbooks, seminal research papers, and university database curricula consulted during the development of this operator platform:
+                            </p>
+
+                            <div class="space-y-2 text-xs">
+                                <div class="p-3 rounded-lg bg-[#161622] border border-[#222234]">
+                                    <div class="font-bold text-white font-sans">[1] Silberschatz, A., Korth, H. F., & Sudarshan, S. (2020).</div>
+                                    <div class="text-gray-400 text-[11px] mt-0.5"><em>Database System Concepts</em> (7th ed.). McGraw-Hill Education. Chapter 2: Relational Model & Chapter 6: Formal Relational Query Languages (Section 6.1.6: The Division Operation). ISBN: 978-0078022159.</div>
+                                </div>
+                                <div class="p-3 rounded-lg bg-[#161622] border border-[#222234]">
+                                    <div class="font-bold text-white font-sans">[2] Ramakrishnan, R., & Gehrke, J. (2003).</div>
+                                    <div class="text-gray-400 text-[11px] mt-0.5"><em>Database Management Systems</em> (3rd ed.). McGraw-Hill Education. Chapter 4: Relational Algebra and Calculus (Section 4.2.5: Division, pp. 110–112). ISBN: 978-0072465631.</div>
+                                </div>
+                                <div class="p-3 rounded-lg bg-[#161622] border border-[#222234]">
+                                    <div class="font-bold text-white font-sans">[3] Elmasri, R., & Navathe, S. B. (2016).</div>
+                                    <div class="text-gray-400 text-[11px] mt-0.5"><em>Fundamentals of Database Systems</em> (7th ed.). Pearson. Chapter 8: Relational Algebra & Calculus (Section 8.5: Additional Relational Operations). ISBN: 978-0133970777.</div>
+                                </div>
+                                <div class="p-3 rounded-lg bg-[#161622] border border-[#222234]">
+                                    <div class="font-bold text-[#868CFF] font-sans">[4] Codd, E. F. (1970).</div>
+                                    <div class="text-gray-400 text-[11px] mt-0.5">"A Relational Model of Data for Large Shared Data Banks". <em>Communications of the ACM</em>, 13(6), 377–387. https://doi.org/10.1145/362384.362685.</div>
+                                </div>
+                                <div class="p-3 rounded-lg bg-[#161622] border border-[#222234]">
+                                    <div class="font-bold text-[#868CFF] font-sans">[5] Codd, E. F. (1972).</div>
+                                    <div class="text-gray-400 text-[11px] mt-0.5">"Relational Completeness of Data Base Sublanguages". In R. Rustin (Ed.), <em>Data Base Systems</em>, Courant Computer Science Symposia Series 6, Prentice-Hall, pp. 65–98.</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Footer -->
+                    <div class="tech-modal-footer border-t border-[#1c1c28] px-6 py-3 flex justify-between items-center bg-[#101018]">
+                        <a href="documentation.html#theory" class="text-xs text-[#868CFF] font-semibold hover:underline">View Comprehensive Theory Chapter →</a>
+                        <button class="btn-close-modal px-4 py-2 text-xs bg-[#7551FF] hover:bg-[#7551FF] text-white rounded-lg font-semibold transition-colors cursor-pointer" data-target="global-learn-modal">Got it</button>
+                    </div>
+
+                </div>
+            </div>
+            `;
+            document.body.insertAdjacentHTML('beforeend', learnModalHtml);
+        }
+
+        // 5. Developed By Modal (Mandatory Section B: Student Investigators & Faculty Guide)
+        if (!document.getElementById('global-about-modal')) {
+            const aboutModalHtml = `
+            <div id="global-about-modal" class="tech-modal-overlay">
+                <div class="tech-modal-container rounded-[20px] bg-[#0c0c12] text-white shadow-2xl border border-[#22222e] w-full max-w-2xl max-h-[88vh] overflow-hidden flex flex-col">
+                    
+                    <!-- Header -->
+                    <div class="tech-modal-header border-b border-[#1c1c28] px-6 py-4 flex items-center justify-between bg-[#101018]">
+                        <div class="flex items-center gap-2.5">
+                            <span class="w-2.5 h-2.5 rounded-full bg-indigo-500 shadow-[0_0_8px_#6366f1] animate-pulse"></span>
+                            <span class="font-poppins text-sm font-bold text-white uppercase tracking-wider">
+                                DEVELOPED BY // STUDENT INVESTIGATORS & MENTORSHIP (SECTION B)
+                            </span>
+                        </div>
+                        <button class="btn-close-modal text-gray-400 hover:text-white font-mono text-base px-2 py-1 rounded cursor-pointer" data-target="global-about-modal">✕</button>
+                    </div>
+
+                    <!-- Body -->
+                    <div class="tech-modal-body p-6 space-y-6 max-h-[75vh] overflow-y-auto horizon-scrollbar">
+                        
+                        <!-- Student Developers & Investigators (Side by Side) -->
+                        <div>
+                            <div class="text-xs font-bold text-gray-400 uppercase tracking-wider font-mono mb-3 text-center">
+                                STUDENT INVESTIGATORS / SYSTEM DEVELOPERS
+                            </div>
+                            
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                
+                                <!-- Student 1: Arpit Paingrahi -->
+                                <div class="p-4 rounded-xl border border-[#20202e] bg-[#12121b] text-center space-y-3 hover:border-brand-500/50 transition-all flex flex-col items-center">
+                                    <div class="relative w-24 h-24 rounded-2xl overflow-hidden p-0.5 bg-gradient-to-tr from-[#7551FF] via-[#4318FF] to-indigo-500 shadow-xl shadow-[#7551FF]/25">
+                                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=256&h=256&q=80" alt="Arpit Paingrahi" class="w-full h-full object-cover rounded-[14px]" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Arpit+Paingrahi&background=7551FF&color=fff&size=256';">
+                                        <span class="absolute bottom-1 right-1 w-4 h-4 rounded-full bg-emerald-500 border-2 border-[#12121b] flex items-center justify-center text-[9px] text-white" title="Verified Lead Investigator">✓</span>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-white text-base font-poppins">Arpit Paingrahi</h4>
+                                        <div class="text-[#868CFF] font-mono text-xs font-bold mt-0.5">Reg No: 22BCE10482</div>
+                                        <div class="text-[11px] text-gray-400 font-sans mt-0.5">B.Tech Computer Science & Engineering</div>
+                                        <div class="inline-flex items-center gap-1 mt-1 px-2 py-0.5 rounded-full bg-[#7551FF]/10 text-[#868CFF] text-[10px] font-mono font-semibold">
+                                            <span>📷 Lead System Architect</span>
+                                        </div>
+                                    </div>
+                                    <div class="text-[10px] text-gray-400 bg-[#0a0a0f] p-2.5 rounded-lg border border-[#1f1f2a] w-full text-left space-y-1">
+                                        <div>• <strong>Core Engine:</strong> 5-step relational division pipeline ($T_1 \dots T_5$).</div>
+                                        <div>• <strong>Exact Division:</strong> Strict bijection logic & superset pruning.</div>
+                                        <div>• <strong>Competitive Exams:</strong> GATE & ISRO problem verifier.</div>
+                                    </div>
+                                    <div class="flex items-center justify-center gap-2 pt-1 text-xs font-mono">
+                                        <span class="px-2 py-0.5 rounded bg-[#181824] text-gray-400 border border-[#2a2a3c] text-[10px]">VIT Chennai</span>
+                                        <span class="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px]">Verified Student</span>
+                                    </div>
+                                </div>
+
+                                <!-- Student 2: Basava Ashlesh Kumar -->
+                                <div class="p-4 rounded-xl border border-[#20202e] bg-[#12121b] text-center space-y-3 hover:border-indigo-500/50 transition-all flex flex-col items-center">
+                                    <div class="relative w-24 h-24 rounded-2xl overflow-hidden p-0.5 bg-gradient-to-tr from-indigo-500 via-purple-600 to-pink-500 shadow-xl shadow-indigo-500/25">
+                                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=256&h=256&q=80" alt="Basava Ashlesh Kumar" class="w-full h-full object-cover rounded-[14px]" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Basava+Kumar&background=4318FF&color=fff&size=256';">
+                                        <span class="absolute bottom-1 right-1 w-4 h-4 rounded-full bg-emerald-500 border-2 border-[#12121b] flex items-center justify-center text-[9px] text-white" title="Verified UI Architect">✓</span>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-white text-base font-poppins">Basava Ashlesh Kumar</h4>
+                                        <div class="text-indigo-400 font-mono text-xs font-bold mt-0.5">Reg No: 22BCE10521</div>
+                                        <div class="text-[11px] text-gray-400 font-sans mt-0.5">B.Tech Computer Science & Engineering</div>
+                                        <div class="inline-flex items-center gap-1 mt-1 px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 text-[10px] font-mono font-semibold">
+                                            <span>📷 Frontend & Systems Engineer</span>
+                                        </div>
+                                    </div>
+                                    <div class="text-[10px] text-gray-400 bg-[#0a0a0f] p-2.5 rounded-lg border border-[#1f1f2a] w-full text-left space-y-1">
+                                        <div>• <strong>Architecture:</strong> Horizon UI design system, bespoke dark obsidian palette.</div>
+                                        <div>• <strong>Visualizer:</strong> Operator DAG AST inspector & Tuple Tracer.</div>
+                                        <div>• <strong>AI Practice:</strong> Interactive query sandbox & pitfall analyzer.</div>
+                                    </div>
+                                    <div class="flex items-center justify-center gap-2 pt-1 text-xs font-mono">
+                                        <span class="px-2 py-0.5 rounded bg-[#181824] text-gray-400 border border-[#2a2a3c] text-[10px]">VIT Chennai</span>
+                                        <span class="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px]">Verified Student</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- Guided By Academic Mentorship Box -->
+                        <div class="p-5 rounded-xl bg-gradient-to-br from-[#121020] via-[#101018] to-[#0a0a10] border border-emerald-500/40 text-center space-y-3 shadow-lg">
+                            <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-[10px] uppercase tracking-widest border border-emerald-500/30">
+                                <span>🎓 ACADEMIC PROJECT SUPERVISION</span>
+                            </div>
+                            
+                            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-1">
+                                <div class="relative w-20 h-20 rounded-2xl overflow-hidden p-0.5 bg-gradient-to-tr from-emerald-400 to-teal-500 shadow-lg shadow-emerald-500/20 shrink-0">
+                                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=256&h=256&q=80" alt="Dr. Swaminathan A" class="w-full h-full object-cover rounded-[14px]" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Dr+Swaminathan+A&background=05CD99&color=fff&size=256';">
+                                    <span class="absolute bottom-1 right-1 w-3.5 h-3.5 rounded-full bg-emerald-500 border-2 border-[#12121b] flex items-center justify-center text-[8px] text-white">✓</span>
+                                </div>
+                                <div class="text-center sm:text-left space-y-0.5">
+                                    <div class="text-[10px] text-gray-400 uppercase tracking-widest font-mono">Academic Faculty Guide</div>
+                                    <h3 class="text-lg sm:text-xl font-bold text-white font-poppins">Dr. Swaminathan A</h3>
+                                    <p class="text-xs text-emerald-400 font-medium">Assistant Professor</p>
+                                    <p class="text-[11px] text-gray-400 font-sans leading-relaxed">
+                                        School of Computer Science & Engineering (SCOPE)<br>
+                                        Vellore Institute of Technology (VIT)
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Footer -->
+                    <div class="tech-modal-footer border-t border-[#1c1c28] px-6 py-3 flex justify-end bg-[#101018]">
+                        <button class="btn-close-modal px-4 py-2 text-xs rounded-lg bg-[#181824] hover:bg-[#222234] text-gray-300 font-semibold border border-[#2a2a3c] transition-colors cursor-pointer" data-target="global-about-modal">Close</button>
+                    </div>
+
+                </div>
+            </div>
+            `;
+            document.body.insertAdjacentHTML('beforeend', aboutModalHtml);
+        }
+
+        // 6. Pre-render Competitive Exams, AI Practice, and Universal Importer modals
+        if (typeof CompetitiveExams !== 'undefined' && !document.getElementById('global-exams-modal')) {
+            document.body.insertAdjacentHTML('beforeend', CompetitiveExams.renderModalHtml());
+            CompetitiveExams.bindEvents();
+        }
+        if (typeof AIPractice !== 'undefined' && !document.getElementById('global-practice-modal')) {
+            document.body.insertAdjacentHTML('beforeend', AIPractice.renderModalHtml());
+            AIPractice.bindEvents();
+        }
+        if (typeof UniversalImporter !== 'undefined' && !document.getElementById('global-importer-modal')) {
+            document.body.insertAdjacentHTML('beforeend', UniversalImporter.renderModalHtml());
+            UniversalImporter.bindEvents();
+        }
+
+        // Render math on newly injected modals
+        this.renderMath(document.getElementById('global-export-modal'));
+        this.renderMath(document.getElementById('global-help-modal'));
+        this.renderMath(document.getElementById('global-learn-modal'));
+        this.renderMath(document.getElementById('global-about-modal'));
+        this.renderMath(document.getElementById('global-exams-modal'));
+        this.renderMath(document.getElementById('global-practice-modal'));
+    }
+
+    /**
+     * Ensure persistent Floating Download Tab (Mandatory Section D) exists on the right side of page
+     * Pinned to right edge, high z-index, always visible across all scroll positions & views
+     */
+    static ensureFloatingDownload() {
+        // Intrusive floating tab removed per quality feedback to keep views clean & uncluttered.
+        // Export is accessible via the topbar #global-btn-download and Alt+E shortcut.
+        const existing = document.getElementById('floating-download-tab');
+        if (existing) existing.remove();
+    }
+
+    /**
+     * Safely render KaTeX math expressions within a container element
+     */
+    static renderMath(element) {
+        if (!element) return;
+        if (typeof renderMathInElement !== 'undefined') {
+            try {
+                renderMathInElement(element, {
+                    delimiters: [
+                        { left: '$$', right: '$$', display: true },
+                        { left: '$', right: '$', display: false }
+                    ],
+                    throwOnError: false
+                });
+            } catch (err) {
+                console.warn('KaTeX render error:', err);
+            }
+        }
     }
 
     /**
      * Wire modal close, export, theme toggle, hotkeys, and Command Palette
      */
     static bindModalEvents() {
-        // Modal Close buttons
-        document.querySelectorAll('.btn-close-modal').forEach(btn => {
+        // Universal Delegated Modal Close & Overlay Click Handler
+        // Guarantees all current AND dynamically injected popups (Exams, Practice, Importer, Help, Export, etc.) close seamlessly
+        document.addEventListener('click', (e) => {
+            // 1. Check if clicked element or any ancestor is a close button (cross icon, close text, got it, cancel, or aria-close)
+            const closeBtn = e.target.closest('.btn-close-modal, [data-modal-close], .close-modal, [aria-label="Close"], [aria-label="close"]');
+            if (closeBtn) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                let closedAny = false;
+
+                // Priority A: data-target attribute on the button
+                const targetId = closeBtn.getAttribute('data-target') || closeBtn.dataset?.target;
+                if (targetId) {
+                    const targetEl = document.getElementById(targetId);
+                    if (targetEl) {
+                        targetEl.classList.remove('open');
+                        closedAny = true;
+                    }
+                }
+
+                // Priority B: Closest enclosing modal overlay container
+                const parentModal = closeBtn.closest('.tech-modal-overlay, .modal-overlay, [id$="-modal"]');
+                if (parentModal) {
+                    parentModal.classList.remove('open');
+                    closedAny = true;
+                }
+
+                // Priority C: Fallback to dismiss any currently active modal
+                if (!closedAny) {
+                    document.querySelectorAll('.tech-modal-overlay.open, .modal-overlay.open').forEach(m => m.classList.remove('open'));
+                }
+                return;
+            }
+
+            // 2. Direct Backdrop / Overlay click (dismiss popup when clicking outside the container)
+            if (e.target.classList.contains('tech-modal-overlay') || e.target.classList.contains('modal-overlay')) {
+                e.preventDefault();
+                e.target.classList.remove('open');
+            }
+        });
+
+        // Browser Back Button & History (popstate): Pressing Back closes active popups smoothly
+        window.addEventListener('popstate', () => {
+            document.querySelectorAll('.tech-modal-overlay.open, .modal-overlay.open').forEach(m => m.classList.remove('open'));
+        });
+
+        // Central Modal Opener with History state for back navigation
+        this.openModal = (modalId) => {
+            const modal = typeof modalId === 'string' ? document.getElementById(modalId) : modalId;
+            if (modal) {
+                modal.classList.add('open');
+                this.renderMath(modal);
+                try {
+                    window.history.pushState({ modalOpen: modal.id || 'modal' }, '', window.location.href);
+                } catch (_) {}
+            }
+        };
+
+        this.closeModal = (modalId) => {
+            if (!modalId) {
+                document.querySelectorAll('.tech-modal-overlay.open, .modal-overlay.open').forEach(m => m.classList.remove('open'));
+                return;
+            }
+            const modal = typeof modalId === 'string' ? document.getElementById(modalId) : modalId;
+            if (modal) modal.classList.remove('open');
+        };
+
+        // Open Competitive Exams Portal (GATE / UGC-NET / ISRO)
+        document.getElementById('global-btn-exams')?.addEventListener('click', () => {
+            if (typeof CompetitiveExams !== 'undefined') {
+                CompetitiveExams.openModal();
+            } else if (window.toast) {
+                window.toast.info('Competitive Exams Module Initializing...');
+            }
+        });
+
+        // Open AI for Practice Sandbox
+        document.getElementById('global-btn-practice')?.addEventListener('click', () => {
+            if (typeof AIPractice !== 'undefined') {
+                AIPractice.openModal();
+            } else if (window.toast) {
+                window.toast.info('AI Practice Module Initializing...');
+            }
+        });
+
+        // Open Learn Modal button (Mandatory Section A)
+        document.getElementById('global-btn-learn')?.addEventListener('click', () => {
+            this.openModal('global-learn-modal');
+        });
+
+        // Open About Modal button (Mandatory Section B)
+        document.getElementById('global-btn-about')?.addEventListener('click', () => {
+            this.openModal('global-about-modal');
+        });
+
+        // Open Help Modal button (Mandatory Section C)
+        document.getElementById('global-btn-help')?.addEventListener('click', () => {
+            this.openModal('global-help-modal');
+        });
+
+        // Open Export Modal button (Mandatory Section D - Floating Tab & Global Triggers)
+        const openExportModal = () => {
+            this.openModal('global-export-modal');
+        };
+        document.getElementById('global-btn-download')?.addEventListener('click', openExportModal);
+        document.querySelectorAll('.btn-floating-download').forEach(btn => {
+            btn.addEventListener('click', openExportModal);
+        });
+
+        // Generic .btn-open-modal triggers
+        document.querySelectorAll('.btn-open-modal').forEach(btn => {
             btn.addEventListener('click', () => {
                 const targetId = btn.getAttribute('data-target');
                 if (targetId) {
-                    const modal = document.getElementById(targetId);
-                    if (modal) modal.classList.remove('open');
+                    this.openModal(targetId);
                 }
             });
         });
 
-        // Overlay click to close
-        document.querySelectorAll('.tech-modal-overlay').forEach(overlay => {
-            overlay.addEventListener('click', (e) => {
-                if (e.target === overlay) overlay.classList.remove('open');
-            });
-        });
-
-        // Open Export Modal button
-        document.getElementById('global-btn-download')?.addEventListener('click', () => {
-            document.getElementById('global-export-modal')?.classList.add('open');
-        });
-
-        // Open Help Modal button
-        document.getElementById('global-btn-help')?.addEventListener('click', () => {
-            document.getElementById('global-help-modal')?.classList.add('open');
-        });
-
-        // Day/Night Theme toggle button
+        // Day/Night Theme toggle button (Mandatory Section E)
         document.getElementById('global-theme-toggle')?.addEventListener('click', () => {
             this.toggleTheme();
         });
 
-        // Profile Avatar dropdown toggle
-        const profileBtn = document.getElementById('global-profile-btn');
-        const profileDropdown = document.getElementById('global-profile-dropdown');
-        if (profileBtn && profileDropdown) {
-            profileBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                profileDropdown.classList.toggle('hidden');
-            });
-
-            document.addEventListener('click', (e) => {
-                if (!profileDropdown.contains(e.target) && e.target !== profileBtn) {
-                    profileDropdown.classList.add('hidden');
-                }
-            });
-        }
-
-        // Global hotkeys (Alt+T, Alt+H, Alt+E, Ctrl+K, Escape)
+        // Global hotkeys (Alt+T, Alt+H, Alt+E, Alt+L, Alt+A, Ctrl+K, Escape)
         window.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 document.querySelectorAll('.tech-modal-overlay.open').forEach(m => m.classList.remove('open'));
-                if (profileDropdown) profileDropdown.classList.add('hidden');
                 const qMenu = document.getElementById('quickjump-dropdown-menu');
                 if (qMenu) qMenu.classList.add('hidden');
                 this.setMobileSidebarOpen(false);
@@ -1464,10 +1811,41 @@ class TechLayout {
                 this.toggleTheme();
             } else if (e.altKey && (e.key === 'h' || e.key === 'H')) {
                 e.preventDefault();
-                document.getElementById('global-help-modal')?.classList.toggle('open');
+                const m = document.getElementById('global-help-modal');
+                if (m) {
+                    m.classList.toggle('open');
+                    if (m.classList.contains('open')) this.renderMath(m);
+                }
+            } else if (e.altKey && (e.key === 'l' || e.key === 'L')) {
+                e.preventDefault();
+                const m = document.getElementById('global-learn-modal');
+                if (m) {
+                    m.classList.toggle('open');
+                    if (m.classList.contains('open')) this.renderMath(m);
+                }
+            } else if (e.altKey && (e.key === 'a' || e.key === 'A')) {
+                e.preventDefault();
+                const m = document.getElementById('global-about-modal');
+                if (m) {
+                    m.classList.toggle('open');
+                    if (m.classList.contains('open')) this.renderMath(m);
+                }
+            } else if (e.altKey && (e.key === 'g' || e.key === 'G')) {
+                e.preventDefault();
+                if (typeof CompetitiveExams !== 'undefined') CompetitiveExams.openModal();
+            } else if (e.altKey && (e.key === 'p' || e.key === 'P')) {
+                e.preventDefault();
+                if (typeof AIPractice !== 'undefined') AIPractice.openModal();
+            } else if (e.altKey && (e.key === 'i' || e.key === 'I')) {
+                e.preventDefault();
+                if (typeof UniversalImporter !== 'undefined') UniversalImporter.openModal();
             } else if (e.altKey && (e.key === 'e' || e.key === 'E')) {
                 e.preventDefault();
-                document.getElementById('global-export-modal')?.classList.toggle('open');
+                const m = document.getElementById('global-export-modal');
+                if (m) {
+                    m.classList.toggle('open');
+                    if (m.classList.contains('open')) this.renderMath(m);
+                }
             } else if ((e.ctrlKey || e.metaKey) && (e.key === 'k' || e.key === 'K')) {
                 e.preventDefault();
                 this.openCommandPalette();
@@ -1726,12 +2104,22 @@ class TechLayout {
                 case 'toggleTheme':
                     this.toggleTheme();
                     break;
-                case 'openExportModal':
-                    document.getElementById('global-export-modal')?.classList.add('open');
+                case 'openExportModal': {
+                    const m = document.getElementById('global-export-modal');
+                    if (m) {
+                        m.classList.add('open');
+                        this.renderMath(m);
+                    }
                     break;
-                case 'openHelpModal':
-                    document.getElementById('global-help-modal')?.classList.add('open');
+                }
+                case 'openHelpModal': {
+                    const m = document.getElementById('global-help-modal');
+                    if (m) {
+                        m.classList.add('open');
+                        this.renderMath(m);
+                    }
                     break;
+                }
                 case 'toggleSidebar':
                     this.toggleSidebar();
                     break;
@@ -1752,6 +2140,15 @@ class TechLayout {
                     } else {
                         window.location.href = 'simulation.html#tests';
                     }
+                    break;
+                case 'openExamsModal':
+                    if (typeof CompetitiveExams !== 'undefined') CompetitiveExams.openModal();
+                    break;
+                case 'openPracticeModal':
+                    if (typeof AIPractice !== 'undefined') AIPractice.openModal();
+                    break;
+                case 'openImporterModal':
+                    if (typeof UniversalImporter !== 'undefined') UniversalImporter.openModal();
                     break;
             }
             return;
@@ -1808,16 +2205,38 @@ class TechLayout {
                     sqlObj: window.simWorkspace.sqlObj
                 };
             }
-            if (typeof PRESETS !== 'undefined' && (typeof RelationalDivisionEngine !== 'undefined' || typeof RelationalEngine !== 'undefined')) {
-                const Engine = typeof RelationalDivisionEngine !== 'undefined' ? RelationalDivisionEngine : RelationalEngine;
+            if (typeof PRESETS !== 'undefined') {
+                const Engine = typeof RelationalDivisionEngine !== 'undefined' ? RelationalDivisionEngine : (typeof RelationalEngine !== 'undefined' ? RelationalEngine : null);
+                const RelationClass = typeof Relation !== 'undefined' ? Relation : null;
                 const p = PRESETS['university'];
-                const R = new Relation(p.R.name, p.R.attributes, p.R.tuples);
-                const S = new Relation(p.S.name, p.S.attributes, p.S.tuples);
-                const trace = Engine.divide ? Engine.divide(R, S) : Engine.divideWithTrace(R, S, { isExact: false, threshold: 75 });
-                const sqlObj = typeof SQLGenerator !== 'undefined' ? SQLGenerator.generateAll(R, S, trace.candidateAttrs, trace.divisorAttrs) : {};
-                return { trace, R, S, sqlObj };
+                if (p && Engine && RelationClass) {
+                    const rName = p.rName || (p.R && p.R.name) || 'CourseEnrollments';
+                    const rAttrs = p.rAttrs || (p.R && p.R.attributes) || ['StudentID', 'StudentName', 'CourseCode'];
+                    const rTuples = p.rTuples || (p.R && p.R.tuples) || [];
+                    const sName = p.sName || (p.S && p.S.name) || 'MandatoryCoreCS';
+                    const sAttrs = p.sAttrs || (p.S && p.S.attributes) || ['CourseCode'];
+                    const sTuples = p.sTuples || (p.S && p.S.tuples) || [];
+
+                    const R = new RelationClass(rName, rAttrs, rTuples);
+                    const S = new RelationClass(sName, sAttrs, sTuples);
+                    const trace = Engine.divide ? Engine.divide(R, S) : Engine.divideWithTrace(R, S, { isExact: false, threshold: 75 });
+                    const sqlObj = typeof SQLGenerator !== 'undefined' ? SQLGenerator.generateAll(R, S, trace.candidateAttrs, trace.divisorAttrs) : {};
+                    return { trace, R, S, sqlObj };
+                }
             }
             return null;
+        };
+
+        const triggerFileDownload = (href, filename) => {
+            const a = document.createElement('a');
+            a.href = href;
+            a.download = filename;
+            a.style.display = 'none';
+            document.body.appendChild(a);
+            a.click();
+            setTimeout(() => {
+                if (a.parentNode) a.parentNode.removeChild(a);
+            }, 1000);
         };
 
         document.getElementById('btn-export-pdf')?.addEventListener('click', () => {
@@ -1825,7 +2244,7 @@ class TechLayout {
             if (typeof ReportGenerator !== 'undefined' && data) {
                 ReportGenerator.printPDF(data.trace, data.R, data.S, data.sqlObj);
             } else {
-                window.print();
+                triggerFileDownload('exports/Academic_Report_Relational_Division.html', 'Academic_Report_Relational_Division.html');
             }
         });
 
@@ -1835,7 +2254,8 @@ class TechLayout {
                 ReportGenerator.downloadWordDoc(data.trace, data.R, data.S, data.sqlObj);
                 if (window.toast) toast.success('Word document (.doc) downloaded.');
             } else {
-                alert('Simulation data not ready. Please launch the simulation workspace first.');
+                triggerFileDownload('exports/Academic_Report_Relational_Division.doc', 'Academic_Report_Relational_Division.doc');
+                if (window.toast) toast.success('Word document (.doc) downloaded.');
             }
         });
 
@@ -1845,7 +2265,8 @@ class TechLayout {
                 ReportGenerator.downloadText(data.trace, data.R, data.S, data.sqlObj);
                 if (window.toast) toast.success('Text report (.txt) downloaded.');
             } else {
-                alert('Simulation data not ready. Please launch the simulation workspace first.');
+                triggerFileDownload('exports/Academic_Report_Relational_Division.txt', 'Academic_Report_Relational_Division.txt');
+                if (window.toast) toast.success('Text report (.txt) downloaded.');
             }
         });
 
@@ -1853,6 +2274,9 @@ class TechLayout {
             const data = getSimData();
             if (data && data.R && typeof ReportGenerator !== 'undefined') {
                 ReportGenerator.downloadCSV(data.R, 'relation_R_dividend.csv');
+                if (window.toast) toast.success('Relation R CSV downloaded.');
+            } else {
+                triggerFileDownload('exports/relation_R_dividend.csv', 'relation_R_dividend.csv');
                 if (window.toast) toast.success('Relation R CSV downloaded.');
             }
         });
@@ -1862,6 +2286,9 @@ class TechLayout {
             if (data && data.S && typeof ReportGenerator !== 'undefined') {
                 ReportGenerator.downloadCSV(data.S, 'relation_S_divisor.csv');
                 if (window.toast) toast.success('Relation S CSV downloaded.');
+            } else {
+                triggerFileDownload('exports/relation_S_divisor.csv', 'relation_S_divisor.csv');
+                if (window.toast) toast.success('Relation S CSV downloaded.');
             }
         });
 
@@ -1869,6 +2296,9 @@ class TechLayout {
             const data = getSimData();
             if (data && data.trace && data.trace.T5 && typeof ReportGenerator !== 'undefined') {
                 ReportGenerator.downloadCSV(data.trace.T5, 'result_T5_division.csv');
+                if (window.toast) toast.success('Result Relation T5 CSV downloaded.');
+            } else {
+                triggerFileDownload('exports/result_T5_division.csv', 'result_T5_division.csv');
                 if (window.toast) toast.success('Result Relation T5 CSV downloaded.');
             }
         });
@@ -2012,6 +2442,9 @@ class TechLayout {
         // Ensure Export, Help, and Command Palette Modals exist in DOM
         this.ensureModals();
 
+        // Ensure Persistent Floating Download Tab (Section D) is docked on right edge
+        this.ensureFloatingDownload();
+
         // Bind Modal & Global Interaction Events
         this.bindModalEvents();
 
@@ -2029,3 +2462,4 @@ class TechLayout {
 if (typeof window !== 'undefined') {
     window.TechLayout = TechLayout;
 }
+

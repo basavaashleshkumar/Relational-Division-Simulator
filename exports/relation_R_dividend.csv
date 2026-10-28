@@ -1,0 +1,31 @@
+# ==============================================================================
+# ACADEMIC RESEARCH DATASET: RELATIONAL DIVISION (R ÷ S)
+# Institution   : Relational Database Systems Laboratory
+# Project Title : Relational Division Operator Verification & Algorithmic Analysis
+# Relation Name : CourseEnrollments
+# Cardinality   : 19 tuples
+# Degree        : 3 attributes
+# Timestamp     : 2026-10-09T06:28:13.590Z
+# Specification : RFC 4180 Compliant (CRLF record breaks, quoted fields)
+# Pipeline Stage: Dividend Relation R (CourseEnrollments)
+# ==============================================================================
+"StudentID","StudentName","CourseCode"
+"CS101","Alice Smith","CSE201"
+"CS101","Alice Smith","CSE202"
+"CS101","Alice Smith","CSE203"
+"CS101","Alice Smith","CSE204"
+"CS102","Bob Jones","CSE201"
+"CS102","Bob Jones","CSE202"
+"CS103","Charlie Brown","CSE201"
+"CS103","Charlie Brown","CSE202"
+"CS103","Charlie Brown","CSE203"
+"CS103","Charlie Brown","CSE204"
+"CS103","Charlie Brown","CSE301"
+"CS104","Diana Prince","CSE201"
+"CS104","Diana Prince","CSE202"
+"CS104","Diana Prince","CSE203"
+"CS104","Diana Prince","CSE204"
+"CS105","Evan Wright","HUM101"
+"CS105","Evan Wright","MAT201"
+"CS106","Fiona Gallagher","CSE201"
+"CS106","Fiona Gallagher","CSE203"

@@ -1,11 +1,8 @@
 # RELATIONAL.DIV // Academic Research Laboratory Platform
 ## Formal Query Verification, Architectural Simulation & Multi-Paradigm SQL Compilation of the Relational Division Operator ($R \div S$)
 
-**Course:** BACSE202 — Database Management Systems & Formal Query Verification  
-**Principal Investigator & Author:** Basavaashlesh (Department of Computer Science and Engineering, SCOPE)  
-**Faculty Advisor & Mentor:** Dr. Swaminathan A, Assistant Professor, Department of Computer Science and Engineering  
 **System Version:** `RESEARCH_RELEASE: v2.4.0` (STABLE [240Hz Pure ES6 Engine])  
-**Specification Conformance:** 100% Verified (All 7 Formal Invariant Dimensions Validated)  
+**Architecture:** Pure ES6 Relational Division Engine with Multi-Paradigm SQL Compilation  
 **Design Aesthetic:** Bespoke Pitch-Black / Obsidian Dark with Horizon UI Architecture & Ergonomics  
 
 ---
@@ -14,7 +11,7 @@
 
 **RELATIONAL.DIV** is an authentic, high-performance academic research laboratory platform engineered for the interactive execution, formal tracing, and multi-dialect translation of the relational algebra division operator ($R \div S$). Relational division constitutes the fundamental primitive for universal quantification ($\forall$) within first-order relational languages (Codd's Relational Algebra and Relational Calculus). 
 
-Because relational division is not directly implemented as a native keyword in commercial ANSI/ISO SQL engines, translating queries of the form *"find all entities $x$ that are associated with all elements $y \in S$"* requires complex compositional query paradigms. This platform computes the canonical 5-stage set-theoretic derivation, single-steps candidate tuples through universal qualification predicates, compiles relational expressions into three distinct SQL paradigms (Correlated Subqueries, Relational Aggregation, and Set Difference), and integrates real-time 50Hz ESP32 / MPU-6050 6-DOF IMU sensor telemetry.
+Because relational division is not directly implemented as a native keyword in commercial ANSI/ISO SQL engines, translating queries of the form *"find all entities $x$ that are associated with all elements $y \in S$"* requires complex compositional query paradigms. This platform computes the canonical 5-stage set-theoretic derivation, single-steps candidate tuples through universal qualification predicates, compiles relational expressions into three distinct SQL paradigms (Correlated Subqueries, Relational Aggregation, and Set Difference), and validates relational completeness with strict bijection exact division.
 
 ---
 
@@ -116,7 +113,7 @@ The user interface implements an ultra-high-density bespoke pitch-black (OLED/Ob
 
 2. **1-Click 4-Zone Primary Navigation Bar:**
    - Positioned in the persistent top navbar across the entire platform:
-     - 📊 **Dashboard** (`dashboard.html`) — System telemetry, architecture overview, and KPI widgets.
+     - 📊 **Dashboard** (`dashboard.html`) — Platform KPIs, architecture overview, and embedded system terminal.
      - ⚡ **Simulation** (`simulation.html`) — Interactive workspace, AST DAG expression viewer, step debugger, and SQL compiler.
      - 📖 **Documentation** (`documentation.html`) — Complete mathematical proofs, operational manual, and validation matrix.
      - 🚀 **Landing** (`index.html`) — Laboratory overview and single-investigator research credentials.
@@ -127,7 +124,7 @@ The user interface implements an ultra-high-density bespoke pitch-black (OLED/Ob
      - Tuple Tracer (`#tracer`)
      - SQL Compiler Studio (`#sql`)
      - Coverage Matrix (`#matrix`)
-     - Hardware Telemetry (`#telemetry`)
+     - 5-Stage Relational Derivation (`#steps`)
      - 8-Case Invariant Test Suite (`#tests`)
      - Formal Verification Matrix (`#verification`)
      - Operational Manual (`#manual`)
@@ -165,30 +162,16 @@ The platform is formally validated across all 7 operational dimensions required 
 | :--- | :---: | :--- | :---: |
 | **1. Problem Understanding & Requirements** | **PASSED** | Mathematical formulation of universal quantification ($\forall$), formal attribute partitioning ($A = \text{attr}(R) - \text{attr}(S)$), empty divisor boundary semantics, and complexity analysis $\mathcal{O}(\|R\| \cdot \|S\|)$. | **100% Verified** |
 | **2. Core Functionality & Technical Implementation** | **PASSED** | Pure ES6 5-stage relational operator derivation pipeline ($T_1 \dots T_5$), exact division ($R \div_{\text{exact}} S$), continuous fuzzy thresholding ($\theta \in [0, 100]\%$), and dynamic table row editors. | **100% Verified** |
-| **3. Platform Architecture & Subsystems** | **PASSED** | **Theory:** Formal foundations + educational media + 5 academic research citations.<br>**Attribution:** Principal Investigator Basavaashlesh • Faculty Mentor Dr. Swaminathan A.<br>**Documentation:** Interactive Modal + Operational User Manual.<br>**Export:** PDF Academic Report, Word (.doc), Plain Text (.txt), CSV Datasets.<br>**Day/Night Mode:** Seamless toggle (☀️/🌙) with persistence. | **100% Verified** |
+| **3. Platform Architecture & Subsystems** | **PASSED** | **Theory:** Formal foundations + educational media + 5 academic research citations.<br>**Documentation:** Interactive Modal + Operational User Manual.<br>**Export:** PDF Academic Report, Word (.doc), Plain Text (.txt), CSV Datasets.<br>**Day/Night Mode:** Seamless toggle (☀️/🌙) with persistence. | **100% Verified** |
 | **4. System Design & UI/UX Architecture** | **PASSED** | Bespoke pitch-black obsidian palette (#050507, #0d0d12, #1e1e28), DM Sans & Poppins typography, 1px solid graphite borders, tactile switches, precision range sliders, and Command Palette (<kbd>Ctrl+K</kbd>). | **100% Verified** |
 | **5. Empirical Demonstration & Scenarios** | **PASSED** | 6 curated real-world case studies (University CS, Cloud DevOps, Pediatric Surgery, EV Supply Chain, NIST Security, Project Apollo), Quick Jump Matrix, inline explanations, and <kbd>Cmd/Ctrl+Enter</kbd> shortcut. | **100% Verified** |
 | **6. Automated Verification & Invariant Testing** | **PASSED** | Automated 8-case verification benchmark suite covering edge cases (empty divisor, single-row divisor, supersets, duplicate tuples, schema validation) passing 8/8 tests in 3.80ms. | **100% Verified** |
-| **7. Systems Research & Architectural Innovation** | **PASSED** | Interactive SVG Operator AST DAG Tree with node inspector, Tuple-by-Tuple Universal Quantifier Tracer, Multi-Paradigm SQL Compiler (3 dialects), and live 50Hz ESP32 + MPU-6050 6-DOF IMU sensor telemetry coupling. | **100% Verified** |
+| **7. Systems Research & Architectural Innovation** | **PASSED** | Interactive SVG Operator AST DAG Tree with node inspector, Tuple-by-Tuple Universal Quantifier Tracer, Multi-Paradigm SQL Compiler (3 dialects), and strict bijection exact division verification ($R \div_{\text{exact}} S$). | **100% Verified** |
 | **SPECIFICATION CONFORMANCE** | **PASSED** | **Rigorous Formal Verification Across All Operational Dimensions** | **100% VERIFIED** |
 
 ---
 
-## 7. Research Attribution & Mentorship
-
-- **Principal Investigator & Author:**  
-  **Basavaashlesh**  
-  *Department of Computer Science and Engineering, School of Computer Science and Engineering (SCOPE)*  
-  *Role:* Lead Engine Architect & Systems Researcher — Formulated and engineered the pure ES6 relational algebra division engine, interactive 5-stage AST Expression DAG visualizer, 3-dialect multi-paradigm SQL translation compiler, continuous fuzzy threshold algorithms, and live 50Hz ESP32 / MPU-6050 6-DOF IMU telemetry subsystem.
-
-- **Faculty Advisor & Mentor:**  
-  **Dr. Swaminathan A**  
-  *Assistant Professor, Department of Computer Science and Engineering*  
-  *Course:* BACSE202 — Database Management Systems & Formal Query Verification
-
----
-
-## 8. Live Access Links
+## 7. Live Access Links
 
 The local development server is running and accessible:
 

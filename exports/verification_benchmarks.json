@@ -1,0 +1,117 @@
+{
+  "total": 8,
+  "passed": 8,
+  "failed": 0,
+  "passRate": 100,
+  "totalDurationMs": "2.17",
+  "results": [
+    {
+      "id": "TC-01",
+      "name": "Standard Baseline Division (Single Qualifier)",
+      "category": "Formal Verification",
+      "description": "Formal Verification: Verifies that a candidate with exactly all divisor items qualifies, while candidates with incomplete sets are disqualified.",
+      "passed": true,
+      "expected": [
+        "Alice"
+      ],
+      "actual": [
+        "Alice"
+      ],
+      "details": "Formal Verification: Expected only Alice. Found: [Alice]",
+      "durationMs": "0.14"
+    },
+    {
+      "id": "TC-02",
+      "name": "Multiple Qualifying Candidates",
+      "category": "Formal Verification",
+      "description": "Formal Verification: Verifies that multiple candidates can simultaneously qualify if both satisfy the universal condition.",
+      "passed": true,
+      "expected": [
+        "E1",
+        "E3"
+      ],
+      "actual": [
+        "E1",
+        "E3"
+      ],
+      "details": "Formal Verification: Expected [E1, E3]. Found: [E1, E3]",
+      "durationMs": "0.13"
+    },
+    {
+      "id": "TC-03",
+      "name": "Null Result / Disjoint Relations (Empty Set ∅)",
+      "category": "Boundary Invariance",
+      "description": "Boundary Invariance: Verifies that an empty relation is returned when no candidate possesses all required divisor items.",
+      "passed": true,
+      "expected": 0,
+      "actual": 0,
+      "details": "Boundary Invariance: Expected 0 qualified tuples. Cardinality returned: 0",
+      "durationMs": "0.08"
+    },
+    {
+      "id": "TC-04",
+      "name": "Single-Row Divisor (|S| = 1)",
+      "category": "Boundary Invariance",
+      "description": "Boundary Invariance: Verifies that division works correctly when divisor cardinality is reduced to a single tuple.",
+      "passed": true,
+      "expected": [
+        "AdminUser",
+        "EditorUser"
+      ],
+      "actual": [
+        "AdminUser",
+        "EditorUser"
+      ],
+      "details": "Boundary Invariance: Expected [AdminUser, EditorUser]. Found: [AdminUser, EditorUser]",
+      "durationMs": "0.77"
+    },
+    {
+      "id": "TC-05",
+      "name": "Superset Candidate (Standard vs Exact Division)",
+      "category": "Formal Verification",
+      "description": "Formal Verification: Tests that a candidate with extra items qualifies in standard division (R ÷ S) but is filtered in exact division (R ÷_exact S).",
+      "passed": true,
+      "expected": "Std: [NormalStudent, Overachiever], Exact: [NormalStudent]",
+      "actual": "Std: [NormalStudent, Overachiever], Exact: [NormalStudent]",
+      "details": "Formal Verification: Standard division accepts supersets; Exact division strictly enforces no extras.",
+      "durationMs": "0.40"
+    },
+    {
+      "id": "TC-06",
+      "name": "Composite Divisor Attributes (Multi-Column B)",
+      "category": "Formal Verification",
+      "description": "Formal Verification: Verifies division when divisor S contains multiple composite attributes (e.g., Course AND Semester).",
+      "passed": true,
+      "expected": [
+        "ST1"
+      ],
+      "actual": [
+        "ST1"
+      ],
+      "details": "Formal Verification: Multi-attribute divisor correctly resolved to ST1 with valid composite SQL generation.",
+      "durationMs": "0.28"
+    },
+    {
+      "id": "TC-07",
+      "name": "Duplicate Tuple Elimination (Set Semantics)",
+      "category": "Formal Verification",
+      "description": "Formal Verification: Verifies that duplicate input tuples are automatically collapsed into set semantics and do not distort counts.",
+      "passed": true,
+      "expected": "R cardinality 2, Qualified [P1]",
+      "actual": "R cardinality 2, Qualified [P1]",
+      "details": "Formal Verification: Duplicates safely removed according to first-order relational set theory.",
+      "durationMs": "0.16"
+    },
+    {
+      "id": "TC-08",
+      "name": "Schema Mismatch Error Handling",
+      "category": "Boundary Invariance",
+      "description": "Boundary Invariance: Verifies that an illegal divisor schema (where S has attributes not in R) is caught and handled with an informative error.",
+      "passed": true,
+      "expected": "Validation error and exception thrown: S attributes must be a subset of R",
+      "actual": "Schema error: Attribute(s) [NonExistentAttribute] of S do not exist in R. Divisor attributes must be a subset of Dividend attributes.",
+      "details": "Boundary Invariance: Invalid schema rejected gracefully via validation and division exception.",
+      "durationMs": "0.17"
+    }
+  ]
+}

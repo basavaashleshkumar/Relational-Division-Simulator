@@ -296,16 +296,16 @@
         <div class="flex-1 flex flex-col min-w-0 overflow-hidden">
 
             <!-- ========================================================= -->
-            <!-- QUICK ACTION STRIP: 1-Click Presets, Run, & Export       -->
+            <!-- TOP UNIFIED TOOLBAR: 7 Presets, Run, Import & Export      -->
             <!-- ========================================================= -->
-            <div class="px-4 sm:px-5 pt-3 pb-1 flex-shrink-0">
-                <div class="rounded-[20px] bg-white dark:bg-[#0d0d12] border border-gray-100 dark:border-[#1f1f29] p-2.5 sm:p-3 flex flex-wrap items-center justify-between gap-3 shadow-md">
+            <div class="px-4 sm:px-6 pt-3 pb-1 flex-shrink-0">
+                <div class="rounded-2xl bg-white dark:bg-[#0c0c12] border border-gray-200 dark:border-[#1e1e28] p-2.5 sm:p-3 flex flex-wrap items-center justify-between gap-3 shadow-xs">
                     
-                    <!-- Left: 1-Click Preset Switcher Buttons -->
+                    <!-- Left: 7 Real-World Domain Presets -->
                     <div class="flex items-center gap-1.5 overflow-x-auto horizon-scrollbar py-0.5">
                         <span class="text-[11px] font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mr-1 flex items-center gap-1.5 font-mono flex-shrink-0">
-                            <span class="w-1.5 h-1.5 rounded-full bg-[#7551FF] animate-pulse"></span>
-                            Presets:
+                            <span class="w-1.5 h-1.5 rounded-full bg-[#7551FF]"></span>
+                            Preset:
                         </span>
                         <button class="quick-preset-btn active" data-preset="university" title="01: University CS Core Courses">
                             <span>🎓 University</span>
@@ -314,7 +314,7 @@
                             <span>☁️ DevOps</span>
                         </button>
                         <button class="quick-preset-btn" data-preset="healthcare" title="03: Pediatric Cardiac Licenses">
-                            <span>🏥 Healthcare</span>
+                            <span>🩺 Healthcare</span>
                         </button>
                         <button class="quick-preset-btn" data-preset="supplychain" title="04: EV Battery Supply Chain">
                             <span>🚗 EV Supply</span>
@@ -325,26 +325,35 @@
                         <button class="quick-preset-btn" data-preset="projectapollo" title="06: Project Apollo Space Crew">
                             <span>🚀 Apollo</span>
                         </button>
+                        <button class="quick-preset-btn" data-preset="irctc" title="07: IRCTC Railway Reservation (Rajdhani Route)">
+                            <span>🚆 IRCTC Rail</span>
+                        </button>
                     </div>
 
-                    <!-- Right: Quick Run & Export Controls -->
+                    <!-- Right: Execution & Data Actions -->
                     <div class="flex items-center gap-2 flex-shrink-0">
-                        <!-- 1-Click Run Button with Ctrl+Enter badge -->
-                        <button id="quick-btn-run" class="flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-[#7551FF] to-[#422AFB] hover:from-[#8171FC] hover:to-[#3311DB] active:scale-95 text-white font-bold text-xs shadow-md shadow-[#7551FF]/30 transition-all cursor-pointer" title="Execute Pipeline (Ctrl+Enter)">
+                        <!-- Run Pipeline Button -->
+                        <button id="quick-btn-run" class="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#7551FF] hover:bg-[#6540ee] active:scale-95 text-white font-bold text-xs shadow-md shadow-[#7551FF]/20 transition-all cursor-pointer" title="Execute Pipeline (Ctrl+Enter)">
                             <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                            <span>Run</span>
+                            <span>Run Pipeline</span>
                             <kbd class="px-1.5 py-0.5 rounded bg-white/20 text-[10px] font-mono tracking-tighter">Ctrl+Enter</kbd>
                         </button>
 
-                        <!-- 1-Click Export Button -->
-                        <button id="quick-btn-export" class="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-lightPrimary dark:bg-[#181822] hover:bg-gray-200 dark:hover:bg-[#222232] text-navy-700 dark:text-white border border-gray-200 dark:border-[#252538] font-bold text-xs transition-all cursor-pointer" title="Export Full Report / CSV">
+                        <!-- Import Data Trigger -->
+                        <button id="btn-open-importer" type="button" class="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-white dark:bg-[#121218] hover:bg-gray-50 dark:hover:bg-[#1a1a24] text-navy-700 dark:text-gray-200 border border-gray-200 dark:border-[#222230] font-medium text-xs transition-colors cursor-pointer" title="Import CSV, Excel, JSON, or SQL">
+                            <span>📥</span>
+                            <span class="hidden sm:inline">Import</span>
+                        </button>
+
+                        <!-- Export Report Trigger -->
+                        <button id="quick-btn-export" class="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-white dark:bg-[#121218] hover:bg-gray-50 dark:hover:bg-[#1a1a24] text-navy-700 dark:text-gray-200 border border-gray-200 dark:border-[#222230] font-medium text-xs transition-colors cursor-pointer" title="Export Academic Report / CSV">
                             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-                            <span>Export</span>
+                            <span class="hidden sm:inline">Export</span>
                         </button>
 
                         <!-- Status Pill -->
-                        <div class="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-green-500/10 text-[#05CD99] border border-[#05CD99]/20 text-[11px] font-mono font-bold">
-                            <span class="w-1.5 h-1.5 rounded-full bg-[#05CD99] animate-pulse"></span>
+                        <div class="hidden md:flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#62b06d]/10 text-[#62b06d] border border-[#62b06d]/30 text-[11px] font-mono font-medium">
+                            <span class="w-1.5 h-1.5 rounded-full bg-[#62b06d]"></span>
                             <span id="quick-status-label">READY</span>
                         </div>
                     </div>
@@ -355,56 +364,36 @@
             <!-- ========================================================= -->
             <!-- MAIN WORKSPACE SPLIT: CONTROL PANEL & VISUALIZER          -->
             <!-- ========================================================= -->
-            <div class="flex-1 flex flex-col xl:flex-row overflow-hidden px-4 sm:px-5 pb-4 sm:pb-5 pt-2 gap-5">
+            <div class="flex-1 flex flex-col xl:flex-row overflow-hidden px-4 sm:px-6 pb-4 sm:pb-6 pt-2 gap-5">
 
                 <!-- ========================================================= -->
-                <!-- PANE 1: BESPOKE CONTROL PANEL (LEFT COLUMN)               -->
+                <!-- PANE 1: CONTROL PANEL & DATA INPUTS (LEFT COLUMN)         -->
                 <!-- ========================================================= -->
-                <aside class="w-full xl:w-96 flex-shrink-0 flex flex-col gap-4 overflow-y-auto horizon-scrollbar">
+                <aside class="w-full xl:w-[540px] 2xl:w-[580px] flex-shrink-0 flex flex-col gap-3.5 overflow-y-auto horizon-scrollbar">
 
-                    <!-- Workspace Driver Card -->
-                    <div class="rounded-[20px] bg-white dark:bg-[#0d0d12] shadow-3xl shadow-shadow-500 dark:shadow-none p-5 space-y-4 border border-gray-100 dark:border-[#1f1f29]">
-                        
-                        <!-- Header -->
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <span class="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 font-mono">Simulation Control</span>
-                                <h2 class="text-lg font-bold text-navy-700 dark:text-white">Workspace Driver</h2>
-                            </div>
-                            <span class="px-2.5 py-1 text-xs font-bold rounded-full bg-green-500/10 text-[#05CD99] border border-[#05CD99]/20 flex items-center gap-1.5 font-mono">
-                                <span class="w-1.5 h-1.5 rounded-full bg-[#05CD99] animate-pulse"></span>
-                                <span>IO: READY</span>
-                            </span>
+                    <!-- Division Parameters Card -->
+                    <div class="rounded-2xl bg-white dark:bg-[#0c0c12] p-4 space-y-3 border border-gray-200 dark:border-[#1e1e28]">
+                        <!-- Backwards compatibility hooks for scripts -->
+                        <select id="preset-selector" class="sr-only" aria-hidden="true">
+                            <option value="university">🎓 01: University CS Core Courses</option>
+                            <option value="devops">☁️ 02: Cloud DevOps & SRE Stack</option>
+                            <option value="healthcare">🩺 03: Pediatric Cardiac Licenses</option>
+                            <option value="supplychain">🚗 04: EV Battery Supply Chain</option>
+                            <option value="cybersecurity">🛡️ 05: NIST Zero-Trust Security</option>
+                            <option value="projectapollo">🚀 06: Project Apollo Space Crew</option>
+                            <option value="irctc">🚆 07: IRCTC Railway Reservation (Rajdhani Route)</option>
+                        </select>
+                        <button id="btn-run-sim" class="sr-only" aria-hidden="true"></button>
+                        <button id="btn-open-exams-sidebar" class="sr-only" aria-hidden="true"></button>
+                        <button id="btn-open-practice-sidebar" class="sr-only" aria-hidden="true"></button>
+
+                        <div class="flex items-center justify-between pb-2 border-b border-gray-100 dark:border-[#1e1e28]">
+                            <span class="text-xs font-bold uppercase tracking-wider text-navy-700 dark:text-gray-200 font-mono">Division Parameters</span>
+                            <span class="text-[11px] font-mono text-gray-400">Pure ES6 AST Engine</span>
                         </div>
 
-                        <!-- Scenario Selector Dropdown -->
-                        <div>
-                            <label for="preset-selector" class="block text-xs font-bold uppercase tracking-wider text-gray-600 dark:text-gray-400 mb-1.5 font-mono">
-                                Active Domain Scenario
-                            </label>
-                            <div class="relative">
-                                <select id="preset-selector" class="w-full appearance-none rounded-xl border border-gray-200 dark:border-[#1f1f29] bg-lightPrimary dark:bg-[#111116] px-3.5 py-2.5 text-xs font-medium text-navy-700 dark:text-white outline-none focus:border-[#7551FF] transition-colors cursor-pointer pr-9">
-                                    <option value="university">🎓 01: University CS Core Courses</option>
-                                    <option value="devops">☁️ 02: Cloud DevOps & SRE Stack</option>
-                                    <option value="healthcare">🏥 03: Pediatric Cardiac Licenses</option>
-                                    <option value="supplychain">🚗 04: EV Battery Supply Chain</option>
-                                    <option value="cybersecurity">🛡️ 05: NIST Zero-Trust Security</option>
-                                    <option value="projectapollo">🚀 06: Project Apollo Space Crew</option>
-                                </select>
-                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-400">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Primary Action Button -->
-                        <button id="btn-run-sim" class="w-full bg-gradient-to-r from-[#7551FF] to-[#422AFB] hover:from-[#8171FC] hover:to-[#3311DB] active:scale-[0.98] text-white rounded-xl font-bold px-6 py-3 shadow-lg shadow-[#7551FF]/30 transition duration-200 flex items-center justify-center gap-2 text-sm">
-                            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                            <span>Execute Relational Pipeline</span>
-                        </button>
-
-                        <!-- Exact Mode Toggle Switch -->
-                        <div class="flex items-center justify-between p-3 rounded-xl bg-lightPrimary/70 dark:bg-[#111116] border border-gray-100 dark:border-[#1f1f29]">
+                        <!-- Exact Division Mode Toggle Switch -->
+                        <div class="flex items-center justify-between p-2.5 rounded-xl bg-gray-50 dark:bg-[#121218] border border-gray-200 dark:border-[#1e1e28]">
                             <div class="pr-2">
                                 <div class="text-xs font-bold text-navy-700 dark:text-white flex items-center gap-1.5">
                                     <span>Exact Division ($R \div_{\text{exact}} S$)</span>
@@ -415,18 +404,17 @@
                         </div>
 
                         <!-- Fuzzy Match Threshold Range Slider -->
-                        <div class="p-3 rounded-xl bg-lightPrimary/70 dark:bg-[#111116] border border-gray-100 dark:border-[#1f1f29] space-y-2">
+                        <div class="p-2.5 rounded-xl bg-gray-50 dark:bg-[#121218] border border-gray-200 dark:border-[#1e1e28] space-y-1.5">
                             <div class="flex items-center justify-between text-xs">
                                 <span class="font-bold text-navy-700 dark:text-white">Fuzzy Match Threshold</span>
-                                <span id="label-threshold" class="px-2.5 py-0.5 rounded-lg bg-brand-50 text-brand-500 dark:bg-[#7551FF]/20 dark:text-[#A195FD] font-bold text-xs font-mono border dark:border-[#7551FF]/30">75%</span>
+                                <span id="label-threshold" class="px-2 py-0.5 rounded-lg bg-brand-50 text-brand-500 dark:bg-[#7551FF]/20 dark:text-[#A195FD] font-bold text-xs font-mono border dark:border-[#7551FF]/30">75%</span>
                             </div>
                             <input type="range" id="slider-threshold" min="0" max="100" value="75" step="5" class="horizon-range w-full cursor-pointer" aria-label="Fuzzy Match Threshold Slider">
                         </div>
-
                     </div>
 
                     <!-- Relation R (Dividend) Card -->
-                    <div class="rounded-[20px] bg-white dark:bg-[#0d0d12] shadow-3xl shadow-shadow-500 dark:shadow-none p-5 space-y-3 border border-gray-100 dark:border-[#1f1f29]" id="step-card-r">
+                    <div class="rounded-[20px] bg-white dark:bg-[#0d0d12] shadow-3xl shadow-shadow-500 dark:shadow-none p-4 space-y-2.5 border border-gray-100 dark:border-[#1f1f29]" id="step-card-r">
                         
                         <div class="flex items-center justify-between">
                             <div class="flex items-center gap-2">
@@ -438,19 +426,19 @@
                             </div>
 
                             <div class="flex items-center gap-1.5">
-                                <span id="badge-r-count" class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-brand-50 dark:bg-[#7551FF]/20 text-brand-500 dark:text-[#A195FD] font-mono border dark:border-[#7551FF]/30">0 rows</span>
-                                <button id="btn-add-r" class="px-2.5 py-1 text-xs font-bold rounded-lg bg-lightPrimary dark:bg-[#181822] text-[#7551FF] dark:text-[#A195FD] border border-transparent dark:border-[#252538] hover:bg-brand-50 dark:hover:bg-[#202030] transition-colors" title="Add Row">+ Add</button>
-                                <button id="btn-export-csv-r" class="px-2.5 py-1 text-xs font-bold rounded-lg bg-lightPrimary dark:bg-[#181822] text-gray-600 dark:text-gray-300 border border-transparent dark:border-[#252538] hover:text-navy-700 dark:hover:text-white transition-colors" title="Export CSV">CSV</button>
+                                <span id="badge-r-count" class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-[#4318FF]/10 text-[#7551FF] font-mono border border-[#4318FF]/20">0 rows</span>
+                                <button id="btn-add-r" class="px-2 py-0.5 text-xs font-medium rounded bg-transparent hover:bg-black/5 dark:hover:bg-white/5 text-navy-700 dark:text-white border border-gray-200 dark:border-[#1e1e28] transition-colors" title="Add Row">+ Add</button>
+                                <button id="btn-export-csv-r" class="px-2 py-0.5 text-xs font-medium rounded bg-transparent hover:bg-black/5 dark:hover:bg-white/5 text-gray-500 dark:text-gray-400 hover:text-navy-700 dark:hover:text-white border border-gray-200 dark:border-[#1e1e28] transition-colors" title="Export CSV">CSV</button>
                             </div>
                         </div>
 
-                        <div id="container-table-r" class="max-h-48 overflow-y-auto horizon-scrollbar rounded-xl border border-gray-100 dark:border-[#1f1f29] bg-white dark:bg-[#0e0e14]">
+                        <div id="container-table-r" class="max-h-52 overflow-y-auto horizon-scrollbar rounded-xl border border-gray-100 dark:border-[#1f1f29] bg-white dark:bg-[#0e0e14]">
                             <!-- Rendered by SimWorkspace.renderTableR -->
                         </div>
                     </div>
 
                     <!-- Relation S (Divisor) Card -->
-                    <div class="rounded-[20px] bg-white dark:bg-[#0d0d12] shadow-3xl shadow-shadow-500 dark:shadow-none p-5 space-y-3 border border-gray-100 dark:border-[#1f1f29]" id="step-card-s">
+                    <div class="rounded-[20px] bg-white dark:bg-[#0d0d12] shadow-3xl shadow-shadow-500 dark:shadow-none p-4 space-y-2.5 border border-gray-100 dark:border-[#1f1f29]" id="step-card-s">
                         
                         <div class="flex items-center justify-between">
                             <div class="flex items-center gap-2">
@@ -462,13 +450,13 @@
                             </div>
 
                             <div class="flex items-center gap-1.5">
-                                <span id="badge-s-count" class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-purple-50 dark:bg-purple-500/20 text-purple-600 dark:text-purple-300 font-mono border dark:border-purple-500/30">0 rows</span>
-                                <button id="btn-add-s" class="px-2.5 py-1 text-xs font-bold rounded-lg bg-lightPrimary dark:bg-[#181822] text-[#7551FF] dark:text-[#A195FD] border border-transparent dark:border-[#252538] hover:bg-brand-50 dark:hover:bg-[#202030] transition-colors" title="Add Row">+ Add</button>
-                                <button id="btn-export-csv-s" class="px-2.5 py-1 text-xs font-bold rounded-lg bg-lightPrimary dark:bg-[#181822] text-gray-600 dark:text-gray-300 border border-transparent dark:border-[#252538] hover:text-navy-700 dark:hover:text-white transition-colors" title="Export CSV">CSV</button>
+                                <span id="badge-s-count" class="px-2 py-0.5 rounded text-[11px] font-semibold bg-[#c678dd]/10 text-[#c678dd] font-mono border border-[#c678dd]/20">0 rows</span>
+                                <button id="btn-add-s" class="px-2 py-0.5 text-xs font-medium rounded bg-transparent hover:bg-black/5 dark:hover:bg-white/5 text-navy-700 dark:text-white border border-gray-200 dark:border-[#1e1e28] transition-colors" title="Add Row">+ Add</button>
+                                <button id="btn-export-csv-s" class="px-2 py-0.5 text-xs font-medium rounded bg-transparent hover:bg-black/5 dark:hover:bg-white/5 text-gray-500 dark:text-gray-400 hover:text-navy-700 dark:hover:text-white border border-gray-200 dark:border-[#1e1e28] transition-colors" title="Export CSV">CSV</button>
                             </div>
                         </div>
 
-                        <div id="container-table-s" class="max-h-40 overflow-y-auto horizon-scrollbar rounded-xl border border-gray-100 dark:border-[#1f1f29] bg-white dark:bg-[#0e0e14]">
+                        <div id="container-table-s" class="max-h-36 overflow-y-auto horizon-scrollbar rounded-xl border border-gray-100 dark:border-[#1f1f29] bg-white dark:bg-[#0e0e14]">
                             <!-- Rendered by SimWorkspace.renderTableS -->
                         </div>
                     </div>
@@ -500,16 +488,12 @@
                                 <span id="tab-badge-tracer" class="tab-badge">Audit</span>
                             </button>
                             <button class="center-tab-btn" data-view="sql">
-                                <span>SQL Studio</span>
-                                <span class="tab-badge">3 Dialects</span>
+                                <span>Formal Languages</span>
+                                <span class="tab-badge">RA • SQL • TRC • DRC</span>
                             </button>
                             <button class="center-tab-btn" data-view="matrix">
                                 <span>Coverage Matrix</span>
                                 <span id="tab-badge-matrix" class="tab-badge">Heatmap</span>
-                            </button>
-                            <button class="center-tab-btn" data-view="telemetry">
-                                <span>Telemetry ESP32</span>
-                                <span id="tab-badge-telemetry" class="tab-badge text-cyan-400">6-DOF</span>
                             </button>
                             <button class="center-tab-btn" data-view="tests">
                                 <span>Verification Suite (8)</span>
@@ -536,12 +520,12 @@
                                 
                                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-gray-100 dark:border-[#1f1f29]">
                                     <div class="flex items-center gap-2.5">
-                                        <div class="w-8 h-8 rounded-xl bg-green-500/10 flex items-center justify-center text-[#05CD99] border border-[#05CD99]/20">
+                                        <div id="result-icon-box" class="w-8 h-8 rounded-xl bg-green-500/10 flex items-center justify-center text-[#05CD99] border border-[#05CD99]/20">
                                             <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
                                         </div>
                                         <div>
-                                            <h3 class="text-base font-bold text-navy-700 dark:text-white">Final Result Relation // $T_5 = R \div S$</h3>
-                                            <p class="text-xs text-gray-500 dark:text-gray-400">Universally qualified entities: $\forall y \in S, \langle x, y \rangle \in R$</p>
+                                            <h3 id="result-heading" class="text-base font-bold text-navy-700 dark:text-white">Final Result Relation // $T_5 = R \div S$</h3>
+                                            <p id="result-subheading" class="text-xs text-gray-500 dark:text-gray-400">Universally qualified entities: $\forall y \in S, \langle x, y \rangle \in R$</p>
                                         </div>
                                     </div>
 
@@ -553,56 +537,15 @@
                                     </div>
                                 </div>
 
+                                <!-- Dynamic Exact Division Mode Banner -->
+                                <div id="exact-mode-banner" class="hidden p-3.5 rounded-xl border font-mono text-xs transition-all"></div>
+
                                 <div id="container-result-table" class="rounded-xl border border-gray-100 dark:border-[#1f1f29] bg-white dark:bg-[#0e0e14] overflow-hidden">
                                     <!-- Populated dynamically -->
                                 </div>
-                            </div>
 
-                            <!-- KPI Widget Cards Grid -->
-                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                                <!-- Latency -->
-                                <div class="rounded-[20px] bg-white dark:bg-[#0d0d12] shadow-3xl shadow-shadow-500 dark:shadow-none p-4 flex items-center gap-3.5 border border-gray-100 dark:border-[#1f1f29]">
-                                    <div class="w-12 h-12 rounded-2xl bg-lightPrimary dark:bg-[#181822] flex items-center justify-center text-[#7551FF] dark:text-[#A195FD] flex-shrink-0 border border-transparent dark:border-[#252538]">
-                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-                                    </div>
-                                    <div class="min-w-0">
-                                        <p class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider font-mono">Latency</p>
-                                        <h4 id="kpi-latency" class="text-xl font-bold text-navy-700 dark:text-white font-mono truncate">0.00 ms</h4>
-                                    </div>
-                                </div>
-
-                                <!-- Total Candidates -->
-                                <div class="rounded-[20px] bg-white dark:bg-[#0d0d12] shadow-3xl shadow-shadow-500 dark:shadow-none p-4 flex items-center gap-3.5 border border-gray-100 dark:border-[#1f1f29]">
-                                    <div class="w-12 h-12 rounded-2xl bg-lightPrimary dark:bg-[#181822] flex items-center justify-center text-[#868CFF] flex-shrink-0 border border-transparent dark:border-[#252538]">
-                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
-                                    </div>
-                                    <div class="min-w-0">
-                                        <p class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider font-mono">Candidates</p>
-                                        <h4 id="kpi-candidates" class="text-xl font-bold text-navy-700 dark:text-white font-mono truncate">0</h4>
-                                    </div>
-                                </div>
-
-                                <!-- Qualified -->
-                                <div class="rounded-[20px] bg-white dark:bg-[#0d0d12] shadow-3xl shadow-shadow-500 dark:shadow-none p-4 flex items-center gap-3.5 border border-gray-100 dark:border-[#1f1f29]">
-                                    <div class="w-12 h-12 rounded-2xl bg-green-500/10 dark:bg-green-500/15 flex items-center justify-center text-[#05CD99] flex-shrink-0 border border-green-500/20">
-                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                                    </div>
-                                    <div class="min-w-0">
-                                        <p class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider font-mono">Qualified (100%)</p>
-                                        <h4 id="kpi-qualified" class="text-xl font-bold text-[#05CD99] font-mono truncate">0</h4>
-                                    </div>
-                                </div>
-
-                                <!-- Disqualified -->
-                                <div class="rounded-[20px] bg-white dark:bg-[#0d0d12] shadow-3xl shadow-shadow-500 dark:shadow-none p-4 flex items-center gap-3.5 border border-gray-100 dark:border-[#1f1f29]">
-                                    <div class="w-12 h-12 rounded-2xl bg-red-500/10 dark:bg-red-500/15 flex items-center justify-center text-[#EE5D50] flex-shrink-0 border border-red-500/20">
-                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                                    </div>
-                                    <div class="min-w-0">
-                                        <p class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider font-mono">Disqualified</p>
-                                        <h4 id="kpi-disqualified" class="text-xl font-bold text-[#EE5D50] font-mono truncate">0</h4>
-                                    </div>
-                                </div>
+                                <!-- Dynamic Candidate Bijection Audit Breakdown -->
+                                <div id="container-exact-audit" class="p-4 rounded-xl bg-gray-50/50 dark:bg-[#09090f] border border-gray-100 dark:border-[#1f1f29] space-y-2 text-xs font-mono"></div>
                             </div>
 
                         </div>
@@ -719,16 +662,52 @@
                         </div>
 
                         <!-- ========================================================= -->
-                        <!-- VIEW 5: SQL Dialect Studio                                -->
+                        <!-- VIEW 5: Formal Relational Languages & SQL Studio (SL->SQL->TRC->DRC) -->
                         <!-- ========================================================= -->
                         <div id="view-sql" class="center-view hidden space-y-4">
                             <div class="grid grid-cols-1 gap-4">
                                 
+                                <!-- FORMAL 1: Symbolic Relational Algebra (SL / RA) -->
+                                <div class="rounded-[20px] bg-white dark:bg-[#0d0d12] shadow-3xl shadow-shadow-500 dark:shadow-none p-5 space-y-3 border border-gray-100 dark:border-[#1f1f29]">
+                                    <div class="flex items-center justify-between pb-3 border-b border-gray-100 dark:border-[#1f1f29]">
+                                        <div class="flex items-center gap-2">
+                                            <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-[#7551FF]/10 text-[#7551FF] dark:bg-[#7551FF]/20 dark:text-[#A195FD] font-mono border dark:border-[#7551FF]/30">RELATIONAL ALGEBRA</span>
+                                            <h4 class="text-sm font-bold text-navy-700 dark:text-white">Symbolic Language (SL // Codd's 5-Stage Operator Pipeline)</h4>
+                                        </div>
+                                        <button class="btn-copy-code px-3.5 py-1.5 rounded-xl bg-[#7551FF] hover:bg-[#6038FF] text-white font-medium text-xs shadow-md shadow-[#7551FF]/25 transition duration-200" data-target="code-ra">Copy</button>
+                                    </div>
+                                    <pre id="code-ra" class="p-4 bg-[#08080c] text-emerald-400 rounded-2xl font-mono text-xs overflow-x-auto leading-relaxed border border-gray-100 dark:border-[#1f1f29]"></pre>
+                                </div>
+
+                                <!-- FORMAL 2: Tuple Relational Calculus (TRC) -->
+                                <div class="rounded-[20px] bg-white dark:bg-[#0d0d12] shadow-3xl shadow-shadow-500 dark:shadow-none p-5 space-y-3 border border-gray-100 dark:border-[#1f1f29]">
+                                    <div class="flex items-center justify-between pb-3 border-b border-gray-100 dark:border-[#1f1f29]">
+                                        <div class="flex items-center gap-2">
+                                            <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500/10 text-amber-500 dark:text-amber-400 font-mono border border-amber-500/20">TRC</span>
+                                            <h4 class="text-sm font-bold text-navy-700 dark:text-white">Tuple Relational Calculus (Universal Quantifier $\forall s \in S$)</h4>
+                                        </div>
+                                        <button class="btn-copy-code px-3.5 py-1.5 rounded-xl bg-[#7551FF] hover:bg-[#6038FF] text-white font-medium text-xs shadow-md shadow-[#7551FF]/25 transition duration-200" data-target="code-trc">Copy</button>
+                                    </div>
+                                    <pre id="code-trc" class="p-4 bg-[#08080c] text-amber-300 rounded-2xl font-mono text-xs overflow-x-auto leading-relaxed border border-gray-100 dark:border-[#1f1f29]"></pre>
+                                </div>
+
+                                <!-- FORMAL 3: Domain Relational Calculus (DRC) -->
+                                <div class="rounded-[20px] bg-white dark:bg-[#0d0d12] shadow-3xl shadow-shadow-500 dark:shadow-none p-5 space-y-3 border border-gray-100 dark:border-[#1f1f29]">
+                                    <div class="flex items-center justify-between pb-3 border-b border-gray-100 dark:border-[#1f1f29]">
+                                        <div class="flex items-center gap-2">
+                                            <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-cyan-500/10 text-cyan-500 dark:text-cyan-400 font-mono border border-cyan-500/20">DRC</span>
+                                            <h4 class="text-sm font-bold text-navy-700 dark:text-white">Domain Relational Calculus (Domain Variables & Material Implication)</h4>
+                                        </div>
+                                        <button class="btn-copy-code px-3.5 py-1.5 rounded-xl bg-[#7551FF] hover:bg-[#6038FF] text-white font-medium text-xs shadow-md shadow-[#7551FF]/25 transition duration-200" data-target="code-drc">Copy</button>
+                                    </div>
+                                    <pre id="code-drc" class="p-4 bg-[#08080c] text-cyan-300 rounded-2xl font-mono text-xs overflow-x-auto leading-relaxed border border-gray-100 dark:border-[#1f1f29]"></pre>
+                                </div>
+
                                 <!-- SQL 1: Double NOT EXISTS -->
                                 <div class="rounded-[20px] bg-white dark:bg-[#0d0d12] shadow-3xl shadow-shadow-500 dark:shadow-none p-5 space-y-3 border border-gray-100 dark:border-[#1f1f29]">
                                     <div class="flex items-center justify-between pb-3 border-b border-gray-100 dark:border-[#1f1f29]">
                                         <div class="flex items-center gap-2">
-                                            <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-brand-50 text-brand-500 dark:bg-[#7551FF]/20 dark:text-[#A195FD] font-mono border dark:border-[#7551FF]/30">METHOD 1</span>
+                                            <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-brand-50 text-brand-500 dark:bg-[#7551FF]/20 dark:text-[#A195FD] font-mono border dark:border-[#7551FF]/30">SQL PARADIGM 1</span>
                                             <h4 class="text-sm font-bold text-navy-700 dark:text-white">Double NOT EXISTS (Correlated Universal Quantifier)</h4>
                                         </div>
                                         <button class="btn-copy-code px-3.5 py-1.5 rounded-xl bg-[#7551FF] hover:bg-[#6038FF] text-white font-medium text-xs shadow-md shadow-[#7551FF]/25 transition duration-200" data-target="code-notexists">Copy</button>
@@ -740,8 +719,8 @@
                                 <div class="rounded-[20px] bg-white dark:bg-[#0d0d12] shadow-3xl shadow-shadow-500 dark:shadow-none p-5 space-y-3 border border-gray-100 dark:border-[#1f1f29]">
                                     <div class="flex items-center justify-between pb-3 border-b border-gray-100 dark:border-[#1f1f29]">
                                         <div class="flex items-center gap-2">
-                                            <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-green-500/10 text-[#05CD99] font-mono border border-[#05CD99]/20">METHOD 2</span>
-                                            <h4 class="text-sm font-bold text-navy-700 dark:text-white">Aggregation (GROUP BY ... HAVING COUNT)</h4>
+                                            <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-green-500/10 text-[#05CD99] font-mono border border-[#05CD99]/20">SQL PARADIGM 2</span>
+                                            <h4 class="text-sm font-bold text-navy-700 dark:text-white">Aggregation Division (GROUP BY ... HAVING COUNT DISTINCT)</h4>
                                         </div>
                                         <button class="btn-copy-code px-3.5 py-1.5 rounded-xl bg-[#7551FF] hover:bg-[#6038FF] text-white font-medium text-xs shadow-md shadow-[#7551FF]/25 transition duration-200" data-target="code-groupby">Copy</button>
                                     </div>
@@ -752,12 +731,24 @@
                                 <div class="rounded-[20px] bg-white dark:bg-[#0d0d12] shadow-3xl shadow-shadow-500 dark:shadow-none p-5 space-y-3 border border-gray-100 dark:border-[#1f1f29]">
                                     <div class="flex items-center justify-between pb-3 border-b border-gray-100 dark:border-[#1f1f29]">
                                         <div class="flex items-center gap-2">
-                                            <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-purple-50 dark:bg-purple-500/20 text-purple-600 dark:text-purple-300 font-mono border dark:border-purple-500/30">METHOD 3</span>
-                                            <h4 class="text-sm font-bold text-navy-700 dark:text-white">Set Difference (EXCEPT / MINUS)</h4>
+                                            <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-purple-50 dark:bg-purple-500/20 text-purple-600 dark:text-purple-300 font-mono border dark:border-purple-500/30">SQL PARADIGM 3</span>
+                                            <h4 class="text-sm font-bold text-navy-700 dark:text-white">Set Difference Subquery (EXCEPT / MINUS)</h4>
                                         </div>
                                         <button class="btn-copy-code px-3.5 py-1.5 rounded-xl bg-[#7551FF] hover:bg-[#6038FF] text-white font-medium text-xs shadow-md shadow-[#7551FF]/25 transition duration-200" data-target="code-except">Copy</button>
                                     </div>
                                     <pre id="code-except" class="p-4 bg-[#08080c] dark:bg-[#08080c] text-[#C0B8FE] rounded-2xl font-mono text-xs overflow-x-auto leading-relaxed border border-gray-100 dark:border-[#1f1f29]"></pre>
+                                </div>
+
+                                <!-- SQL 4: Exact Division -->
+                                <div class="rounded-[20px] bg-white dark:bg-[#0d0d12] shadow-3xl shadow-shadow-500 dark:shadow-none p-5 space-y-3 border border-gray-100 dark:border-[#1f1f29]">
+                                    <div class="flex items-center justify-between pb-3 border-b border-gray-100 dark:border-[#1f1f29]">
+                                        <div class="flex items-center gap-2">
+                                            <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-rose-500/10 text-rose-500 dark:text-rose-400 font-mono border border-rose-500/20">SQL PARADIGM 4</span>
+                                            <h4 class="text-sm font-bold text-navy-700 dark:text-white">Exact Division SQL (Strict Bijection - All and Only)</h4>
+                                        </div>
+                                        <button class="btn-copy-code px-3.5 py-1.5 rounded-xl bg-[#7551FF] hover:bg-[#6038FF] text-white font-medium text-xs shadow-md shadow-[#7551FF]/25 transition duration-200" data-target="code-exact">Copy</button>
+                                    </div>
+                                    <pre id="code-exact" class="p-4 bg-[#08080c] dark:bg-[#08080c] text-rose-300 rounded-2xl font-mono text-xs overflow-x-auto leading-relaxed border border-gray-100 dark:border-[#1f1f29]"></pre>
                                 </div>
 
                             </div>
@@ -778,128 +769,6 @@
                             </div>
                         </div>
 
-                        <!-- ========================================================= -->
-                        <!-- VIEW 7: ESP32 / MPU-6050 Hardware Telemetry Stream        -->
-                        <!-- ========================================================= -->
-                        <div id="view-telemetry" class="center-view hidden space-y-4">
-                            <div class="rounded-[20px] bg-white dark:bg-[#0d0d12] shadow-3xl shadow-shadow-500 dark:shadow-none p-5 space-y-5 border border-gray-100 dark:border-[#1f1f29]">
-                                
-                                <!-- Header -->
-                                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-gray-100 dark:border-[#1f1f29]">
-                                    <div class="flex items-center gap-2.5">
-                                        <span class="w-3 h-3 rounded-full bg-cyan-400 animate-ping"></span>
-                                        <div>
-                                            <h3 class="text-base font-bold text-navy-700 dark:text-white">ESP32 // MPU-6050 Inertial Measurement Unit (6-DOF) & IO Stream</h3>
-                                            <p class="text-xs text-gray-500 dark:text-gray-400">Real-time sensor bus frame ingestion synchronized with relational division execution</p>
-                                        </div>
-                                    </div>
-                                    <div class="flex items-center gap-2 font-mono text-xs">
-                                        <span class="px-2.5 py-1 rounded-lg bg-lightPrimary dark:bg-[#111116] text-gray-400 border dark:border-[#1f1f29]">I2C: 0x68 [400kHz]</span>
-                                        <span class="px-2.5 py-1 rounded-lg bg-cyan-500/10 text-[#00F5FF] font-bold border border-cyan-500/20">50Hz STREAM</span>
-                                    </div>
-                                </div>
-
-                                <!-- Circular Dynamic 6-DOF Gauges Grid -->
-                                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                                    
-                                    <!-- Circular Gauge 1: Accelerometer -->
-                                    <div class="rounded-2xl bg-lightPrimary/70 dark:bg-[#111116] p-4 border border-gray-100 dark:border-[#1f1f29] flex flex-col items-center text-center space-y-2">
-                                        <p class="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider font-mono">Accelerometer (G)</p>
-                                        <div class="relative w-20 h-20 flex items-center justify-center">
-                                            <svg class="w-20 h-20 transform -rotate-90" viewBox="0 0 36 36">
-                                                <path class="text-gray-200 dark:text-[#181824]" stroke-width="3.2" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-                                                <path id="gauge-accel" class="text-[#7551FF] dark:text-[#A195FD] transition-all duration-300" stroke-dasharray="49, 100" stroke-width="3.2" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" style="filter: drop-shadow(0 0 4px rgba(117, 81, 255, 0.6));" />
-                                            </svg>
-                                            <span id="tel-accel-mag" class="absolute font-mono text-xs font-bold text-navy-700 dark:text-white">0.98G</span>
-                                        </div>
-                                        <div id="tel-accel" class="font-mono text-[11px] font-bold text-[#7551FF] dark:text-[#C0B8FE]">0.02, -0.01, 0.98</div>
-                                        <div class="w-full space-y-1 pt-1">
-                                            <div class="w-full bg-gray-200 dark:bg-[#181824] rounded-full h-1 overflow-hidden"><div id="bar-accel-x" class="h-full bg-[#7551FF] transition-all" style="width: 51%;"></div></div>
-                                            <div class="w-full bg-gray-200 dark:bg-[#181824] rounded-full h-1 overflow-hidden"><div id="bar-accel-y" class="h-full bg-[#868CFF] transition-all" style="width: 49%;"></div></div>
-                                            <div class="w-full bg-gray-200 dark:bg-[#181824] rounded-full h-1 overflow-hidden"><div id="bar-accel-z" class="h-full bg-[#A195FD] transition-all" style="width: 98%;"></div></div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Circular Gauge 2: Gyroscope -->
-                                    <div class="rounded-2xl bg-lightPrimary/70 dark:bg-[#111116] p-4 border border-gray-100 dark:border-[#1f1f29] flex flex-col items-center text-center space-y-2">
-                                        <p class="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider font-mono">Gyroscope (°/s)</p>
-                                        <div class="relative w-20 h-20 flex items-center justify-center">
-                                            <svg class="w-20 h-20 transform -rotate-90" viewBox="0 0 36 36">
-                                                <path class="text-gray-200 dark:text-[#181824]" stroke-width="3.2" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-                                                <path id="gauge-gyro" class="text-cyan-400 dark:text-[#00F5FF] transition-all duration-300" stroke-dasharray="25, 100" stroke-width="3.2" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" style="filter: drop-shadow(0 0 4px rgba(0, 245, 255, 0.6));" />
-                                            </svg>
-                                            <span id="tel-gyro-mag" class="absolute font-mono text-xs font-bold text-navy-700 dark:text-white">0.3°/s</span>
-                                        </div>
-                                        <div id="tel-gyro" class="font-mono text-[11px] font-bold text-cyan-600 dark:text-[#00F5FF]">0.1, -0.2, 0.0</div>
-                                        <div class="w-full space-y-1 pt-1">
-                                            <div class="w-full bg-gray-200 dark:bg-[#181824] rounded-full h-1 overflow-hidden"><div id="bar-gyro-x" class="h-full bg-cyan-400 transition-all" style="width: 50%;"></div></div>
-                                            <div class="w-full bg-gray-200 dark:bg-[#181824] rounded-full h-1 overflow-hidden"><div id="bar-gyro-y" class="h-full bg-[#00F5FF] transition-all" style="width: 48%;"></div></div>
-                                            <div class="w-full bg-gray-200 dark:bg-[#181824] rounded-full h-1 overflow-hidden"><div id="bar-gyro-z" class="h-full bg-teal-400 transition-all" style="width: 52%;"></div></div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Circular Gauge 3: Orientation -->
-                                    <div class="rounded-2xl bg-lightPrimary/70 dark:bg-[#111116] p-4 border border-gray-100 dark:border-[#1f1f29] flex flex-col items-center text-center space-y-2">
-                                        <p class="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider font-mono">Orientation (°)</p>
-                                        <div class="relative w-20 h-20 flex items-center justify-center">
-                                            <svg class="w-20 h-20 transform -rotate-90" viewBox="0 0 36 36">
-                                                <path class="text-gray-200 dark:text-[#181824]" stroke-width="3.2" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-                                                <path id="gauge-temp" class="text-[#7551FF] dark:text-[#A195FD] transition-all duration-300" stroke-dasharray="28, 100" stroke-width="3.2" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" style="filter: drop-shadow(0 0 4px rgba(117, 81, 255, 0.6));" />
-                                            </svg>
-                                            <span id="tel-temp" class="absolute font-mono text-xs font-bold text-navy-700 dark:text-white">28.4°C</span>
-                                        </div>
-                                        <div id="tel-orientation" class="font-mono text-[11px] font-bold text-[#7551FF] dark:text-[#C0B8FE]">1.2°, -0.8°, 42.1°</div>
-                                        <div class="text-[10px] text-gray-500 dark:text-gray-400 font-mono">DIE TEMP: <span class="font-bold text-navy-700 dark:text-white">28.4°C</span></div>
-                                    </div>
-
-                                    <!-- Circular Gauge 4: Ops/Sec Throughput -->
-                                    <div class="rounded-2xl bg-lightPrimary/70 dark:bg-[#111116] p-4 border border-gray-100 dark:border-[#1f1f29] flex flex-col items-center text-center space-y-2">
-                                        <p class="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider font-mono">Evaluation Rate</p>
-                                        <div class="relative w-20 h-20 flex items-center justify-center">
-                                            <svg class="w-20 h-20 transform -rotate-90" viewBox="0 0 36 36">
-                                                <path class="text-gray-200 dark:text-[#181824]" stroke-width="3.2" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-                                                <path id="gauge-eval" class="text-cyan-400 dark:text-[#00F5FF] transition-all duration-300" stroke-dasharray="71, 100" stroke-width="3.2" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" style="filter: drop-shadow(0 0 4px rgba(0, 245, 255, 0.6));" />
-                                            </svg>
-                                            <span id="tel-cache" class="absolute font-mono text-xs font-bold text-navy-700 dark:text-white">99.4%</span>
-                                        </div>
-                                        <div id="tel-eval-sec" class="font-mono text-[11px] font-bold text-navy-700 dark:text-white">1,420 ops/s</div>
-                                        <div class="text-[10px] text-gray-500 dark:text-gray-400 font-mono">CACHE HIT: <span class="font-bold text-cyan-600 dark:text-[#00F5FF]">99.4%</span></div>
-                                    </div>
-
-                                </div>
-
-                                <!-- Telemetry Subsystem Info & Packet Stream -->
-                                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                                    <div class="rounded-2xl bg-lightPrimary/70 dark:bg-[#111116] p-4 border border-gray-100 dark:border-[#1f1f29] space-y-2">
-                                        <div class="flex items-center justify-between">
-                                            <span class="text-xs font-bold text-navy-700 dark:text-white font-mono">Hardware-Engine Cross Coupling</span>
-                                            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-green-500/10 text-[#05CD99] border border-[#05CD99]/20 font-mono">SYNCED</span>
-                                        </div>
-                                        <p class="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">
-                                            The simulation synchronizes physical sensor telemetry frames with in-memory relational division evaluations to measure algorithmic latency under dynamic embedded data ingestion.
-                                        </p>
-                                        <div class="pt-2 flex flex-wrap gap-2 text-[10px] font-mono text-gray-500 dark:text-gray-400">
-                                            <span class="px-2 py-0.5 rounded bg-white dark:bg-[#181822] border dark:border-[#1f1f29]">MCU: ESP-WROOM-32</span>
-                                            <span class="px-2 py-0.5 rounded bg-white dark:bg-[#181822] border dark:border-[#1f1f29]">ARCH: Dual Xtensa 240MHz</span>
-                                            <span class="px-2 py-0.5 rounded bg-white dark:bg-[#181822] border dark:border-[#1f1f29]">BUS: I2C Fast-Mode</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="rounded-2xl bg-lightPrimary/70 dark:bg-[#111116] p-4 border border-gray-100 dark:border-[#1f1f29] space-y-2">
-                                        <div class="flex items-center justify-between">
-                                            <span class="text-xs font-bold text-navy-700 dark:text-white font-mono">I2C 0x68 Raw Ingestion Stream</span>
-                                            <span class="text-[10px] font-mono text-[#00F5FF]">50Hz FRAME LOG</span>
-                                        </div>
-                                        <pre id="tel-packet-feed" class="p-3 bg-[#050507] text-[#00F5FF] rounded-xl font-mono text-[10px] h-20 overflow-y-hidden select-none leading-relaxed border border-gray-100 dark:border-[#1f1f29]">
-[FRAME-001] ACC:{X:+0.022 Y:-0.011 Z:+0.982} GYR:{X:+0.12 Y:-0.24 Z:+0.05} TUPLE_EVAL:1420
-[FRAME-002] ACC:{X:+0.024 Y:-0.009 Z:+0.980} GYR:{X:+0.14 Y:-0.21 Z:+0.04} TUPLE_EVAL:1435
-[FRAME-003] ACC:{X:+0.020 Y:-0.012 Z:+0.984} GYR:{X:+0.11 Y:-0.26 Z:+0.06} TUPLE_EVAL:1410
-                                        </pre>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
 
                         <!-- ========================================================= -->
                         <!-- VIEW 8: Formal Verification Suite (8 Boundary Cases)       -->
@@ -912,7 +781,7 @@
                                         <h3 class="text-base font-bold text-navy-700 dark:text-white">Formal Verification Suite (8 Boundary Invariants)</h3>
                                         <p class="text-xs text-gray-500 dark:text-gray-400">Formal boundary invariance and relational algebra assertions</p>
                                     </div>
-                                    <button id="btn-retest" class="bg-gradient-to-r from-[#7551FF] to-[#422AFB] hover:from-[#8171FC] hover:to-[#3311DB] active:scale-95 text-white rounded-xl font-bold px-5 py-2.5 text-xs shadow-md shadow-[#7551FF]/25 transition duration-200 flex items-center gap-1.5">
+                                    <button id="btn-retest" class="bg-gradient-to-r from-[#4318FF] to-[#7551FF] hover:from-[#3311DB] hover:to-[#422AFB] active:scale-95 text-white rounded-xl font-bold px-4 py-2 text-xs shadow-lg shadow-[#7551FF]/30 transition duration-150 flex items-center gap-1.5">
                                         <span>⚡ Re-Run Formal Verification</span>
                                     </button>
                                 </div>
@@ -955,7 +824,10 @@
     <script src="js/visualizer.js"></script>
     <script src="js/test-suite.js"></script>
     <script src="js/report-generator.js"></script>
-    <script src="js/telemetry.js"></script>
+    <script src="js/competitive-exams.js"></script>
+    <script src="js/ai-practice.js"></script>
+    <script src="js/universal-importer.js"></script>
     <script src="js/sim-workspace.js"></script>
 </body>
 </html>
+

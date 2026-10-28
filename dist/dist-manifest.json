@@ -1,62 +1,58 @@
 {
   "project": "Relational Division Operator Academic Research Platform",
   "version": "2.4.0-PROD",
-  "course": "BACSE202 \u2014 Database Management Systems & Formal Query Verification",
-  "principalInvestigator": "Basavaashlesh",
-  "facultyMentor": "Dr. Swaminathan A, Assistant Professor",
-  "department": "Department of Computer Science and Engineering, SCOPE",
-  "buildTimestamp": "2026-09-20T15:45:34.414277+00:00",
+  "buildTimestamp": "2026-10-28T17:09:01.469533+00:00",
   "specification": "ANSI/ISO/IEC 9075 SQL & Codd (1970/1972) Relational Completeness",
   "files": [
     {
       "path": "README.md",
-      "sizeBytes": 12391,
-      "sha256": "5425c8a78b5b7b10fed3cd369d3825336c1c467dd5bf94acd37f2709a09063dc"
+      "sizeBytes": 11427,
+      "sha256": "d48d486e71af3ff9e927e77054312c910cf14f3306fd4477f9be7dd78c96b76f"
     },
     {
       "path": "dashboard.html",
-      "sizeBytes": 49468,
-      "sha256": "deb936c4178c8964be9870e8f2d66d4213e6667e4875daf9b86884060a7736f6"
+      "sizeBytes": 56535,
+      "sha256": "99c353c62abb32b11b723c7458c97532ba568fc33c60c62f75f34865916ed02c"
     },
     {
       "path": "documentation.html",
-      "sizeBytes": 74285,
-      "sha256": "bed1a76f7dbd0eb1614c84d3c590500a14c379ccb5886a6809336627f2150af2"
+      "sizeBytes": 67758,
+      "sha256": "9af7b824bc27039c059bafbf2adf59d9fa1ed47db0ffde68a24afaf215ff40b4"
     },
     {
       "path": "index.html",
-      "sizeBytes": 22858,
-      "sha256": "42d11c18477c5a3d0c8fbe150611856ecb8c9a3339f831109829e239a2213e65"
+      "sizeBytes": 72335,
+      "sha256": "a2e6f90514dfda0ac9d2f3d77f545dcbb0523c2be632a0ad1c1fe86d274ca41a"
     },
     {
       "path": "run-dist.bat",
-      "sizeBytes": 565,
-      "sha256": "d6ae170d8ec80e44f5285e1a341a3eaee50696dc32857103fbcda33062486394"
+      "sizeBytes": 430,
+      "sha256": "e2227182639ab9103bf58d820df98964de21dd8e308a87f717cfb7ec6b31bf28"
     },
     {
       "path": "serve.py",
-      "sizeBytes": 2682,
-      "sha256": "ec6fb4f2a45ad7815595bae5bcfa5f81e0b262265624b9b0707a4dcd705e5eed"
+      "sizeBytes": 2469,
+      "sha256": "fb8917a67b86def18d7d27f357cfab6ca912866a604a651e48d769cff5ddc7ed"
     },
     {
       "path": "simulation.html",
-      "sizeBytes": 73891,
-      "sha256": "b361705fba5dcc020c5b34b39d6061cc19408c1e8938663ca292d4faf2265c35"
+      "sizeBytes": 59347,
+      "sha256": "88c66dee6f6cdbd0b719ebc917ed22e642ebf5ecdd07dd4fdc8db17ab6494465"
     },
     {
       "path": "components/Layout.js",
-      "sizeBytes": 111404,
-      "sha256": "b18a56786c87a107e9a20ad00cb399f8416eb7a356774a507718334f178b4bfc"
+      "sizeBytes": 142138,
+      "sha256": "fe906bd45393ae3acf786cd5413de6ef67ed56cc79b749b0579f22ca1f9000d9"
     },
     {
       "path": "components/Layout.min.js",
-      "sizeBytes": 106998,
-      "sha256": "371d66e500adddb1071d3ac2655d38d1213644391f9d2028815436c6a93084fb"
+      "sizeBytes": 135957,
+      "sha256": "d872d0f2ad5cd4999dbeabfec22bd4eabf00b98ad8b59552cc4076d795af5e51"
     },
     {
       "path": "components/Terminal.js",
-      "sizeBytes": 3324,
-      "sha256": "30a008ce3d36731ad3abcc65a91af1f605f34dc26e7c751563ecac1d57f90ecb"
+      "sizeBytes": 3333,
+      "sha256": "9f4cabcd059c79d53c8211b7ec777f6d9a0bdc84460b3ffa247c7a272a8e79af"
     },
     {
       "path": "components/Terminal.min.js",
@@ -75,38 +71,103 @@
     },
     {
       "path": "css/design-system.css",
-      "sizeBytes": 50327,
-      "sha256": "4723c01bb83fdf01df23e67924b78527b76c5a8bee6a6edefd3beba9e39f30fa"
+      "sizeBytes": 56881,
+      "sha256": "bb083b4170bd471b979756cf651ab476e1d6da7b0ba105bb1db4a3b9d6b01561"
     },
     {
       "path": "css/design-system.min.css",
-      "sizeBytes": 35816,
-      "sha256": "5a43b3e248893fb43b5c0c4f79499d98129191472deeaa2a436c748e34e218d8"
+      "sizeBytes": 40956,
+      "sha256": "c032c28f43504354036b91f818fb5a65b58e382f6404e67d010e0afd021fe24b"
     },
     {
       "path": "css/styles.css",
-      "sizeBytes": 12611,
-      "sha256": "58c0150f499990326e5cb759d009ba8c3f545e2a21b206b957132a209b7efb84"
+      "sizeBytes": 14417,
+      "sha256": "0c45cb88778fc4a8263d0160b18eaf2d2d671ccb5afb85f76ad9997f0afcdfe7"
     },
     {
       "path": "css/styles.min.css",
-      "sizeBytes": 8562,
-      "sha256": "2992d018ff9da2e898d992d411ebbb6a6d15fc2ef023ac920e3664cb2045541c"
+      "sizeBytes": 9295,
+      "sha256": "d496d9b493bc3c8130e04dbc71ade1631b50e098e1bc3d893650fa155bcdf48c"
+    },
+    {
+      "path": "exports/Academic_Report_Relational_Division.doc",
+      "sizeBytes": 44606,
+      "sha256": "557c7f115117efd83ac9d3522cce12abaf6d66b855833ecada6d94c9b1116b73"
+    },
+    {
+      "path": "exports/Academic_Report_Relational_Division.html",
+      "sizeBytes": 35109,
+      "sha256": "12750c30061dd82a93992e4c2231be4aa5a4033fdf767c0366c3c158a84fef7f"
+    },
+    {
+      "path": "exports/Academic_Report_Relational_Division.md",
+      "sizeBytes": 25377,
+      "sha256": "4b4de19816ae138c4ff4bb8e2ee099991579670fe57be8688e413ef1dbfdfbcd"
+    },
+    {
+      "path": "exports/Academic_Report_Relational_Division.txt",
+      "sizeBytes": 25377,
+      "sha256": "4b4de19816ae138c4ff4bb8e2ee099991579670fe57be8688e413ef1dbfdfbcd"
+    },
+    {
+      "path": "exports/complete_relational_division_trace.csv",
+      "sizeBytes": 7464,
+      "sha256": "cf9f3e8fab49944b87c2b593351ef90ccc6ca3bb09770c8681742325ab7ac0e8"
+    },
+    {
+      "path": "exports/relation_R_dividend.csv",
+      "sizeBytes": 1306,
+      "sha256": "ca3d8c422d3dec9599c48201f721a6353f28e834226aea508bdc8510d801f0de"
+    },
+    {
+      "path": "exports/relation_S_divisor.csv",
+      "sizeBytes": 688,
+      "sha256": "841ee310cc4d40c010a993c61c7196a8265671d388d97c8a4d4963120b504371"
+    },
+    {
+      "path": "exports/result_T5_division.csv",
+      "sizeBytes": 752,
+      "sha256": "91eeb50d6582ad2bdf56c1f52f389c27cd23a8c01f229f63be586e58acdd5e6c"
+    },
+    {
+      "path": "exports/verification_benchmarks.json",
+      "sizeBytes": 4615,
+      "sha256": "cf45cd39c457afc490c3623b4923077161abb8617b52e937e84e9d778ae70bf5"
+    },
+    {
+      "path": "js/ai-practice.js",
+      "sizeBytes": 42194,
+      "sha256": "51e54160215f6bd71b023539cc3b4fb331d03e61a25d0786ca6d232fa0222f69"
+    },
+    {
+      "path": "js/ai-practice.min.js",
+      "sizeBytes": 41271,
+      "sha256": "01068e1af6f45fdfdc61ce91debd12f21d595d1e5c18c99c683ce5c1009f7160"
     },
     {
       "path": "js/app.js",
-      "sizeBytes": 23778,
-      "sha256": "3e65fba18047c7b5d68db3797626a1b6fdc136647d4fc46cfde233481381b242"
+      "sizeBytes": 23786,
+      "sha256": "a52155789c7b68459a0d21cae541f02905c37520681222c78a102b9dcc8ac43b"
     },
     {
       "path": "js/app.min.js",
-      "sizeBytes": 22231,
-      "sha256": "a98754854aece1e76309bc7af0d7aa9280925a873636b3275a9d425bf6c0371f"
+      "sizeBytes": 22249,
+      "sha256": "7129b1935f4e6b9ce9f8980b6eeae58a9613c5064496c0c60b7411b2cf704da0"
+    },
+    {
+      "path": "js/competitive-exams.js",
+      "sizeBytes": 115716,
+      "sha256": "f00ff26b3b8d68f39d6fa9a221b54363df2e6ae00ec026f31ccf60b0e60ff68d"
+    },
+    {
+      "path": "js/competitive-exams.min.js",
+      "sizeBytes": 114072,
+      "sha256": "4ce8a528c0955cc2a2cd541305a8da0440371d690dbe903ddc98540a501fbfe4"
     },
     {
       "path": "js/engine.js",
-      "sizeBytes": 16629,
-      "sha256": "0831ceeab428ed9311a121a16974c6e70c85c9f06d3d795202f5711278a24124"
+      "sizeBytes": 16619,
+      "sha256": "31c6ac78ff9f3b5de26479cd986cc6cd5c60aa281130578d52201b8b324330a2"
     },
     {
       "path": "js/engine.min.js",
@@ -115,63 +176,53 @@
     },
     {
       "path": "js/presets.js",
-      "sizeBytes": 11009,
-      "sha256": "3a75d2f53ea85eb9b7b730bd499f66bed574cc5dba9e0b2b473bd3347f4ffe6e"
+      "sizeBytes": 15921,
+      "sha256": "40bf71faded8d7f15c3ad6f0922839d6a3787b8e6d6362f50d6efac91f665a0b"
     },
     {
       "path": "js/presets.min.js",
-      "sizeBytes": 10838,
-      "sha256": "7f43160ff360d352d9592607b894060cfa8951f5d518094c9ce1b626b6cfc745"
+      "sizeBytes": 15760,
+      "sha256": "aea4d1590a51bdfcd9cba1852254909fdcce21f2d8885c00ad2f9c971ddd98f6"
     },
     {
       "path": "js/relational-division-core.bundle.min.js",
-      "sizeBytes": 135460,
-      "sha256": "831fd3b64d02d93f08f85baf5fc599597b2ba50a8d7f01ac4790d95b53a49081"
+      "sizeBytes": 139805,
+      "sha256": "c0074df587f568cc92a8abb238dd3e39c5b4ea757e710a8038bfdcef83b7c331"
     },
     {
       "path": "js/report-generator.js",
-      "sizeBytes": 89140,
-      "sha256": "08ab0920673aa99180a5eb853b53fa795b016dbd814c778dbd2d022af4cf10d9"
+      "sizeBytes": 88256,
+      "sha256": "89cec1468ccbc74429133cd545e5f801e6d8104947fba5a83fe209f1adf1bbd4"
     },
     {
       "path": "js/report-generator.min.js",
-      "sizeBytes": 85080,
-      "sha256": "854da945077359be5f3b059de06fbb27f9e4b89c6faf49ed9a373399d536bf6b"
+      "sizeBytes": 84071,
+      "sha256": "27086101ace27868e028c20e29a8f071b5c677f6184308d0eaa41933cc5ccac2"
     },
     {
       "path": "js/sim-workspace.js",
-      "sizeBytes": 36158,
-      "sha256": "81ef7ce38352397468ca1198e6e93a11712bdfeb4bdf56256996fa54fa4212d2"
+      "sizeBytes": 44527,
+      "sha256": "18305defe44f3b08ef87d67923fe3ffa5663b24bd0fc3d78ca63ae39d124df9e"
     },
     {
       "path": "js/sim-workspace.min.js",
-      "sizeBytes": 34175,
-      "sha256": "1edec79d2bb4dad0b6c82766490748582907c9497b2afd3d37b2ea2ee3160796"
+      "sizeBytes": 42503,
+      "sha256": "9fd158f23311ccf14676bc26679fadcd4065233b340f4ffe551ddfbe879fb499"
     },
     {
       "path": "js/sql-generator.js",
-      "sizeBytes": 9954,
-      "sha256": "d742a0b828bc429a23c068fa0593b7768d8ed567c20b096f067723f90b977ff4"
+      "sizeBytes": 14764,
+      "sha256": "c2b5277c1aa5dd8d1e7ef32c718aee6afe6416709582d0b9525b90c5c2c34ba0"
     },
     {
       "path": "js/sql-generator.min.js",
-      "sizeBytes": 8807,
-      "sha256": "b75aafd5deec5bdaa72d290e9094dd2fda1d5db2257a65b4f90d9cab426f8740"
-    },
-    {
-      "path": "js/telemetry.js",
-      "sizeBytes": 4710,
-      "sha256": "2b4ab8f399984a95f227005a242bddf9f6f98e1927c8a68e9165e57b206037ff"
-    },
-    {
-      "path": "js/telemetry.min.js",
-      "sizeBytes": 4065,
-      "sha256": "eb69fb60238267b7228ebda75c1adde7dc7315c28b77b6e87dc64ba0c33ba9d3"
+      "sizeBytes": 13419,
+      "sha256": "829727f1c612a989b18940af5d488501571e0a0a9ec337facff3977a0557a146"
     },
     {
       "path": "js/test-suite.js",
-      "sizeBytes": 14296,
-      "sha256": "deff3a4f654f7723289764b4b4f1a76108b09595afdd8c3b391448899a8d582c"
+      "sizeBytes": 14286,
+      "sha256": "eaa3764090494af7d02ed7a2880538c5f94212020bf2b3b5cf92ea4f520303f0"
     },
     {
       "path": "js/test-suite.min.js",
@@ -179,17 +230,27 @@
       "sha256": "08114162987c7b5c62057aa6a6ea1e60635ae095faf0112b47eefa537494f0b0"
     },
     {
+      "path": "js/universal-importer.js",
+      "sizeBytes": 28505,
+      "sha256": "2b6c1be7415347a1b9c94d8e2490a2ce4b9f760e3b0c46178b644650f4aed557"
+    },
+    {
+      "path": "js/universal-importer.min.js",
+      "sizeBytes": 26648,
+      "sha256": "db36e378ef6c51e6adb16155ff5ff87a4f788b7b641922e2248b383dfaeb1632"
+    },
+    {
       "path": "js/visualizer.js",
-      "sizeBytes": 30756,
-      "sha256": "91cb984f5bc8ecc6c6ce9d7a073ce9c5eda541f5f00118e947ce067944e1b0a8"
+      "sizeBytes": 31963,
+      "sha256": "0fda41587f2f388c69a48b4d8e1d8c4ed1db7249980e1d7fded320d687b25749"
     },
     {
       "path": "js/visualizer.min.js",
-      "sizeBytes": 28575,
-      "sha256": "24aaf15385abd0bba08191a3ce7d10c55695c305295598e415defbb4f15e0d88"
+      "sizeBytes": 29791,
+      "sha256": "1082a29e943b8890a9beed475f137d6dec862156a6e53b2df90c88dc9478dc4c"
     }
   ],
-  "totalFiles": 36,
-  "totalSizeBytes": 1167595,
+  "totalFiles": 49,
+  "totalSizeBytes": 1821450,
   "verificationStatus": "PASSED (8/8 boundary invariants verified)"
 }

@@ -22,3 +22,7 @@ node_modules/
 .env
 .env.local
 .env.production
+
+# Binaries
+cloudflared.exe
+

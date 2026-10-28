@@ -2,9 +2,6 @@
 """
 ================================================================================
 RELATIONAL DIVISION OPERATOR RESEARCH PLATFORM — PRODUCTION BUILD PIPELINE
-Department of Computer Science and Engineering, SCOPE
-Principal Investigator : Basavaashlesh
-Faculty Advisor & Mentor: Dr. Swaminathan A, Assistant Professor
 
 Build Target: Production Web Distribution (dist/)
 Version     : 2.4.0-PROD
@@ -26,10 +23,6 @@ DIST_DIR = os.path.join(ROOT_DIR, 'dist')
 METADATA = {
     "project": "Relational Division Operator Academic Research Platform",
     "version": "2.4.0-PROD",
-    "course": "BACSE202 — Database Management Systems & Formal Query Verification",
-    "principalInvestigator": "Basavaashlesh",
-    "facultyMentor": "Dr. Swaminathan A, Assistant Professor",
-    "department": "Department of Computer Science and Engineering, SCOPE",
     "buildTimestamp": datetime.now(timezone.utc).isoformat(),
     "specification": "ANSI/ISO/IEC 9075 SQL & Codd (1970/1972) Relational Completeness"
 }
@@ -115,13 +108,12 @@ def build_js_and_bundle():
         'presets.js',
         'engine.js',
         'sql-generator.js',
-        'telemetry.js',
         'test-suite.js',
         'report-generator.js'
     ]
 
     bundle_parts = [
-        f"/**\n * {METADATA['project']} - Unified Core Engine v{METADATA['version']}\n * Author: {METADATA['principalInvestigator']} | Mentor: {METADATA['facultyMentor']}\n * Built: {METADATA['buildTimestamp']}\n */\n"
+        f"/**\n * {METADATA['project']} - Unified Core Engine v{METADATA['version']}\n * Built: {METADATA['buildTimestamp']}\n */\n"
     ]
 
     for fname in os.listdir(js_src):
@@ -181,8 +173,6 @@ def build_html_pages():
     prod_meta_tag = f"""    <!-- Production Build Metadata -->
     <meta name="build-version" content="{METADATA['version']}">
     <meta name="build-timestamp" content="{METADATA['buildTimestamp']}">
-    <meta name="principal-investigator" content="{METADATA['principalInvestigator']}">
-    <meta name="faculty-mentor" content="{METADATA['facultyMentor']}">
 """
 
     for page in pages:
@@ -217,6 +207,13 @@ def copy_assets_and_extras():
             else:
                 shutil.copy2(s, d)
 
+    # Copy exports if directory has files
+    exports_src = os.path.join(ROOT_DIR, 'exports')
+    exports_dist = os.path.join(DIST_DIR, 'exports')
+    if os.path.exists(exports_src):
+        shutil.copytree(exports_src, exports_dist, dirs_exist_ok=True)
+        log("Copied publication export suite to dist/exports", "SUCCESS")
+
     # Copy README.md
     readme_src = os.path.join(ROOT_DIR, 'README.md')
     if os.path.exists(readme_src):
@@ -226,8 +223,6 @@ def copy_assets_and_extras():
     serve_py_content = '''#!/usr/bin/env python3
 """
 RELATIONAL.DIV — High-Performance Zero-Dependency Production Static Server
-Department of Computer Science and Engineering, SCOPE
-Principal Investigator: Basavaashlesh | Faculty Mentor: Dr. Swaminathan A
 """
 
 import http.server
@@ -236,7 +231,7 @@ import os
 import sys
 import webbrowser
 
-PORT = int(os.environ.get('PORT', 8000))
+PORT = int(sys.argv[1]) if len(sys.argv) > 1 and sys.argv[1].isdigit() else int(os.environ.get('PORT', 8080))
 DIRECTORY = os.path.dirname(os.path.abspath(__file__))
 
 class ProductionHandler(http.server.SimpleHTTPRequestHandler):
@@ -270,8 +265,6 @@ def start_server():
                 url = f"http://localhost:{PORT}/"
                 print("=" * 70)
                 print("  RELATIONAL.DIV // Academic Research Laboratory Platform [v2.4.0]")
-                print("  Author : Basavaashlesh (Principal Investigator)")
-                print("  Mentor : Dr. Swaminathan A, Assistant Professor")
                 print("=" * 70)
                 print(f"  -> Serving production distribution at: {url}")
                 print(f"  -> Workspace : {url}simulation.html")
@@ -304,8 +297,6 @@ color 0B
 cls
 echo ==============================================================================
 echo    RELATIONAL DIVISION OPERATOR RESEARCH PLATFORM (v2.4.0-PROD)
-echo    Author : Basavaashlesh (Principal Investigator, SCOPE)
-echo    Mentor : Dr. Swaminathan A (Assistant Professor, Dept of CSE)
 echo ==============================================================================
 echo.
 echo Launching production server and opening browser...

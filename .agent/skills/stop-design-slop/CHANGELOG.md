@@ -1,0 +1,120 @@
+# Changelog
+
+## v2.5.0, 2026-08-29
+
+Surveyed the prior art (the avoid-slop directory, slopdetector, GPTZero, the humanizer and unslop families) and took what this skill was missing. Peers are ahead on measurement and on rewrite safety; this repo was ahead on the redesign half and on design-specific tells.
+
+- **`references/signals.md`,** the computable layer. Layout counters (font families, weights, type-scale ratio, section-padding variance, distinct radii, grid columns, boundary crossings, accent surface area), computed contrast, copy counters, and build greps. This matters beyond convenience: `method.md` documents that a rule an agent cannot verify against its own output produces over-correction rather than compliance, so moving rules from prose to arithmetic is a correctness fix.
+- **Slop Index, normalized 0 to 100** with a per-category breakdown, replacing the unbounded raw score in reports. One number hides which half is broken; a page at index 47 carrying 23 of it in copy needs a copy pass rather than a redesign. Borrowed from slopdetector's weighted-dimension approach.
+- **Burstiness and type-token ratio, with their limits stated.** Included as editing prompts and explicitly not as detectors, since burstiness converges toward human levels as models scale and perplexity-based detection misclassifies famous human documents. Peer-reviewed work exists on why both fail at classification.
+- **Two rewrite rails in tier 4, taken from peer tools.** *Preserve the voice*: you are removing the model's defaults, not installing yours, so find sentences the author clearly wrote and treat those as the target register. *Lock the claims*: a rewrite may change how something is said and never what is asserted, so restate the claim set before and after and treat any drift as a bug. Without these, a copy pass is second-order conformity, with everybody's page ending up in the voice of whoever wrote the rule set.
+- **Tell #287, invisible characters** (`U+200B`, `U+200C`, `U+200D`, `U+FEFF`) left by model output and chat-window paste. Every peer text detector checks these and this catalog did not. Catalog now 287.
+
+## v2.4.0, 2026-08-29
+
+Feedback was that the page still read generated after tiers 1 to 4, which is correct: those tiers remove evidence and leave every structural default standing. A clean page also has nowhere to hide, so stripping decoration exposes that nothing underneath was decided. Tier 5 needed real guidance and a worked result.
+
+- **`references/redesign.md`,** the tier 5 execution guide. The design read, three dials (DESIGN_VARIANCE, MOTION_INTENSITY, VISUAL_DENSITY), the two-altitude category-reflex check, a build-against-bans list, the never-ship-the-first-version rule, and a pre-flight checklist. Synthesized from the `design-taste` skill plus published writing on why minimal work reads generic without art direction.
+- **The category-reflex check at two altitudes,** which is the step that decides whether a redesign is real. First order: could somebody guess your palette from the category alone. Second order: could they guess it from category plus the obvious anti-reference ("devtool that is not terminal-dark, so cream and a serif"). Both have to fail.
+- **`examples/hero-redesign.html`,** the same page through that process. Cool paper rather than dark, Archivo rather than Inter, a signal orange derived from the CI changed-flag rather than indigo, zero radius committed everywhere, an asymmetric 7/5 grid rather than a centered stack, a four-row spec list rather than three equal cards, and a labelled diff of two real hex values bleeding past the right edge as the signature move. `examples/README.md` documents both refused reflexes.
+- **Two new tells, found by auditing this repo's own examples against `design-taste`.** #285 div-based fake product UI, which practitioners rank the single most reliable sign a model built the page, and which the clean example was committing. #286 version or build stamp on a marketing page.
+- **Corrected `craft-details.md`,** which had recommended a build stamp as content specificity. Build and version strings belong in docs, an app shell or a changelog, never a marketing footer.
+- Catalog now 286 tells. Examples show the hero at four depths.
+
+## v2.3.0, 2026-08-29
+
+- **New tier 4 rule: specific does not mean longer.** Chasing specificity into verbosity is the failure mode of that tier, and this repo committed it on its own example. The first cleaned hero ran 42 words across headline, subhead and note, against 41 in the slop original: no reduction at all, and it read denser because the headline wrapped to three lines. Every claim in it was true and it was still worse. The rule now sets a length budget: headline 8 words or fewer over two rendered lines, subhead one sentence, feature blurbs under 15 words, and count the words before and after, since a rewrite that raises the total has failed.
+- **`examples/hero-tier2.html`,** the same hero after tiers 1 and 2 only. The glow orbs, gradient keyword, sparkle badge, emoji icons and "Supercharge Your Workflow" all survive, because removing decoration is tier 3 and rewriting copy is tier 4. It looks almost identical to the original, which is the tier 1 guarantee working.
+- **`hero-clean.html` retightened** from 42 words to 22. The headline became "Figma says #6366F1. Your CSS says #635BFF.", which states the whole problem in seven tokens where a paragraph had been.
+- READMEs now show the hero at three depths rather than two.
+
+## v2.2.1, 2026-08-29
+
+- **Screenshots.** `examples/hero-before.png` and `hero-clean.png`, captured at 2x from headless Chrome, now sit at the top of the README comparison and in `examples/README.md`. GitHub cannot preview the HTML files, so the images carry the demonstration and the source stays alongside them.
+- **Shorter comparison.** The 17-row before/after table became two quoted blocks plus one line of everything else. The slop specimens in the "before" quote stay verbatim, since they are the evidence.
+- **Prose pass.** Ran the repo's own copy rules over the text added in v2.1 and v2.2. No em dashes, banned adverbs or negation pivots in our own writing; specimens in `copy-content.md` and the README comparison stay untouched.
+
+## v2.2.0, 2026-08-29
+
+Removal now runs in five tiers instead of one pass, so you can pick how far it goes.
+
+- **Tier 1, ESSENTIAL, carries a guarantee: it cannot make the site worse under any taste or design direction.** Everything in it is broken, left over from a generator, or missing: builder badges, default titles and favicons, placeholder text, LLM artifacts, dead links, ghost contact forms, console errors, exposed keys, missing focus states and alt text, failing contrast, absent meta tags. After a tier 1 pass the page looks the same, apart from a focus ring on tab and body text gaining contrast.
+- **Tier 2, HONEST:** fabricated testimonials, invented stats, placeholder logo bars, unsourced ratings, AI-image artifacts. Needs facts from you, and a fabrication is replaced with the truth or with nothing, never with a different fabrication.
+- **Tier 3, QUIET:** decorative additions removed. Ambient motion, particles, glow orbs, marquees, count-ups, scroll-jacking, hover-scale, gradient keywords, emoji icons. Subtractive only, so it never breaks coherence.
+- **Tier 4, CRAFT:** human detail added. Real punctuation, `text-wrap`, tracking by size, a focus ring in the existing accent, tabular figures, real states, and copy rewrites. This tier is what stops a clean pass trending toward bland.
+- **Tier 5, DIRECTION:** reported, never applied.
+
+Invocation: `essential` for tier 1, `tier N` for tiers 1 through N, bare for 1 to 4, `redesign` for the lot.
+
+**New worked example** in `examples/`. `hero-before.html` carries about 25 catalogued tells; `hero-clean.html` is the same page after tiers 1 to 4, with the typeface, ground, accent hue, radii and layout unchanged. `examples/README.md` lists every change by tier, including what tier 5 deliberately left alone. The README now carries the before/after comparison.
+
+## v2.1.0, 2026-08-29
+
+The default mode no longer restyles your site. v2.0 made every run a redesign, which is heavier than most people want when they say a page looks AI-generated.
+
+- **CLEAN is now the default.** It strips AI artifacts, rewrites local content, adds direction-free craft details, and reports anything needing an art direction without touching it. A redesign takes an explicit `redesign` in the arguments, and the skill never escalates on its own.
+- **New A/B/C scope classification** in `references/clean-pass.md`. **A** is an artifact that is wrong whatever the design (watermarks, placeholder text, fabricated proof, dead links, six-fingered images). **B** is local, fixable without touching a system token (copy, alt text, ambient motion, focus rings, line length). **C** is systemic and needs a direction (typeface, palette, radius scale, hero composition, section order). Classification is broken down per catalog.
+- **The constraint that makes CLEAN safe:** it may not edit theme tokens, `font-family`, the palette, the radius or shadow scale, or layout structure. Incoherence comes from changing one system property in isolation, so CLEAN changes none of them. This makes it safe to run on a site somebody else designed.
+- **CLEAN pairs every removal with a local addition,** so a clean pass gains human signal rather than trending toward bland. Roughly 60% of the catalog is actionable this way, and it is the highest-trust 60%.
+- CLEAN reports both scores and expects a different result from the redesign gate: Slop Score falls a long way, Commitment Score rises a little.
+
+## v2.0.0, 2026-08-29
+
+A user ran v1 on their project and the result looked more AI-generated than the original. They were right, and the diagnosis reshaped the skill: removing tells produces bland design, and bland reads as machine-made. The catalog is intact, but it no longer drives the fix.
+
+**Why v1 failed** (documented with sources in `references/method.md`):
+
+- **Coverage.** 284 rules constrain 284 decisions out of the thousands a page makes. Every unconstrained decision reverts to the model default, so a subtractive audit can never win.
+- **Negation promotes the runner-up.** Banning the mode promotes second place, and everyone running the list lands on the same second choice. The escape hatch has a spec sheet.
+- **Patchwork.** Thirty independent edits produce thirty unrelated decisions, and incoherence reads worse than consistent genericness.
+- **The metric was wrong.** A tells-only score has its optimum at a flat gray page. Zero tells, zero decisions.
+- Two more mechanisms: unverifiable rules cause over-correction rather than compliance, and long prohibition documents measurably collapse output diversity.
+
+**New workflow:** `DIAGNOSE → BRIEF → SPEC → REBUILD → LINT → JUDGE`. The tells now appear as diagnosis and as lint assertions, never as repair instructions.
+
+**New files:**
+
+- `references/method.md`: the failure analysis, the corrected model, the `DESIGN.md` template, recovery steps for a damaged page, dual scoring, and the mandatory positives.
+- `references/art-direction.md`: the studio process from perception brief through attribute disambiguation, competitive audit, divergence techniques and three-tier token propagation.
+- `references/directions.md`: 13 fully-specified art directions with real typefaces and example sites, a three-filter selection procedure, an eight-attribute map, and a free type shelf that excludes the overused names.
+- `references/derivation.md`: executable math for hue sourcing, OKLCH ramps, APCA and WCAG contrast solving, typeface selection and pairing gates, scale and spacing derivation, radius and layered shadow construction, with a computed end-to-end worked example.
+- `references/craft-details.md`: 64 implementable craft details (C1–C64) with CSS, ranked by signal per hour.
+
+**Also:** a second metric, the Commitment Score, since low slop with low commitment is the bland failure this release exists to prevent. Ship gate now requires both.
+
+## v1.2.0, 2026-08-28
+
+Every word in the repo now passes the standard the repo enforces. The catalog keeps all 284 tells, their numbers, severities and technical strings; what changed is the prose around them.
+
+- **Ran the whole repo through Anthropic's `stop-slop` skill.** Removed 331 em dashes from our own writing, along with the adverbs, passive constructions and false agency ("the tab confesses", "the metadata exposes") that came with them.
+- **Cut the binary contrasts.** "Less slop, not less website" and "Standard ≠ slop" stated their point through negation. The README and SKILL.md now state it directly.
+- **Rewrote the fragment-stacked README opening** as complete sentences, since stacking fragments for drama is itself a listed tell.
+- **Fixed the report template**, which had been emitting em dashes into every audit report the skill writes.
+- **Kept every quoted specimen intact.** The 8 remaining em dashes all sit inside evidence: entry #193, whose name is the em-dash pattern, the #199 density example, two slop specimens, a source quotation and an article title. The VOCAB blacklist is byte-identical.
+
+## v1.1.0, 2026-08-28
+
+Multi-agent support. The catalog is unchanged; this release makes the skill run outside Claude Code.
+
+- **Codex support:** install instructions for `~/.codex/skills/` and the repo-level `.agents/skills/` convention, `$stop-design-slop` invocation, and an `agents/openai.yaml` metadata file.
+- **Agent compatibility section** in `SKILL.md`: a per-host capture table (Claude Code / Codex / any other agent) and an explicit no-browser fallback path.
+- **Tool-agnostic capture step:** the skill no longer requires any tool by name. When it cannot verify a category, the report says so instead of guessing.
+- README: per-host install tabs, Claude Code + Codex badges, and a "does it need a browser?" FAQ entry.
+
+## v1.0.0, 2026-08-28
+
+Initial release.
+
+- **284 catalogued tells** (63 instant · 154 strong · 67 mild) across 7 catalogs numbered in one continuous run:
+  - Structure & layout (#1–63)
+  - Color & effects (#64–93)
+  - Typography (#94–121)
+  - Imagery & icons (#122–153)
+  - Motion & interaction (#154–183)
+  - Copy & content (#184–251), including a ~200-phrase greppable blacklist
+  - Code & meta / builder fingerprints (#252–284)
+- **Two modes:** AUDIT (existing sites: capture → detect → score → report → 4-pass fix → verify) and PREVENT (from-scratch builds: banned defaults, tokens-first, checkpoint audits).
+- **Slop Score** (3×instant + 2×strong + 1×mild) with verdict bands and an explicit 5-second first-impression test.
+- **De-slop playbook:** fix method, the tests (5-second, lineup, squint, read-aloud), PREVENT-mode prompting constraints, report template, and 18 Identity Injection principles for what to add after removal.
+- **Guardrails:** replace instead of deleting, keep the conventions users depend on, accessibility wins every conflict, brand assets are never slop, no overcorrection, fabricated content is a bug.
+- We pulled ~330 research candidates from 50+ sources (detection guides, HN/Reddit teardowns, NN/g, the 1,590-page Show HN audit, Wikipedia's *Signs of AI writing*), then deduplicated them and wired in cross-references.

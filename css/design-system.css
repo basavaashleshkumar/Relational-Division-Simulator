@@ -1,109 +1,54 @@
 /* ==========================================================================
-   HORIZON UI DESIGN SYSTEM — Relational Division Simulation Engine
-   Aligned with Horizon UI Component Architecture & Metrics
-   Theme: Bespoke Dark Black (OLED / Pitch Obsidian Aesthetic)
-   Canvas: #050507 / #000000 (True Bespoke Pitch Black)
-   Panels & Cards: #0c0c10 / #111116 (Bespoke Dark Obsidian Surface)
-   Elevated / Active: #17171f / #1c1c24 (Elevated Obsidian Surfaces)
-   Borders: 1px solid #1f1f28 (Crisp Dark Graphite Borders)
-   Brand Accents: #7551FF / #4318FF / #583be8 (Horizon Electric Purple-Blue)
-   Status Accents: #05CD99 (Emerald), #EE5D50 (Rose), #FFB547 (Amber)
-   Typography: DM Sans (Body), Poppins (Headings), JetBrains Mono (Code/Data)
-   Letter Spacing: -0.4px
-   Course: BACSE202 | Guided by Dr. Swaminathan A, Assistant Professor
+   HORIZON UI — Relational Division Simulation Engine
+   Premium SaaS Dashboard Design System — Obsidian Dark + Light Variant
+   Primary: #4318FF / #7551FF (Electric Purple)
+   Dark bg: #0b0b0f / #0d0d12 / #111116 / #171722
+   Light bg: #F4F7FE / #FFFFFF
+   Accent: Emerald #05CD99, Amber #FFB547, Coral #EE5D50
+   Typography: DM Sans + JetBrains Mono
+   Radii: 20px (cards), 12px (inputs), 9999px (badges/pills)
    ========================================================================== */
 
-/* 1. EXACT TYPOGRAPHY IMPORT */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400;1,9..40,500;1,9..40,700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+/* 1. TYPOGRAPHY IMPORT (DM Sans & JetBrains Mono) */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Poppins:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
-/* 2. ROOT & DARK MODE TOKENS (Bespoke Pitch Obsidian Black) */
-:root, html.dark {
-    /* Bespoke Dark Black Color Palette */
-    --bg-app: #050507;                  /* deepest pitch black canvas (#050507 / #000000) */
-    --bg-panel: #0c0c10;                /* bespoke dark obsidian panel */
-    --bg-surface: #0c0c10;              /* bespoke dark obsidian card */
-    --card-bg: #0c0c10;                 /* bespoke dark obsidian */
-    --bg-surface-subtle: #111116;        /* subtle dark obsidian layer */
-    --bg-surface-active: #17171f;        /* elevated / active surfaces */
-    --bg-subelement: #17171f;            /* elevated dark obsidian */
-    --bg-input: #07070a;                /* deep input wells */
-    
-    --border-subtle: rgba(255, 255, 255, 0.05);
-    --border-default: #1f1f28;          /* crisp dark graphite border (no muddy gray) */
-    --border-hover: #2e2e3d;            /* elevated graphite border */
-    --border-focus: #7551FF;            /* Horizon electric purple-blue */
+/* 2. ROOT & LIGHT MODE TOKENS (Horizon UI Light — Clean Blue/White) */
+:root, html.light {
+    /* Horizon UI Core Color Tokens */
+    --color-brand-purple: #7551FF;
+    --color-brand-deep: #4318FF;
+    --color-brand-light: #868CFF;
+    --color-emerald: #05CD99;
+    --color-amber: #FFB547;
+    --color-coral: #EE5D50;
+    --color-navy-700: #1B254B;
+    --color-navy-800: #111C44;
+    --color-navy-900: #0B1437;
 
-    --text-primary: #ffffff;            /* crisp pure white (100% readable) */
-    --text-secondary: #94a3b8;          /* soft cool silver-gray (#a0aec0 / #94a3b8) */
-    --text-muted: #64748b;              /* clean dim gray (#64748b / #52525b) */
-    --text-faint: #52525b;
+    /* Semantic Application Mappings (Light Mode) */
+    --bg-app: #F4F7FE;                  /* Horizon light background */
+    --bg-panel: #ffffff;                /* card white elevated surface */
+    --bg-surface: #ffffff;              /* card white */
+    --card-bg: #ffffff;
+    --bg-surface-subtle: #EFF4FB;       /* subtle light layer */
+    --bg-surface-active: #EFF4FB;
+    --bg-subelement: #EFF4FB;
+    --bg-input: #ffffff;
 
-    /* Horizon Electric Brand Accents */
-    --brand-500: #7551FF;               /* Horizon electric purple-blue */
-    --brand-secondary: #4318FF;
-    --brand-400: #7551FF;
-    --brand-linear: #868CFF;
-    --brand-50: #17171f;
-    --brand-100: rgba(117, 81, 255, 0.25);
-    --brand-200: #A195FD;
-    --brand-300: #8171FC;
-    --brand-600: #583be8;
-    --brand-700: #4318FF;
-    --brand-dim: rgba(117, 81, 255, 0.15);
-
-    /* Status & Accents */
-    --accent-emerald: #05CD99;          /* Horizon emerald success */
-    --accent-emerald-light: #10b981;
-    --accent-emerald-dim: rgba(5, 205, 153, 0.15);
-
-    --accent-rose: #EE5D50;             /* Horizon rose error */
-    --accent-rose-light: #f43f5e;
-    --accent-rose-dim: rgba(238, 93, 80, 0.15);
-
-    --accent-amber: #FFB547;            /* Horizon amber warning */
-    --accent-amber-light: #fbbf24;
-    --accent-amber-dim: rgba(255, 181, 71, 0.15);
-
-    --accent-cyan: #21d4fd;             /* Horizon cyan */
-    --accent-cyan-light: #67e8f9;
-    --accent-cyan-dim: rgba(33, 212, 253, 0.15);
-
-    --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
-    --card-border-radius: 20px;
-    --table-header-border: #1f1f28;
-    --table-row-border: #17171f;
-
-    --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    --font-heading: 'Poppins', sans-serif;
-    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-}
-
-/* 3. LIGHT MODE TOKENS (Horizon UI Light Mode) */
-html.light {
-    /* Horizon Color System - Light Mode */
-    --bg-app: #F4F7FE;                  /* lightPrimary background */
-    --bg-panel: #ffffff;                /* pure white card/panel */
-    --bg-surface: #ffffff;              /* pure white */
-    --card-bg: #ffffff;                 /* pure white */
-    --bg-surface-subtle: #F4F7FE;        /* lightPrimary sub-element */
-    --bg-surface-active: #E9EDF7;
-    --bg-subelement: #F4F7FE;            /* lightPrimary */
-    --bg-input: #F4F7FE;                /* lightPrimary inputs */
-
-    --border-subtle: #E9ECEF;
-    --border-default: #E2E8F0;          /* gray-200 border */
+    --border-subtle: #EFF4FB;
+    --border-default: #E2E8F0;          /* clean light border */
     --border-hover: #CBD5E0;
-    --border-focus: #422AFB;            /* brand-500 */
+    --border-focus: #7551FF;            /* Brand Purple */
 
-    --text-primary: #1B2559;            /* navy-700 / gray-900 heading & primary text */
-    --text-secondary: #707EAE;          /* gray-700 */
-    --text-muted: #A3AED0;              /* gray-600 */
-    --text-faint: #CBD5E0;
+    --text-primary: #1B254B;            /* navy-700 */
+    --text-secondary: #4A5568;
+    --text-muted: #718096;
+    --text-faint: #A0AEC0;
 
-    /* Brand Colors */
-    --brand-500: #422AFB;               /* blueSecondary */
+    /* Brand Accent Colors — Electric Purple */
+    --brand-500: #7551FF;
     --brand-secondary: #4318FF;
-    --brand-400: #7551FF;
+    --brand-400: #868CFF;
     --brand-linear: #868CFF;
     --brand-50: #E9E3FF;
     --brand-100: #C0B8FE;
@@ -111,30 +56,95 @@ html.light {
     --brand-300: #8171FC;
     --brand-600: #3311DB;
     --brand-700: #2111A5;
-    --brand-dim: rgba(66, 42, 251, 0.12);
+    --brand-dim: rgba(117, 81, 255, 0.12);
 
     /* Status & Accents */
-    --accent-emerald: #05CD99;          /* Horizon success green */
-    --accent-emerald-light: #05CD99;
-    --accent-emerald-dim: rgba(5, 205, 153, 0.12);
+    --accent-emerald: #05CD99;
+    --accent-emerald-light: #01B574;
+    --accent-emerald-dim: rgba(5, 205, 153, 0.15);
 
-    --accent-rose: #EE5D50;             /* Horizon error red */
-    --accent-rose-light: #f53939;
-    --accent-rose-dim: rgba(238, 93, 80, 0.12);
+    --accent-rose: #EE5D50;
+    --accent-rose-light: #FC8181;
+    --accent-rose-dim: rgba(238, 93, 80, 0.15);
 
-    --accent-amber: #FFB547;            /* Horizon warning amber */
-    --accent-amber-light: #f59e0b;
-    --accent-amber-dim: rgba(255, 181, 71, 0.14);
+    --accent-amber: #FFB547;
+    --accent-amber-light: #FBD38D;
+    --accent-amber-dim: rgba(255, 181, 71, 0.15);
 
-    --accent-cyan: #0891b2;             /* Horizon cyan */
-    --accent-cyan-light: #21d4fd;
-    --accent-cyan-dim: rgba(33, 212, 253, 0.12);
+    --accent-cyan: #21D4FD;
+    --accent-cyan-light: #63B3ED;
+    --accent-cyan-dim: rgba(33, 212, 253, 0.15);
 
-    --card-shadow: 14px 17px 40px 4px rgba(112, 144, 176, 0.08); /* 3xl shadow */
+    /* Horizon UI Signature Shadows */
+    --card-shadow: 14px 17px 40px 4px rgba(112, 144, 176, 0.18);
+    --button-shadow: 0 4px 20px -4px rgba(117, 81, 255, 0.4);
     --card-border-radius: 20px;
     --table-header-border: #E2E8F0;
-    --table-row-border: #F4F7FE;
+    --table-row-border: #EFF4FB;
+
+    --font-sans: 'DM Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-heading: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
+
+/* 3. NIGHT MODE TOKENS (Horizon UI Obsidian Dark) */
+html.dark {
+    /* Dark Mode Mappings */
+    --bg-app: #0b0b0f;                  /* deep obsidian canvas */
+    --bg-panel: #0d0d12;                /* dark card surface */
+    --bg-surface: #0d0d12;              /* dark card */
+    --card-bg: #0d0d12;
+    --bg-surface-subtle: #111116;       /* sub-panel layer */
+    --bg-surface-active: #171722;
+    --bg-subelement: #111116;
+    --bg-input: #0d0d12;
+
+    --border-subtle: #111116;
+    --border-default: #1e1e28;          /* dark purple-grey border */
+    --border-hover: #2d2d3a;
+    --border-focus: #7551FF;            /* Brand Purple */
+
+    --text-primary: #ffffff;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --text-faint: #475569;
+
+    /* Brand Accents — Electric Purple */
+    --brand-500: #7551FF;
+    --brand-secondary: #4318FF;
+    --brand-400: #868CFF;
+    --brand-linear: #868CFF;
+    --brand-50: rgba(67, 24, 255, 0.15);
+    --brand-100: rgba(117, 81, 255, 0.25);
+    --brand-200: #A195FD;
+    --brand-300: #8171FC;
+    --brand-600: #3311DB;
+    --brand-700: #2111A5;
+    --brand-dim: rgba(117, 81, 255, 0.15);
+
+    /* Status & Accents */
+    --accent-emerald: #05CD99;
+    --accent-emerald-light: #01B574;
+    --accent-emerald-dim: rgba(5, 205, 153, 0.2);
+
+    --accent-rose: #EE5D50;
+    --accent-rose-light: #FC8181;
+    --accent-rose-dim: rgba(238, 93, 80, 0.2);
+
+    --accent-amber: #FFB547;
+    --accent-amber-light: #FBD38D;
+    --accent-amber-dim: rgba(255, 181, 71, 0.2);
+
+    --accent-cyan: #21D4FD;
+    --accent-cyan-light: #63B3ED;
+    --accent-cyan-dim: rgba(33, 212, 253, 0.2);
+
+    --card-shadow: 14px 17px 40px 4px rgba(0, 0, 0, 0.4);
+    --card-border-radius: 20px;
+    --table-header-border: #1e1e28;
+    --table-row-border: #111116;
+}
+
 
 /* 4. BASE RESETS & GLOBAL TYPOGRAPHY */
 * {
@@ -1737,3 +1747,262 @@ html.light code:not(pre code) {
         size: auto;
     }
 }
+
+/* ==========================================================================
+   FINGERPRINT COMPONENT RULES & STRICT STYLE REFERENCE OVERRIDES
+   ========================================================================== */
+
+/* 1. Global Inter Typography & OpenType Engineering Features */
+body, h1, h2, h3, h4, h5, h6, p, button, input, select, textarea {
+    font-family: var(--font-sans) !important;
+    font-feature-settings: "calt" 0, "liga" 0 !important;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Headlines with tight tracking and editorial rhythm */
+h1, h2, h3, h4, .font-heading {
+    letter-spacing: -0.02em;
+}
+
+/* 2. Inline Highlighted Word Accent (Signal Orange highlighter on key noun) */
+.highlight-orange,
+.text-highlight {
+    color: var(--color-signal-orange) !important;
+    font-weight: 600;
+}
+
+/* 3. Primary Horizon UI CTA Button (Purple Gradient, 12px radius) */
+.btn-primary,
+.btn-fingerprint-primary,
+#btn-run-sim,
+#quick-btn-run,
+#btn-export-pdf,
+#btn-export-result-csv,
+.btn-cta-filled {
+    background: linear-gradient(to right, #4318FF, #7551FF) !important;
+    background-image: linear-gradient(to right, #4318FF, #7551FF) !important;
+    color: #ffffff !important;
+    border-radius: 12px !important;
+    border: 1px solid transparent !important;
+    font-family: var(--font-sans) !important;
+    font-weight: 700 !important;
+    font-size: 13px !important;
+    letter-spacing: 0.14px !important;
+    box-shadow: 0 8px 20px -4px rgba(117, 81, 255, 0.45) !important;
+    transition: all 0.2s ease !important;
+    cursor: pointer !important;
+}
+
+.btn-primary:hover,
+.btn-fingerprint-primary:hover,
+#btn-run-sim:hover,
+#quick-btn-run:hover,
+#btn-export-pdf:hover,
+#btn-export-result-csv:hover,
+.btn-cta-filled:hover {
+    background: linear-gradient(to right, #3311DB, #422AFB) !important;
+    background-image: linear-gradient(to right, #3311DB, #422AFB) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 12px 28px -4px rgba(117, 81, 255, 0.55) !important;
+}
+
+/* 4. Secondary Ghost / Outlined Buttons (Hairline border, transparent background, 4px radius) */
+.btn-secondary,
+.btn-fingerprint-ghost,
+#quick-btn-export,
+#btn-clear-term,
+.btn-copy-code,
+.btn-close-modal,
+.btn-ghost {
+    background-color: transparent !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--border-default) !important;
+    border-radius: 4px !important;
+    font-family: var(--font-sans) !important;
+    font-weight: 500 !important;
+    transition: all 0.15s ease !important;
+    box-shadow: none !important;
+}
+
+.btn-secondary:hover,
+.btn-fingerprint-ghost:hover,
+#quick-btn-export:hover,
+#btn-clear-term:hover,
+.btn-copy-code:hover,
+.btn-ghost:hover {
+    background-color: var(--bg-surface-subtle) !important;
+    border-color: var(--border-hover) !important;
+}
+
+.btn-close-modal {
+    cursor: pointer !important;
+    pointer-events: auto !important;
+    position: relative;
+    z-index: 50;
+    user-select: none;
+}
+.btn-close-modal:hover {
+    color: #ffffff !important;
+    background-color: rgba(255, 255, 255, 0.12) !important;
+}
+.btn-close-modal:active {
+    transform: scale(0.95);
+}
+
+/* 5. Flat Cards & Panels with Hairline Linen Borders */
+.rounded-\[20px\],
+.rounded-2xl,
+.horizon-card,
+.tech-card,
+.app-card {
+    border-radius: 12px !important;
+    border: 1px solid var(--border-default) !important;
+    background-color: var(--bg-surface) !important;
+    box-shadow: var(--card-shadow) !important;
+}
+
+/* 6. Dark CRT-Style Terminal Panels (#141415 Ink with #2e2e2c border across both Day & Night modes) */
+pre,
+code.block,
+.terminal-window,
+#terminal-output,
+.terminal-stream,
+.dag-container,
+#container-tracer,
+#container-dag,
+.crt-terminal {
+    background-color: #050507 !important;
+    color: #e2e8f0 !important;
+    font-family: 'JetBrains Mono', monospace !important;
+    border: 1px solid #1e1e28 !important;
+    border-radius: 12px !important;
+}
+
+/* 7. Badges & Nav Items — Horizon UI pill radius */
+.tab-badge,
+.cmd-filter-chip,
+.horizon-badge {
+    border-radius: 9999px !important;
+}
+.quick-preset-btn,
+.btn-topbar-tab {
+    border-radius: 8px !important;
+}
+.badge {
+    border-radius: 9999px !important;
+}
+
+/* 8. Active Preset Pill Highlight */
+.quick-preset-btn.active {
+    background-color: rgba(67, 24, 255, 0.12) !important;
+    border-color: rgba(117, 81, 255, 0.4) !important;
+    color: #7551FF !important;
+    box-shadow: 0 2px 8px -2px rgba(117, 81, 255, 0.25) !important;
+}
+
+/* 9. Center Tab Buttons (Navigation inside Workspace) */
+.center-tab-btn {
+    border-radius: 8px !important;
+}
+.center-tab-btn.active {
+    background-color: rgba(67, 24, 255, 0.12) !important;
+    color: #7551FF !important;
+    border-color: rgba(117, 81, 255, 0.3) !important;
+}
+
+/* 10. ANTI-AI DIFFUSED SHADOWS & HAIRLINE ELEVATION */
+.shadow-3xl,
+.shadow-2xl,
+.shadow-xl,
+.shadow-purple-glow,
+.shadow-purple-glow-lg,
+.bespoke-purple-glow,
+.preset-card-glow,
+.shadow-shadow-500 {
+    box-shadow: var(--card-shadow) !important;
+}
+
+.preset-card-glow:hover,
+.tilt-card:hover {
+    box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.06), 0 1px 3px 0 rgba(0, 0, 0, 0.04) !important;
+    border-color: var(--border-hover) !important;
+}
+
+/* 11. GLOBAL TYPOGRAPHY & INTER FONT FEATURE SETTINGS */
+body, h1, h2, h3, h4, h5, h6, p, span, div, button, input, select, textarea {
+    font-family: var(--font-sans, 'Inter', sans-serif);
+    font-feature-settings: "calt" 0, "liga" 0;
+}
+
+code, pre, kbd, samp, .font-mono {
+    font-family: var(--font-mono, 'JetBrains Mono', monospace) !important;
+}
+
+/* 12. FLOATING DOWNLOAD TAB (SECTION D - ALWAYS VISIBLE) */
+#floating-download-tab {
+    position: fixed !important;
+    right: 0 !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    z-index: 40 !important;
+}
+
+.btn-floating-download {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    user-select: none;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-floating-download:hover {
+    transform: translateX(-6px) !important;
+    box-shadow: -8px 10px 32px rgba(117, 81, 255, 0.65) !important;
+}
+
+.btn-floating-download:active {
+    transform: translateX(-4px) scale(0.97) !important;
+}
+
+/* 13. CRAFT DETAILS (STOP-DESIGN-SLOP TIER 4) */
+:root {
+    font-synthesis: none;
+}
+
+/* C11: text-wrap balance on headings to eliminate orphan lines */
+h1, h2, h3, h4, h5, h6, .card-title {
+    text-wrap: balance;
+}
+
+/* C12: text-wrap pretty on body copy */
+p, li, dd {
+    text-wrap: pretty;
+}
+
+/* C7: Tabular figures for numbers, tables, metrics, and codes */
+table, .metric, time, .price, .stat-value, kbd, code, .font-mono {
+    font-variant-numeric: tabular-nums lining-nums;
+}
+
+/* C45: Underline craft with offset */
+a {
+    text-underline-offset: 3px;
+}
+
+/* C16: Ligature discipline - prevent code symbols from fusing */
+code, pre, kbd {
+    font-variant-ligatures: none;
+}
+
+/* C55: Reduced-motion accessibility guard (#182) */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+
+
+

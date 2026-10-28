@@ -1,5 +1,5 @@
 /**
- * BACSE202: Relational Division Simulator
+ * Relational Division Simulator
  * SQL Multi-Dialect Code Generator & Query Analyzer
  * Translates Relational Division (R ÷ S) into:
  * 1. Double NOT EXISTS (Universal Quantification / Codd's Relational Completeness)
@@ -25,12 +25,18 @@ class SQLGenerator {
         const groupByHaving = this.generateGroupByHaving(rName, sName, candidateAttrs, divisorAttrs);
         const setDifference = this.generateSetDifference(rName, sName, candidateAttrs, divisorAttrs);
         const exactDivision = this.generateExactDivision(rName, sName, candidateAttrs, divisorAttrs);
+        const relationalAlgebra = this.generateRelationalAlgebra(rName, sName, candidateAttrs, divisorAttrs);
+        const tupleCalculus = this.generateTRC(rName, sName, candidateAttrs, divisorAttrs);
+        const domainCalculus = this.generateDRC(rName, sName, candidateAttrs, divisorAttrs);
 
         return {
             doubleNotExists,
             groupByHaving,
             setDifference,
-            exactDivision
+            exactDivision,
+            relationalAlgebra,
+            tupleCalculus,
+            domainCalculus
         };
     }
 
@@ -217,6 +223,89 @@ HAVING
 `;
 
         return { sql, explanation, title: 'Exact Division (All and Only)' };
+    }
+
+    /**
+     * 5. Symbolic Relational Algebra (SL / RA) Formulation
+     */
+    static generateRelationalAlgebra(rName, sName, candidateAttrs, divisorAttrs) {
+        const cAttrs = candidateAttrs.join(', ');
+        const dAttrs = divisorAttrs.join(', ');
+
+        const formula = `R ÷ S = Π_{${cAttrs}}(${rName}) - Π_{${cAttrs}}((Π_{${cAttrs}}(${rName}) × ${sName}) - ${rName})`;
+
+        const steps = [
+            `T1 = Π_{${cAttrs}}(${rName})                      -- Candidate domain space (Projection)`,
+            `T2 = T1 × ${sName}                                -- Maximal Cartesian cross-product (all pairings)`,
+            `T3 = T2 - ${rName}                                -- Deficit missing tuples (Set Difference)`,
+            `T4 = Π_{${cAttrs}}(T3)                            -- Disqualified candidates with missing requirements`,
+            `T5 = T1 - T4                                      -- Quotient relation: Universally qualified candidates`
+        ].join('\n');
+
+        const explanation = `
+### Relational Algebra (SL) Proof:
+- **Codd's Equivalence**: Universal quantification $(\\forall y \\in S)$ is computed without loops or recursion by subtracting disqualified candidates from all possible candidates.
+- **Decomposition**: Computed via 5 deterministic relational algebra steps ($T_1 \\dots T_5$).
+`;
+
+        return {
+            formula,
+            steps,
+            explanation,
+            title: 'Relational Algebra (Symbolic Language - SL)'
+        };
+    }
+
+    /**
+     * 6. Tuple Relational Calculus (TRC) Formulation
+     */
+    static generateTRC(rName, sName, candidateAttrs, divisorAttrs) {
+        const cAttrs = candidateAttrs.join(', ');
+        const dAttrs = divisorAttrs.join(', ');
+
+        const formula = `{ t[${cAttrs}] | ∃ r ∈ ${rName} (t[${cAttrs}] = r[${cAttrs}]) ∧ ∀ s ∈ ${sName} (∃ r' ∈ ${rName} (r'[${cAttrs}] = t[${cAttrs}] ∧ r'[${dAttrs}] = s[${dAttrs}])) }`;
+
+        const safeNegationFormula = `{ t[${cAttrs}] | ∃ r ∈ ${rName} (t[${cAttrs}] = r[${cAttrs}]) ∧ ¬ ∃ s ∈ ${sName} (¬ ∃ r' ∈ ${rName} (r'[${cAttrs}] = t[${cAttrs}] ∧ r'[${dAttrs}] = s[${dAttrs}])) }`;
+
+        const explanation = `
+### Tuple Relational Calculus (TRC) Mechanics:
+- **Range Variables**: \`r, r'\` range over dividend relation \`${rName}\`; \`s\` ranges over divisor \`${sName}\`.
+- **First-Order Predicate Logic**: The formula enforces universal quantifier $\\forall s \\in ${sName}$, asserting that for every requirement $s$, there exists a matching tuple $r'$ confirming candidate $t$.
+- **Safe Relational Calculus**: The equivalent negation formulation uses De Morgan's Law $(\\forall s, P(s) \\equiv \\neg \\exists s, \\neg P(s))$, ensuring the query is domain-independent and computationally decidable.
+`;
+
+        return {
+            formula,
+            safeNegationFormula,
+            explanation,
+            title: 'Tuple Relational Calculus (TRC)'
+        };
+    }
+
+    /**
+     * 7. Domain Relational Calculus (DRC) Formulation
+     */
+    static generateDRC(rName, sName, candidateAttrs, divisorAttrs) {
+        const cVars = candidateAttrs.map((_, i) => `x_${i + 1}`).join(', ');
+        const dVars = divisorAttrs.map((_, i) => `y_${i + 1}`).join(', ');
+
+        const formula = `{ <${cVars}> | ∃ ${dVars}' (<${cVars}, ${dVars}'> ∈ ${rName}) ∧ ∀ ${dVars} (<${dVars}> ∈ ${sName} ⇒ <${cVars}, ${dVars}> ∈ ${rName}) }`;
+
+        const safeNegationFormula = `{ <${cVars}> | ∃ ${dVars}' (<${cVars}, ${dVars}'> ∈ ${rName}) ∧ ¬ ∃ ${dVars} (<${dVars}> ∈ ${sName} ∧ <${cVars}, ${dVars}> ∉ ${rName}) }`;
+
+        const explanation = `
+### Domain Relational Calculus (DRC) Mechanics:
+- **Domain Variables**: Variable tuple $\\langle ${cVars} \\rangle$ ranges over candidate entity domains.
+- **Universal Implication**: $\\forall ${dVars} (\\langle ${dVars} \\rangle \\in ${sName} \\implies \\langle ${cVars}, ${dVars} \\rangle \\in ${rName})$. Any requirement in $S$ implies the combined candidate-requirement pair belongs to $R$.
+- **Safe Formulation**: Rewritten with material implication $\\neg (P \\land \\neg Q)$ to satisfy Codd's safety theorem.
+`;
+
+        return {
+            formula,
+            safeNegationFormula,
+            explanation,
+            title: 'Domain Relational Calculus (DRC)'
+        };
     }
 }
 

@@ -1,6 +1,6 @@
 /**
  * Technical Terminal Readout Window Component
- * Streams engine logs, execution cycles, telemetry, and assertions
+ * Streams engine logs, execution cycles, relational metrics, and assertions
  * Linear / Vercel Developer Aesthetic Monospace Log Stream
  */
 

@@ -1,0 +1,678 @@
+/**
+ * Relational Division Simulator — AI for Practice Engine
+ * AI Scenario Generator, Query Pitfall Analyzer & Interactive Practice Sandbox
+ * Redesigned for academic clarity, clean typography, and intuitive single-challenge focus.
+ */
+
+class AIPractice {
+    static get challenges() {
+        return [
+            {
+                id: 'ai-chal-1',
+                title: 'Prime Buyer Bundle Verification',
+                domain: 'E-Commerce & Retail Logistics',
+                prompt: 'Identify all loyal customers who have purchased EVERY featured gadget from the "Cyber Monday 2024" flagship bundle.',
+                rName: 'CustomerOrders',
+                rAttrs: ['CustomerID', 'CustomerName', 'ProductSKU'],
+                rTuples: [
+                    { CustomerID: 'C01', CustomerName: 'Aarav Patel', ProductSKU: 'SKU_IPHONE' },
+                    { CustomerID: 'C01', CustomerName: 'Aarav Patel', ProductSKU: 'SKU_MACBOOK' },
+                    { CustomerID: 'C01', CustomerName: 'Aarav Patel', ProductSKU: 'SKU_AIRPODS' },
+
+                    { CustomerID: 'C02', CustomerName: 'Priya Nair', ProductSKU: 'SKU_IPHONE' },
+                    { CustomerID: 'C02', CustomerName: 'Priya Nair', ProductSKU: 'SKU_AIRPODS' },
+
+                    { CustomerID: 'C03', CustomerName: 'Rohan Gupta', ProductSKU: 'SKU_IPHONE' },
+                    { CustomerID: 'C03', CustomerName: 'Rohan Gupta', ProductSKU: 'SKU_MACBOOK' },
+                    { CustomerID: 'C03', CustomerName: 'Rohan Gupta', ProductSKU: 'SKU_AIRPODS' },
+                    { CustomerID: 'C03', CustomerName: 'Rohan Gupta', ProductSKU: 'SKU_CHARGER' }, // Superset extra
+
+                    { CustomerID: 'C04', CustomerName: 'Neha Sen', ProductSKU: 'SKU_MACBOOK' }
+                ],
+                sName: 'CyberMondayBundle',
+                sAttrs: ['ProductSKU'],
+                sTuples: [
+                    { ProductSKU: 'SKU_IPHONE' },
+                    { ProductSKU: 'SKU_MACBOOK' },
+                    { ProductSKU: 'SKU_AIRPODS' }
+                ],
+                standardQualified: ['Aarav Patel', 'Rohan Gupta'],
+                exactQualified: ['Aarav Patel'], // Rohan has extra SKU_CHARGER
+                hints: [
+                    'Observe Rohan Gupta: he purchased all 3 required gadgets plus an extra charger (SKU_CHARGER).',
+                    'Standard division ($R \\div S$) requires universal coverage ($\\forall y \\in S, \\langle x,y \\rangle \\in R$) and permits supersets, so Rohan qualifies.',
+                    'Exact division ($R \\div_{\\text{exact}} S$) enforces a strict bijection ($R[x] = S$), eliminating candidates with superfluous purchases.'
+                ],
+                pitfalls: [
+                    'Common Trap: Believing Rohan Gupta is disqualified in standard division. Relational division is a universal quantifier ($\\forall s \\in S, s \\in R[c]$), which allows supersets unless exact division is explicitly enabled.'
+                ]
+            },
+            {
+                id: 'ai-chal-2',
+                title: 'IRCTC Rajdhani Corridor Booking Verification',
+                domain: 'Railway Passenger Operations',
+                prompt: 'Identify train travelers holding confirmed reservations across ALL mandatory halts between New Delhi (NDLS) and Pt Deen Dayal Upadhyaya (DDU).',
+                rName: 'PassengerHalts',
+                rAttrs: ['PNR', 'PassengerName', 'StationCode'],
+                rTuples: [
+                    { PNR: '98210', PassengerName: 'Vikram Joshi', StationCode: 'NDLS' },
+                    { PNR: '98210', PassengerName: 'Vikram Joshi', StationCode: 'CNB' },
+                    { PNR: '98210', PassengerName: 'Vikram Joshi', StationCode: 'PRYJ' },
+                    { PNR: '98210', PassengerName: 'Vikram Joshi', StationCode: 'DDU' },
+
+                    { PNR: '98211', PassengerName: 'Kavita Roy', StationCode: 'NDLS' },
+                    { PNR: '98211', PassengerName: 'Kavita Roy', StationCode: 'CNB' },
+
+                    { PNR: '98212', PassengerName: 'Suresh Raina', StationCode: 'NDLS' },
+                    { PNR: '98212', PassengerName: 'Suresh Raina', StationCode: 'CNB' },
+                    { PNR: '98212', PassengerName: 'Suresh Raina', StationCode: 'PRYJ' },
+                    { PNR: '98212', PassengerName: 'Suresh Raina', StationCode: 'DDU' },
+                    { PNR: '98212', PassengerName: 'Suresh Raina', StationCode: 'HWH' } // Extra halt
+                ],
+                sName: 'MandatoryHalts',
+                sAttrs: ['StationCode'],
+                sTuples: [
+                    { StationCode: 'NDLS' },
+                    { StationCode: 'CNB' },
+                    { StationCode: 'PRYJ' },
+                    { StationCode: 'DDU' }
+                ],
+                standardQualified: ['Vikram Joshi', 'Suresh Raina'],
+                exactQualified: ['Vikram Joshi'],
+                hints: [
+                    'Inspect Kavita Roy: she holds reservations for NDLS and CNB only, missing PRYJ and DDU.',
+                    'Kavita generates deficit pairs in intermediate relation $T_3$ and is thus disqualified in $T_4$.',
+                    'Suresh Raina holds 5 halts, satisfying all 4 mandatory stations required by divisor $S$.'
+                ],
+                pitfalls: [
+                    'Common Trap: Failing to join on StationCode when testing subqueries, which creates an unconstrained cross join and incorrect cardinalities.'
+                ]
+            },
+            {
+                id: 'ai-chal-3',
+                title: 'Kubernetes Microservices Security Compliance',
+                domain: 'DevOps & SRE Governance',
+                prompt: 'Identify backend microservices that have implemented ALL mandatory security policies: mTLS, OIDC, and RBAC.',
+                rName: 'ServicePolicies',
+                rAttrs: ['ServiceID', 'ServiceName', 'PolicyName'],
+                rTuples: [
+                    { ServiceID: 'SVC01', ServiceName: 'auth-service', PolicyName: 'mTLS' },
+                    { ServiceID: 'SVC01', ServiceName: 'auth-service', PolicyName: 'OIDC' },
+                    { ServiceID: 'SVC01', ServiceName: 'auth-service', PolicyName: 'RBAC' },
+
+                    { ServiceID: 'SVC02', ServiceName: 'payment-gateway', PolicyName: 'mTLS' },
+                    { ServiceID: 'SVC02', ServiceName: 'payment-gateway', PolicyName: 'RBAC' },
+
+                    { ServiceID: 'SVC03', ServiceName: 'catalog-service', PolicyName: 'mTLS' },
+                    { ServiceID: 'SVC03', ServiceName: 'catalog-service', PolicyName: 'OIDC' },
+                    { ServiceID: 'SVC03', ServiceName: 'catalog-service', PolicyName: 'RBAC' }
+                ],
+                sName: 'MandatorySecurityStack',
+                sAttrs: ['PolicyName'],
+                sTuples: [
+                    { PolicyName: 'mTLS' },
+                    { PolicyName: 'OIDC' },
+                    { PolicyName: 'RBAC' }
+                ],
+                standardQualified: ['auth-service', 'catalog-service'],
+                exactQualified: ['auth-service', 'catalog-service'],
+                hints: [
+                    'payment-gateway is missing OIDC, generating a deficit missing tuple in $T_3$.',
+                    'Both auth-service and catalog-service satisfy all 3 required policies with zero deficits.'
+                ],
+                pitfalls: [
+                    'Common Trap: In SQL, writing NOT IN without NULL checks can return zero rows if PolicyName in divisor is nullable due to three-valued logic.'
+                ]
+            }
+        ];
+    }
+
+    /**
+     * AI Query Pitfall Database & Rule Analyzer
+     */
+    static analyzeSQLQuery(queryText) {
+        const text = (queryText || '').trim().toUpperCase();
+        const feedback = [];
+
+        if (!text) {
+            return {
+                valid: false,
+                grade: 'Incomplete',
+                feedback: ['Please enter a SQL query to analyze with the AI tutor.']
+            };
+        }
+
+        const notExistsCount = (text.match(/NOT\s+EXISTS/g) || []).length;
+
+        if (notExistsCount >= 2) {
+            feedback.push('✅ <strong>Universal Negation Detected:</strong> You correctly employed the correlated Double NOT EXISTS construct ($\\neg \\exists \\neg P$).');
+            if (text.includes('WHERE') && text.includes('=')) {
+                feedback.push('✅ <strong>Correlation Bound:</strong> Found correlated join condition linking candidate attributes across outer and inner scopes.');
+            } else {
+                feedback.push('⚠️ <strong>Missing Correlation:</strong> Verify that the innermost subquery links the candidate identifier ($R_2.id = R_1.id$).');
+            }
+        } else if (text.includes('GROUP BY') && text.includes('HAVING')) {
+            feedback.push('✅ <strong>Aggregation Division Detected:</strong> GROUP BY with HAVING clause.');
+            if (text.includes('COUNT(DISTINCT')) {
+                feedback.push('✅ <strong>Cardinality Protection:</strong> <code>COUNT(DISTINCT ...)</code> is used. This prevents duplicate candidate tuple corruption.');
+            } else if (text.includes('COUNT(')) {
+                feedback.push('⚠️ <strong>Critical Pitfall:</strong> You wrote <code>COUNT(...)</code> without <code>DISTINCT</code>! If the candidate has duplicate records for the same requirement, this will produce false positives.');
+            }
+            if (text.includes('SELECT COUNT(*) FROM') || text.includes('SELECT COUNT(DISTINCT') || text.includes('= (SELECT COUNT')) {
+                feedback.push('✅ <strong>Dynamic Divisor Cardinality:</strong> Correctly compares against <code>(SELECT COUNT(*) FROM S)</code>.');
+            }
+        } else if (text.includes('NOT IN')) {
+            feedback.push('⚠️ <strong>Three-Valued Logic Risk:</strong> <code>NOT IN</code> fails silently and returns empty results if the divisor table contains a single <code>NULL</code> tuple. Prefer correlated <code>NOT EXISTS</code> for production robustness.');
+        } else if (text.includes('EXCEPT') || text.includes('MINUS')) {
+            feedback.push('✅ <strong>Set Difference Division:</strong> Using SQL EXCEPT/MINUS constructs.');
+        } else {
+            feedback.push('💡 <strong>Suggestion:</strong> To implement relational division in SQL, use either (1) Correlated Double NOT EXISTS, (2) GROUP BY HAVING COUNT(DISTINCT), or (3) EXCEPT/MINUS set difference.');
+        }
+
+        return {
+            valid: true,
+            grade: notExistsCount >= 2 || (text.includes('GROUP BY') && text.includes('COUNT(DISTINCT')) ? 'Sound' : 'Needs Review',
+            feedback
+        };
+    }
+
+    /**
+     * Render the AI for Practice Modal HTML
+     */
+    static renderModalHtml() {
+        const challenges = this.challenges;
+
+        return `
+        <div id="global-practice-modal" class="tech-modal-overlay">
+            <div class="tech-modal-container rounded-2xl bg-[#0c0c12] text-white shadow-2xl border border-[#22222e] w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col font-dm">
+                
+                <!-- Clean Scholarly Header -->
+                <div class="border-b border-[#1c1c28] px-6 py-4 flex items-center justify-between bg-[#101018]">
+                    <div class="flex items-center gap-2.5">
+                        <span class="text-xl">🤖</span>
+                        <div>
+                            <h3 class="text-sm font-bold text-white tracking-tight flex items-center gap-2">
+                                AI Practice & Query Tutor
+                                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-500/15 text-cyan-300 border border-cyan-500/30">Interactive Sandbox</span>
+                            </h3>
+                            <p class="text-[11px] text-gray-400">Universal quantification challenges & automated SQL trap detection</p>
+                        </div>
+                    </div>
+                    <button class="btn-close-modal text-gray-400 hover:text-white font-mono text-base px-2.5 py-1 rounded-lg hover:bg-white/5 transition-colors cursor-pointer" data-target="global-practice-modal" aria-label="Close">✕</button>
+                </div>
+
+                <!-- Clean Segmented Navigation Tab Bar -->
+                <div class="bg-[#12121a] border-b border-[#1e1e28] px-6 py-2.5 flex items-center justify-between gap-3 text-xs">
+                    <div class="inline-flex p-1 rounded-xl bg-[#0a0a0f] border border-[#1e1e28] gap-1">
+                        <button id="btn-tab-ai-chal" class="px-3.5 py-1.5 rounded-lg bg-[#7551FF] text-white font-semibold transition-all cursor-pointer">
+                            🎯 Domain Challenges (${challenges.length})
+                        </button>
+                        <button id="btn-tab-ai-analyzer" class="px-3.5 py-1.5 rounded-lg text-gray-400 hover:text-white font-semibold transition-all cursor-pointer">
+                            🔍 SQL Pitfall Analyzer
+                        </button>
+                    </div>
+                    <span class="text-[11px] font-mono text-gray-400 hidden sm:inline">Codd's Universal Division ($R \\div S$)</span>
+                </div>
+
+                <!-- Body Scrollable Area -->
+                <div class="p-6 space-y-5 max-h-[72vh] overflow-y-auto horizon-scrollbar">
+                    
+                    <!-- TAB 1: AI Challenges -->
+                    <div id="ai-pane-chal" class="space-y-4">
+                        
+                        <!-- Challenge Switcher Stepper Pills -->
+                        <div class="flex items-center gap-2 overflow-x-auto horizon-scrollbar pb-1">
+                            <span class="text-[11px] font-mono text-gray-400 uppercase font-bold shrink-0 mr-1">Select Challenge:</span>
+                            ${challenges.map((c, idx) => `
+                                <button class="ai-chal-pill px-3 py-1.5 rounded-lg text-xs font-medium border transition-all cursor-pointer whitespace-nowrap shrink-0 ${idx === 0 ? 'bg-[#7551FF] text-white border-[#7551FF] font-bold shadow-xs' : 'bg-[#121218] text-gray-300 border-[#222230] hover:border-cyan-500/50'}" data-index="${idx}" data-cid="${c.id}">
+                                    <span>${idx + 1}. ${c.title}</span>
+                                </button>
+                            `).join('')}
+                        </div>
+
+                        <!-- Single Active Challenge Display Area -->
+                        ${challenges.map((c, idx) => {
+                            const candNames = [...new Set(c.rTuples.map(t => t.CustomerName || t.PassengerName || t.ServiceName))];
+                            return `
+                            <div class="ai-chal-card p-5 rounded-2xl border border-[#20202e] bg-[#111116] space-y-4 ${idx === 0 ? '' : 'hidden'}" data-cid="${c.id}" data-index="${idx}">
+                                
+                                <!-- Card Header -->
+                                <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-[#1c1c28]">
+                                    <div>
+                                        <div class="text-[10px] font-mono text-cyan-400 uppercase tracking-wider font-bold">${c.domain}</div>
+                                        <h4 class="font-bold text-white text-base mt-0.5">${c.title}</h4>
+                                    </div>
+                                    <button class="btn-load-ai-chal-sim px-3 py-1.5 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 text-xs font-semibold transition-all flex items-center gap-1.5 cursor-pointer" data-cid="${c.id}">
+                                        <span>⚡ Load into Simulator</span>
+                                    </button>
+                                </div>
+
+                                <!-- Problem Statement -->
+                                <div class="p-3.5 rounded-xl bg-gray-500/5 border border-gray-500/15 text-xs text-gray-200 leading-relaxed font-sans">
+                                    <strong class="text-white font-semibold">Objective:</strong> ${c.prompt}
+                                </div>
+
+                                <!-- Clean Relational Preview Tables -->
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                                    
+                                    <!-- Table R -->
+                                    <div class="rounded-xl bg-[#09090e] border border-[#1e1e28] overflow-hidden flex flex-col">
+                                        <div class="px-3 py-2 bg-[#121218] border-b border-[#1e1e28] flex items-center justify-between">
+                                            <span class="text-indigo-400 font-bold font-mono text-xs uppercase">${c.rName} (Relation R)</span>
+                                            <span class="text-[10px] font-mono text-gray-400">${c.rTuples.length} tuples</span>
+                                        </div>
+                                        <div class="max-h-44 overflow-y-auto horizon-scrollbar">
+                                            <table class="w-full text-left border-collapse text-[11px]">
+                                                <thead>
+                                                    <tr class="border-b border-[#1e1e28] text-gray-400 font-mono text-[10px] uppercase bg-black/20">
+                                                        ${c.rAttrs.map(a => `<th class="py-1.5 px-2.5 font-semibold">${a}</th>`).join('')}
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="divide-y divide-[#161622] font-mono">
+                                                    ${c.rTuples.map(t => `
+                                                        <tr class="hover:bg-white/5 transition-colors">
+                                                            ${c.rAttrs.map(a => `<td class="py-1 px-2.5 text-gray-300">${t[a]}</td>`).join('')}
+                                                        </tr>
+                                                    `).join('')}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <!-- Table S -->
+                                    <div class="rounded-xl bg-[#09090e] border border-[#1e1e28] overflow-hidden flex flex-col">
+                                        <div class="px-3 py-2 bg-[#121218] border-b border-[#1e1e28] flex items-center justify-between">
+                                            <span class="text-emerald-400 font-bold font-mono text-xs uppercase">${c.sName} (Divisor S)</span>
+                                            <span class="text-[10px] font-mono text-gray-400">${c.sTuples.length} required</span>
+                                        </div>
+                                        <div class="max-h-44 overflow-y-auto horizon-scrollbar">
+                                            <table class="w-full text-left border-collapse text-[11px]">
+                                                <thead>
+                                                    <tr class="border-b border-[#1e1e28] text-gray-400 font-mono text-[10px] uppercase bg-black/20">
+                                                        <th class="py-1.5 px-2.5 w-6 text-center">✓</th>
+                                                        ${c.sAttrs.map(a => `<th class="py-1.5 px-2.5 font-semibold">${a}</th>`).join('')}
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="divide-y divide-[#161622] font-mono">
+                                                    ${c.sTuples.map(t => `
+                                                        <tr class="hover:bg-white/5 transition-colors">
+                                                            <td class="py-1 px-2.5 text-center text-emerald-400">✓</td>
+                                                            ${c.sAttrs.map(a => `<td class="py-1 px-2.5 text-gray-200 font-bold">${t[a]}</td>`).join('')}
+                                                        </tr>
+                                                    `).join('')}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <!-- Interactive Candidate Selection -->
+                                <div class="space-y-2 pt-1 font-sans">
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-xs font-semibold text-gray-200">Select candidate(s) satisfying Universal Division ($R \\div S$):</span>
+                                        <span class="text-[11px] font-mono text-gray-400">$\\forall y \\in S, \\langle x,y \\rangle \\in R$</span>
+                                    </div>
+                                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                                        ${candNames.map(name => `
+                                            <label class="flex items-center gap-2.5 p-2.5 rounded-xl border border-[#222234] bg-[#14141e] hover:border-cyan-500/50 hover:bg-[#181824] text-xs cursor-pointer transition-all select-none">
+                                                <input type="checkbox" value="${name}" class="chk-cand rounded text-[#7551FF] focus:ring-[#7551FF] cursor-pointer">
+                                                <span class="text-gray-200 font-semibold truncate">${name}</span>
+                                            </label>
+                                        `).join('')}
+                                    </div>
+                                </div>
+
+                                <!-- Action Buttons & Feedback -->
+                                <div class="space-y-3 pt-2 border-t border-[#1c1c28]">
+                                    <div class="flex flex-wrap items-center justify-between gap-2">
+                                        <div class="flex items-center gap-2">
+                                            <button class="btn-verify-ai-chal px-4 py-2 rounded-xl bg-[#7551FF] hover:bg-[#6540ee] text-white text-xs font-bold transition-all cursor-pointer shadow-xs">
+                                                Check Selection
+                                            </button>
+                                            <button class="btn-toggle-ai-hints px-3.5 py-2 rounded-xl bg-[#161622] hover:bg-[#20202e] text-gray-300 border border-[#2a2a3c] text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5">
+                                                <span>💡 Hints & Pitfalls</span>
+                                            </button>
+                                        </div>
+                                        <div class="ai-chal-feedback text-xs font-semibold hidden"></div>
+                                    </div>
+
+                                    <!-- Collapsible AI Tutor Hints Drawer -->
+                                    <div class="ai-chal-hints-box hidden p-4 rounded-xl bg-[#09090e] border border-[#222234] text-xs text-gray-300 leading-relaxed space-y-2.5 font-sans">
+                                        <div class="flex items-center gap-2 text-cyan-300 font-bold font-mono text-xs">
+                                            <span>💡 AI TUTOR INSIGHTS & MATHEMATICAL PROOF:</span>
+                                        </div>
+                                        <ul class="list-disc pl-5 space-y-1.5 text-gray-300">
+                                            ${c.hints.map(h => `<li>${h}</li>`).join('')}
+                                        </ul>
+                                        <div class="mt-2.5 p-3 rounded-xl bg-amber-950/20 border border-amber-500/30 text-amber-300 text-xs">
+                                            <strong>⚠️ Pitfall Alert:</strong> ${c.pitfalls[0]}
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            `;
+                        }).join('')}
+
+                    </div>
+
+                    <!-- TAB 2: AI Query Pitfall Analyzer -->
+                    <div id="ai-pane-analyzer" class="hidden space-y-4">
+                        
+                        <div class="p-3.5 rounded-xl bg-[#12121c] border border-[#1e1e2c] text-xs text-gray-300 flex items-start gap-3">
+                            <span class="text-xl">🔍</span>
+                            <div>
+                                <strong class="text-white">AI Query Evaluator:</strong>
+                                <span>Paste any SQL relational division query below. The automated analyzer validates subquery correlation, duplicate counting hazards, and three-valued logic risks.</span>
+                            </div>
+                        </div>
+
+                        <!-- Sample Loaders -->
+                        <div class="flex flex-wrap items-center gap-2">
+                            <span class="text-[11px] font-mono text-gray-400 font-bold mr-1">Load Canonical Patterns:</span>
+                            <button id="btn-load-sample-query" class="px-2.5 py-1.5 rounded-lg bg-[#14141e] hover:bg-[#1e1e2c] text-gray-300 border border-[#252538] text-[11px] font-semibold transition-all cursor-pointer" data-sample="double-not-exists">
+                                📄 Double NOT EXISTS (Standard)
+                            </button>
+                            <button class="btn-sample-sql px-2.5 py-1.5 rounded-lg bg-[#14141e] hover:bg-[#1e1e2c] text-gray-300 border border-[#252538] text-[11px] font-semibold transition-all cursor-pointer" data-sample="group-by">
+                                📄 GROUP BY HAVING COUNT(DISTINCT)
+                            </button>
+                            <button class="btn-sample-sql px-2.5 py-1.5 rounded-lg bg-[#14141e] hover:bg-[#1e1e2c] text-rose-300 border border-rose-500/30 text-[11px] font-semibold transition-all cursor-pointer" data-sample="missing-distinct">
+                                ⚠️ Missing DISTINCT Trap
+                            </button>
+                            <button class="btn-sample-sql px-2.5 py-1.5 rounded-lg bg-[#14141e] hover:bg-[#1e1e2c] text-amber-300 border border-amber-500/30 text-[11px] font-semibold transition-all cursor-pointer" data-sample="not-in-trap">
+                                ⚠️ NOT IN NULL Trap
+                            </button>
+                        </div>
+
+                        <!-- Editor -->
+                        <div class="space-y-1.5">
+                            <label for="ai-query-input" class="text-xs font-bold text-gray-300 uppercase tracking-wider font-mono">SQL Query Input:</label>
+                            <textarea id="ai-query-input" rows="7" class="w-full font-mono text-xs p-3.5 rounded-xl bg-[#08080c] border border-[#222234] text-gray-200 focus:outline-none focus:border-[#7551FF] horizon-scrollbar transition-colors leading-relaxed" placeholder="SELECT DISTINCT R1.StudentID FROM CourseEnrollments R1 WHERE NOT EXISTS ..."></textarea>
+                        </div>
+
+                        <!-- Action Button -->
+                        <div class="flex items-center gap-3">
+                            <button id="btn-run-ai-query-analysis" class="px-4 py-2.5 rounded-xl bg-[#7551FF] hover:bg-[#6540ee] text-white font-bold text-xs transition-all cursor-pointer shadow-xs flex items-center gap-2">
+                                <span>🔍 Run AI Diagnostic</span>
+                            </button>
+                        </div>
+
+                        <!-- Diagnostic Output -->
+                        <div id="ai-query-results" class="hidden p-4 rounded-xl border border-[#222234] bg-[#09090e] space-y-3 font-sans">
+                            <div class="flex items-center justify-between pb-2 border-b border-[#1c1c28]">
+                                <span class="text-xs font-bold font-mono text-cyan-300 uppercase">AI Diagnostic Report</span>
+                                <span id="ai-query-grade" class="px-2.5 py-0.5 rounded text-[10px] font-bold font-mono"></span>
+                            </div>
+                            <div id="ai-query-feedback-list" class="space-y-2 text-xs leading-relaxed text-gray-300"></div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Clean Footer -->
+                <div class="border-t border-[#1c1c28] px-6 py-3 flex justify-between items-center bg-[#101018] text-xs">
+                    <span class="text-gray-400 font-mono text-[11px]">Universal Division Practice Engine v2.4</span>
+                    <button class="btn-close-modal px-4 py-2 text-xs bg-[#161622] hover:bg-[#20202e] text-gray-200 border border-[#2a2a3c] rounded-lg font-semibold transition-colors cursor-pointer" data-target="global-practice-modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+        `;
+    }
+
+    /**
+     * Wire events for AI Practice modal
+     */
+    static bindEvents() {
+        const modal = document.getElementById('global-practice-modal');
+        if (modal) {
+            modal.querySelectorAll('.btn-close-modal').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    modal.classList.remove('open');
+                });
+            });
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    e.preventDefault();
+                    modal.classList.remove('open');
+                }
+            });
+        }
+
+        // Tab switching (Challenges vs SQL Analyzer)
+        const btnChal = document.getElementById('btn-tab-ai-chal');
+        const btnAnalyzer = document.getElementById('btn-tab-ai-analyzer');
+        const paneChal = document.getElementById('ai-pane-chal');
+        const paneAnalyzer = document.getElementById('ai-pane-analyzer');
+
+        if (btnChal && btnAnalyzer) {
+            btnChal.addEventListener('click', () => {
+                btnChal.className = 'px-3.5 py-1.5 rounded-lg bg-[#7551FF] text-white font-semibold transition-all cursor-pointer';
+                btnAnalyzer.className = 'px-3.5 py-1.5 rounded-lg text-gray-400 hover:text-white font-semibold transition-all cursor-pointer';
+                paneChal.classList.remove('hidden');
+                paneAnalyzer.classList.add('hidden');
+            });
+            btnAnalyzer.addEventListener('click', () => {
+                btnAnalyzer.className = 'px-3.5 py-1.5 rounded-lg bg-[#7551FF] text-white font-semibold transition-all cursor-pointer';
+                btnChal.className = 'px-3.5 py-1.5 rounded-lg text-gray-400 hover:text-white font-semibold transition-all cursor-pointer';
+                paneAnalyzer.classList.remove('hidden');
+                paneChal.classList.add('hidden');
+            });
+        }
+
+        // Stepper Pills: Switch active challenge
+        document.querySelectorAll('.ai-chal-pill').forEach(pill => {
+            pill.addEventListener('click', (e) => {
+                const targetIdx = parseInt(pill.dataset.index, 10);
+
+                // Update pill styles
+                document.querySelectorAll('.ai-chal-pill').forEach(p => {
+                    const idx = parseInt(p.dataset.index, 10);
+                    if (idx === targetIdx) {
+                        p.className = 'ai-chal-pill px-3 py-1.5 rounded-lg text-xs font-bold border transition-all cursor-pointer whitespace-nowrap shrink-0 bg-[#7551FF] text-white border-[#7551FF] shadow-xs';
+                    } else {
+                        p.className = 'ai-chal-pill px-3 py-1.5 rounded-lg text-xs font-medium border transition-all cursor-pointer whitespace-nowrap shrink-0 bg-[#121218] text-gray-300 border-[#222230] hover:border-cyan-500/50';
+                    }
+                });
+
+                // Show only active challenge card
+                document.querySelectorAll('.ai-chal-card').forEach(card => {
+                    const idx = parseInt(card.dataset.index, 10);
+                    if (idx === targetIdx) {
+                        card.classList.remove('hidden');
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+            });
+        });
+
+        // Toggle hints
+        document.querySelectorAll('.btn-toggle-ai-hints').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const card = e.target.closest('.ai-chal-card');
+                const box = card.querySelector('.ai-chal-hints-box');
+                box.classList.toggle('hidden');
+                if (window.renderMathInElement) {
+                    window.renderMathInElement(box, {
+                        delimiters: [
+                            { left: '$$', right: '$$', display: true },
+                            { left: '$', right: '$', display: false }
+                        ]
+                    });
+                }
+            });
+        });
+
+        // Verify Challenge Answer
+        document.querySelectorAll('.btn-verify-ai-chal').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const card = e.target.closest('.ai-chal-card');
+                const cid = card.dataset.cid;
+                const chal = AIPractice.challenges.find(c => c.id === cid);
+                if (!chal) return;
+
+                const selected = Array.from(card.querySelectorAll('.chk-cand:checked')).map(c => c.value);
+                const expected = chal.standardQualified;
+
+                const isExactMatch = selected.length === expected.length && selected.every(v => expected.includes(v));
+                const feedbackEl = card.querySelector('.ai-chal-feedback');
+                feedbackEl.classList.remove('hidden');
+
+                if (isExactMatch) {
+                    feedbackEl.className = 'ai-chal-feedback text-xs font-semibold text-emerald-400 p-2 rounded-lg bg-emerald-950/30 border border-emerald-500/30';
+                    feedbackEl.innerHTML = `✓ Brilliant! Qualified candidates are indeed: [${expected.join(', ')}]`;
+                    if (window.toast) window.toast.success('Challenge Solved! Correct candidates selected.');
+                } else {
+                    feedbackEl.className = 'ai-chal-feedback text-xs font-semibold text-amber-400 p-2 rounded-lg bg-amber-950/30 border border-amber-500/30';
+                    feedbackEl.innerHTML = `⚠️ Not quite. Expected [${expected.join(', ')}], you selected [${selected.join(', ') || 'None'}]. Check AI hints below!`;
+                    if (window.toast) window.toast.warning('Check AI hints for explanation.');
+                }
+
+                // Show hints automatically
+                const box = card.querySelector('.ai-chal-hints-box');
+                box.classList.remove('hidden');
+                if (window.renderMathInElement) {
+                    window.renderMathInElement(box, {
+                        delimiters: [
+                            { left: '$$', right: '$$', display: true },
+                            { left: '$', right: '$', display: false }
+                        ]
+                    });
+                }
+            });
+        });
+
+        // Test in live workspace
+        document.querySelectorAll('.btn-load-ai-chal-sim').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const cid = e.currentTarget.dataset.cid;
+                const chal = AIPractice.challenges.find(c => c.id === cid);
+                if (!chal) return;
+
+                if (window.location.pathname.includes('simulation.html') && window.simWorkspace) {
+                    window.simWorkspace.loadCustomData(chal.rName, chal.rAttrs, chal.rTuples, chal.sName, chal.sAttrs, chal.sTuples);
+                    const modal = document.getElementById('global-practice-modal');
+                    if (modal) modal.classList.remove('open');
+                    if (window.toast) window.toast.info(`Loaded "${chal.title}" into live workspace.`);
+                } else {
+                    window.location.href = `simulation.html?loadChal=${cid}`;
+                }
+            });
+        });
+
+        // Run AI Query Analysis
+        const btnAnalyzeQuery = document.getElementById('btn-run-ai-query-analysis');
+        if (btnAnalyzeQuery) {
+            btnAnalyzeQuery.addEventListener('click', () => {
+                const query = document.getElementById('ai-query-input')?.value || '';
+                const result = AIPractice.analyzeSQLQuery(query);
+
+                const container = document.getElementById('ai-query-results');
+                const gradeEl = document.getElementById('ai-query-grade');
+                const listEl = document.getElementById('ai-query-feedback-list');
+
+                if (container && gradeEl && listEl) {
+                    container.classList.remove('hidden');
+                    gradeEl.textContent = `STATUS: ${result.grade.toUpperCase()}`;
+                    gradeEl.className = `px-2.5 py-0.5 rounded text-[10px] font-bold font-mono ${result.grade === 'Sound' ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30' : 'bg-amber-500/20 text-amber-300 border border-amber-500/30'}`;
+
+                    listEl.innerHTML = result.feedback.map(f => `<div class="p-2.5 rounded-xl bg-[#12121a] border border-[#1e1e28]">${f}</div>`).join('');
+                    if (window.renderMathInElement) {
+                        window.renderMathInElement(listEl, {
+                            delimiters: [
+                                { left: '$$', right: '$$', display: true },
+                                { left: '$', right: '$', display: false }
+                            ]
+                        });
+                    }
+                }
+            });
+        }
+
+        // Canonical Sample Loaders
+        const samples = {
+            'double-not-exists': `SELECT DISTINCT R1.StudentID
+FROM CourseEnrollments R1
+WHERE NOT EXISTS (
+    SELECT *
+    FROM MandatoryCourses S
+    WHERE NOT EXISTS (
+        SELECT *
+        FROM CourseEnrollments R2
+        WHERE R2.StudentID = R1.StudentID
+          AND R2.CourseCode = S.CourseCode
+    )
+);`,
+            'group-by': `SELECT C.StudentID
+FROM CourseEnrollments C
+JOIN MandatoryCourses S ON C.CourseCode = S.CourseCode
+GROUP BY C.StudentID
+HAVING COUNT(DISTINCT C.CourseCode) = (SELECT COUNT(*) FROM MandatoryCourses);`,
+            'missing-distinct': `SELECT sid
+FROM Catalog JOIN Parts ON Catalog.pid = Parts.pid
+GROUP BY sid
+HAVING COUNT(pid) = (SELECT COUNT(*) FROM Parts);`,
+            'not-in-trap': `SELECT sid
+FROM Catalog
+WHERE pid NOT IN (SELECT pid FROM Parts);`
+        };
+
+        const loadSample = (sampleKey) => {
+            const query = samples[sampleKey];
+            const input = document.getElementById('ai-query-input');
+            if (input && query) {
+                input.value = query;
+                if (window.toast) window.toast.info(`Loaded sample: ${sampleKey}`);
+            }
+        };
+
+        document.getElementById('btn-load-sample-query')?.addEventListener('click', () => loadSample('double-not-exists'));
+        document.querySelectorAll('.btn-sample-sql').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const sampleKey = e.currentTarget.dataset.sample;
+                if (sampleKey) loadSample(sampleKey);
+            });
+        });
+    }
+
+    /**
+     * Open the AI Practice modal
+     */
+    static openModal() {
+        let modal = document.getElementById('global-practice-modal');
+        if (!modal) {
+            document.body.insertAdjacentHTML('beforeend', this.renderModalHtml());
+            modal = document.getElementById('global-practice-modal');
+            this.bindEvents();
+        }
+        modal.classList.add('open');
+        try {
+            window.history.pushState({ modalOpen: 'global-practice-modal' }, '', window.location.href);
+        } catch (_) {}
+        if (window.renderMathInElement) {
+            window.renderMathInElement(modal, {
+                delimiters: [
+                    { left: '$$', right: '$$', display: true },
+                    { left: '$', right: '$', display: false }
+                ]
+            });
+        }
+    }
+
+    /**
+     * Close the AI Practice modal
+     */
+    static closeModal() {
+        const modal = document.getElementById('global-practice-modal');
+        if (modal) modal.classList.remove('open');
+    }
+}
+
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { AIPractice };
+}

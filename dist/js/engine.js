@@ -1,5 +1,5 @@
 /**
- * BACSE202: Relational Division Simulator
+ * Relational Division Simulator
  * Core Relational Algebra & Division Engine
  * Implements pure Relational Algebra operations:
  * - Projection (Π)

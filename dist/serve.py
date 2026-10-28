@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 """
 RELATIONAL.DIV — High-Performance Zero-Dependency Production Static Server
-Department of Computer Science and Engineering, SCOPE
-Principal Investigator: Basavaashlesh | Faculty Mentor: Dr. Swaminathan A
 """
 
 import http.server
@@ -11,7 +9,7 @@ import os
 import sys
 import webbrowser
 
-PORT = int(os.environ.get('PORT', 8000))
+PORT = int(sys.argv[1]) if len(sys.argv) > 1 and sys.argv[1].isdigit() else int(os.environ.get('PORT', 8080))
 DIRECTORY = os.path.dirname(os.path.abspath(__file__))
 
 class ProductionHandler(http.server.SimpleHTTPRequestHandler):
@@ -45,8 +43,6 @@ def start_server():
                 url = f"http://localhost:{PORT}/"
                 print("=" * 70)
                 print("  RELATIONAL.DIV // Academic Research Laboratory Platform [v2.4.0]")
-                print("  Author : Basavaashlesh (Principal Investigator)")
-                print("  Mentor : Dr. Swaminathan A, Assistant Professor")
                 print("=" * 70)
                 print(f"  -> Serving production distribution at: {url}")
                 print(f"  -> Workspace : {url}simulation.html")

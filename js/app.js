@@ -1,5 +1,5 @@
 /**
- * BACSE202: Relational Division Simulator
+ * Relational Division Simulator
  * Master Application Coordinator & State Controller
  */
 
@@ -22,7 +22,7 @@ class App {
      * Initialize Day/Night Mode (Criterion 3.E)
      */
     initTheme() {
-        const savedTheme = localStorage.getItem('bacse202_theme') || 'light';
+        const savedTheme = localStorage.getItem('relational_div_theme') || 'light';
         this.setTheme(savedTheme);
 
         const toggleBtn = document.getElementById('theme-toggle');
@@ -40,12 +40,12 @@ class App {
             document.documentElement.classList.add('dark');
             document.documentElement.classList.remove('light');
             if (icon) icon.textContent = '🌙';
-            localStorage.setItem('bacse202_theme', 'dark');
+            localStorage.setItem('relational_div_theme', 'dark');
         } else {
             document.documentElement.classList.remove('dark');
             document.documentElement.classList.add('light');
             if (icon) icon.textContent = '☀️';
-            localStorage.setItem('bacse202_theme', 'light');
+            localStorage.setItem('relational_div_theme', 'light');
         }
     }
 

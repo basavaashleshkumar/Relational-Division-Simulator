@@ -1,5 +1,5 @@
 /**
- * BACSE202: Relational Division Simulator
+ * Relational Division Simulator
  * Real-World Presets & Industry Case Studies
  * 6 curated domains demonstrating universal quantification (R ÷ S)
  */
@@ -27,11 +27,16 @@ const PRESETS = {
             { StudentID: 'CS103', StudentName: 'Charlie Brown', CourseCode: 'CSE204' },
             { StudentID: 'CS103', StudentName: 'Charlie Brown', CourseCode: 'CSE301' }, // Superset extra
 
+            { StudentID: 'CS104', StudentName: 'Diana Prince', CourseCode: 'CSE201' },
             { StudentID: 'CS104', StudentName: 'Diana Prince', CourseCode: 'CSE202' },
             { StudentID: 'CS104', StudentName: 'Diana Prince', CourseCode: 'CSE203' },
+            { StudentID: 'CS104', StudentName: 'Diana Prince', CourseCode: 'CSE204' },
 
             { StudentID: 'CS105', StudentName: 'Evan Wright', CourseCode: 'HUM101' },
-            { StudentID: 'CS105', StudentName: 'Evan Wright', CourseCode: 'MAT201' }
+            { StudentID: 'CS105', StudentName: 'Evan Wright', CourseCode: 'MAT201' },
+
+            { StudentID: 'CS106', StudentName: 'Fiona Gallagher', CourseCode: 'CSE201' },
+            { StudentID: 'CS106', StudentName: 'Fiona Gallagher', CourseCode: 'CSE203' }
         ],
         sName: 'MandatoryCoreCS',
         sAttrs: ['CourseCode'],
@@ -41,7 +46,7 @@ const PRESETS = {
             { CourseCode: 'CSE203' },
             { CourseCode: 'CSE204' }
         ],
-        expectedQualified: ['Alice Smith', 'Charlie Brown']
+        expectedQualified: ['Alice Smith', 'Charlie Brown', 'Diana Prince']
     },
 
     devops: {
@@ -61,13 +66,16 @@ const PRESETS = {
             { EngineerID: 'DEV02', CandidateName: 'Priya Sharma', SkillName: 'Docker' },
 
             { EngineerID: 'DEV03', CandidateName: 'Rahul Verma', SkillName: 'Kubernetes' },
-            { EngineerID: 'DEV03', CandidateName: 'Rahul Verma', SkillName: 'Terraform' },
             { EngineerID: 'DEV03', CandidateName: 'Rahul Verma', SkillName: 'Docker' },
             { EngineerID: 'DEV03', CandidateName: 'Rahul Verma', SkillName: 'AWS_IAM' },
             { EngineerID: 'DEV03', CandidateName: 'Rahul Verma', SkillName: 'Ansible' },
 
             { EngineerID: 'DEV04', CandidateName: 'Sneha Patel', SkillName: 'Terraform' },
-            { EngineerID: 'DEV04', CandidateName: 'Sneha Patel', SkillName: 'AWS_IAM' }
+            { EngineerID: 'DEV04', CandidateName: 'Sneha Patel', SkillName: 'AWS_IAM' },
+
+            { EngineerID: 'DEV05', CandidateName: 'Arjun Rao', SkillName: 'Kubernetes' },
+            { EngineerID: 'DEV05', CandidateName: 'Arjun Rao', SkillName: 'Terraform' },
+            { EngineerID: 'DEV05', CandidateName: 'Arjun Rao', SkillName: 'Python' }
         ],
         sName: 'RequiredDevOpsStack',
         sAttrs: ['SkillName'],
@@ -77,7 +85,7 @@ const PRESETS = {
             { SkillName: 'Docker' },
             { SkillName: 'AWS_IAM' }
         ],
-        expectedQualified: ['Vikram Mehta', 'Rahul Verma']
+        expectedQualified: ['Vikram Mehta']
     },
 
     healthcare: {
@@ -98,7 +106,18 @@ const PRESETS = {
             { SurgeonID: 'DOC03', DoctorName: 'Dr. Suresh Nair', ProcedureCode: 'PCD_CABG' },
             { SurgeonID: 'DOC03', DoctorName: 'Dr. Suresh Nair', ProcedureCode: 'PCD_VALVE' },
             { SurgeonID: 'DOC03', DoctorName: 'Dr. Suresh Nair', ProcedureCode: 'PCD_ANGIO' },
-            { SurgeonID: 'DOC03', DoctorName: 'Dr. Suresh Nair', ProcedureCode: 'PCD_TRANS' }
+            { SurgeonID: 'DOC03', DoctorName: 'Dr. Suresh Nair', ProcedureCode: 'PCD_TRANS' },
+
+            { SurgeonID: 'DOC04', DoctorName: 'Dr. Elena Rostova', ProcedureCode: 'PCD_CABG' },
+            { SurgeonID: 'DOC04', DoctorName: 'Dr. Elena Rostova', ProcedureCode: 'PCD_VALVE' },
+            { SurgeonID: 'DOC04', DoctorName: 'Dr. Elena Rostova', ProcedureCode: 'PCD_ANGIO' },
+
+            { SurgeonID: 'DOC05', DoctorName: 'Dr. Marcus Vance', ProcedureCode: 'PCD_CABG' },
+            { SurgeonID: 'DOC05', DoctorName: 'Dr. Marcus Vance', ProcedureCode: 'PCD_VALVE' },
+            { SurgeonID: 'DOC05', DoctorName: 'Dr. Marcus Vance', ProcedureCode: 'PCD_ANGIO' },
+
+            { SurgeonID: 'DOC06', DoctorName: 'Dr. Chloe Bennet', ProcedureCode: 'PCD_VALVE' },
+            { SurgeonID: 'DOC06', DoctorName: 'Dr. Chloe Bennet', ProcedureCode: 'PCD_TRANS' }
         ],
         sName: 'EmergencyCardiacProtocol',
         sAttrs: ['ProcedureCode'],
@@ -107,7 +126,7 @@ const PRESETS = {
             { ProcedureCode: 'PCD_VALVE' },
             { ProcedureCode: 'PCD_ANGIO' }
         ],
-        expectedQualified: ['Dr. Aarav Menon', 'Dr. Suresh Nair']
+        expectedQualified: ['Dr. Aarav Menon', 'Dr. Suresh Nair', 'Dr. Elena Rostova', 'Dr. Marcus Vance']
     },
 
     supplychain: {
@@ -126,10 +145,14 @@ const PRESETS = {
             { SupplierID: 'SUP2', SupplierName: 'VoltTech Industries', ComponentSKU: 'SKU_THERMAL_PLATE' },
 
             { SupplierID: 'SUP3', SupplierName: 'ElectraPower Ltd', ComponentSKU: 'SKU_BMS_CONTROLLER' },
+            { SupplierID: 'SUP3', SupplierName: 'ElectraPower Ltd', ComponentSKU: 'SKU_INVERTER' },
 
             { SupplierID: 'SUP4', SupplierName: 'Global Cell Dynamics', ComponentSKU: 'SKU_4680_CELL' },
             { SupplierID: 'SUP4', SupplierName: 'Global Cell Dynamics', ComponentSKU: 'SKU_BMS_CONTROLLER' },
-            { SupplierID: 'SUP4', SupplierName: 'Global Cell Dynamics', ComponentSKU: 'SKU_THERMAL_PLATE' }
+            { SupplierID: 'SUP4', SupplierName: 'Global Cell Dynamics', ComponentSKU: 'SKU_THERMAL_PLATE' },
+
+            { SupplierID: 'SUP5', SupplierName: 'Hyperion Energy', ComponentSKU: 'SKU_THERMAL_PLATE' },
+            { SupplierID: 'SUP5', SupplierName: 'Hyperion Energy', ComponentSKU: 'SKU_WIRING_HARNESS' }
         ],
         sName: 'BatteryPackBillOfMaterials',
         sAttrs: ['ComponentSKU'],
@@ -160,7 +183,12 @@ const PRESETS = {
             { ServerID: 'SRV03', Hostname: 'auth-vault-01', ControlID: 'AC-2' },
             { ServerID: 'SRV03', Hostname: 'auth-vault-01', ControlID: 'IA-2' },
             { ServerID: 'SRV03', Hostname: 'auth-vault-01', ControlID: 'SC-7' },
-            { ServerID: 'SRV03', Hostname: 'auth-vault-01', ControlID: 'SI-4' }
+
+            { ServerID: 'SRV04', Hostname: 'edge-router-02', ControlID: 'SC-7' },
+            { ServerID: 'SRV04', Hostname: 'edge-router-02', ControlID: 'SI-4' },
+
+            { ServerID: 'SRV05', Hostname: 'k8s-worker-pool', ControlID: 'AC-2' },
+            { ServerID: 'SRV05', Hostname: 'k8s-worker-pool', ControlID: 'IA-2' }
         ],
         sName: 'MandatoryZeroTrustControls',
         sAttrs: ['ControlID'],
@@ -170,7 +198,7 @@ const PRESETS = {
             { ControlID: 'SC-7' },
             { ControlID: 'SI-4' }
         ],
-        expectedQualified: ['db-prod-primary', 'auth-vault-01']
+        expectedQualified: ['db-prod-primary']
     },
 
     projectapollo: {
@@ -190,7 +218,15 @@ const PRESETS = {
             { AstronautID: 'AST02', AstronautName: 'Buzz Aldrin', FlightModule: 'LUNAR_EVA' },
 
             { AstronautID: 'AST03', AstronautName: 'Michael Collins', FlightModule: 'COMMAND_MODULE_DOCK' },
-            { AstronautID: 'AST03', AstronautName: 'Michael Collins', FlightModule: 'LEM_DESCENT' }
+            { AstronautID: 'AST03', AstronautName: 'Michael Collins', FlightModule: 'LEM_DESCENT' },
+
+            { AstronautID: 'AST04', AstronautName: 'Pete Conrad', FlightModule: 'LEM_DESCENT' },
+            { AstronautID: 'AST04', AstronautName: 'Pete Conrad', FlightModule: 'LEM_ASCENT' },
+            { AstronautID: 'AST04', AstronautName: 'Pete Conrad', FlightModule: 'LUNAR_EVA' },
+            { AstronautID: 'AST04', AstronautName: 'Pete Conrad', FlightModule: 'SURVEYOR_RETRIEVAL' },
+
+            { AstronautID: 'AST05', AstronautName: 'Jim Lovell', FlightModule: 'COMMAND_MODULE_DOCK' },
+            { AstronautID: 'AST05', AstronautName: 'Jim Lovell', FlightModule: 'LUNAR_EVA' }
         ],
         sName: 'LunarSurfaceMandatoryModules',
         sAttrs: ['FlightModule'],
@@ -199,7 +235,48 @@ const PRESETS = {
             { FlightModule: 'LEM_ASCENT' },
             { FlightModule: 'LUNAR_EVA' }
         ],
-        expectedQualified: ['Neil Armstrong', 'Buzz Aldrin']
+        expectedQualified: ['Neil Armstrong', 'Buzz Aldrin', 'Pete Conrad']
+    },
+
+    irctc: {
+        id: 'irctc',
+        title: '🚆 IRCTC Railway Reservation (Rajdhani Corridor)',
+        domain: 'Transportation & Indian Railways Passenger System',
+        description: 'Identify passengers who hold confirmed reservations across ALL mandatory junction stops on the New Delhi to Kolkata Rajdhani corridor.',
+        rName: 'PassengerReservations',
+        rAttrs: ['PNR_No', 'PassengerName', 'StationCode'],
+        rTuples: [
+            { PNR_No: '2418901234', PassengerName: 'Rajesh Sharma', StationCode: 'NDLS' },
+            { PNR_No: '2418901234', PassengerName: 'Rajesh Sharma', StationCode: 'CNB' },
+            { PNR_No: '2418901234', PassengerName: 'Rajesh Sharma', StationCode: 'PRYJ' },
+            { PNR_No: '2418901234', PassengerName: 'Rajesh Sharma', StationCode: 'DDU' },
+
+            { PNR_No: '2418905678', PassengerName: 'Sunita Rao', StationCode: 'NDLS' },
+            { PNR_No: '2418905678', PassengerName: 'Sunita Rao', StationCode: 'CNB' },
+
+            { PNR_No: '2418909012', PassengerName: 'Amitav Ghosh', StationCode: 'NDLS' },
+            { PNR_No: '2418909012', PassengerName: 'Amitav Ghosh', StationCode: 'CNB' },
+            { PNR_No: '2418909012', PassengerName: 'Amitav Ghosh', StationCode: 'PRYJ' },
+            { PNR_No: '2418909012', PassengerName: 'Amitav Ghosh', StationCode: 'DDU' },
+            { PNR_No: '2418909012', PassengerName: 'Amitav Ghosh', StationCode: 'HWH' }, // Superset extra
+
+            { PNR_No: '2418903456', PassengerName: 'Deepa Krishnan', StationCode: 'NDLS' },
+            { PNR_No: '2418903456', PassengerName: 'Deepa Krishnan', StationCode: 'CNB' },
+            { PNR_No: '2418903456', PassengerName: 'Deepa Krishnan', StationCode: 'PRYJ' },
+            { PNR_No: '2418903456', PassengerName: 'Deepa Krishnan', StationCode: 'DDU' },
+
+            { PNR_No: '2418907890', PassengerName: 'Manoj Tiwari', StationCode: 'CNB' },
+            { PNR_No: '2418907890', PassengerName: 'Manoj Tiwari', StationCode: 'PRYJ' }
+        ],
+        sName: 'MandatoryRajdhaniStations',
+        sAttrs: ['StationCode'],
+        sTuples: [
+            { StationCode: 'NDLS' },
+            { StationCode: 'CNB' },
+            { StationCode: 'PRYJ' },
+            { StationCode: 'DDU' }
+        ],
+        expectedQualified: ['Rajesh Sharma', 'Amitav Ghosh', 'Deepa Krishnan']
     }
 };
 

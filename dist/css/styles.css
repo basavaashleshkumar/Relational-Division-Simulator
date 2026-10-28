@@ -1,104 +1,111 @@
 /* ==========================================================================
-   BACSE202: Relational Division Simulator
-   Master Stylesheet & Horizon UI Layer
-   Theme: Bespoke Dark Black (OLED Pitch Obsidian) & Horizon UI Light
-   Canvas: #050507 / #000000 (True Pitch Black) & #F4F7FE (Light)
-   Surfaces: #0c0c10 / #111116 (Dark Obsidian) & #FFFFFF (Light)
-   Elevated: #17171f / #1c1c24 (Elevated / Active) & #E9EDF7 (Light)
-   Borders: 1px solid #1f1f28 (Crisp Dark Graphite) & #E2E8F0 (Light)
-   Brand Accents: #7551FF / #4318FF / #583be8 (Horizon Electric Purple-Blue)
-   Status: #05CD99 (Emerald), #EE5D50 (Rose), #FFB547 (Amber)
-   Typography: DM Sans (Body), Poppins (Headings), JetBrains Mono (Code/Formulas)
-   Letter Spacing: -0.4px
+   HORIZON UI — Relational Division Simulation Engine
+   Premium SaaS Dashboard Design System — Obsidian Dark + Light Variant
+   Primary: #4318FF / #7551FF (Electric Purple)
+   Dark bg: #0b0b0f / #0d0d12 / #111116 / #171722
+   Light bg: #F4F7FE / #FFFFFF
+   Accent: Emerald #05CD99, Amber #FFB547, Coral #EE5D50
+   Typography: DM Sans + JetBrains Mono
+   Radii: 20px (cards), 12px (inputs), 9999px (badges/pills)
    ========================================================================== */
 
 @import url('./design-system.css');
 
 :root {
-    /* Horizon Light Mode Root Tokens */
-    --bg-base: var(--bg-app, #F4F7FE);
-    --bg-surface: var(--bg-surface, #ffffff);
-    --bg-surface-alt: var(--bg-surface-subtle, #F4F7FE);
-    --bg-glass: rgba(255, 255, 255, 0.92);
+    /* Horizon UI Light Mode Root Tokens */
+    --bg-base: #F4F7FE;
+    --bg-surface: #ffffff;
+    --bg-surface-alt: #EFF4FB;
+    --bg-glass: rgba(244, 247, 254, 0.94);
 
-    --border-color: var(--border-default, #E2E8F0);
-    --border-subtle: var(--border-subtle, #E9ECEF);
+    --border-color: #E2E8F0;
+    --border-subtle: #EFF4FB;
+    --border-hover: #CBD5E0;
 
-    --text-primary: var(--text-primary, #1B2559);
-    --text-secondary: var(--text-secondary, #707EAE);
-    --text-muted: var(--text-muted, #A3AED0);
+    --text-primary: #1B254B;
+    --text-secondary: #4A5568;
+    --text-muted: #718096;
 
-    /* Horizon Brand Colors */
+    /* Horizon UI Brand Colors — Electric Purple */
     --brand-50: #E9E3FF;
     --brand-100: #C0B8FE;
     --brand-400: #7551FF;
-    --brand-500: #422AFB;
+    --brand-500: #4318FF;
     --brand-600: #3311DB;
     --brand-700: #2111A5;
 
     /* Status Colors */
     --success-50: rgba(5, 205, 153, 0.12);
     --success-500: #05CD99;
-    --success-700: #05CD99;
+    --success-700: #01B574;
 
     --danger-50: rgba(238, 93, 80, 0.12);
     --danger-500: #EE5D50;
-    --danger-700: #f53939;
+    --danger-700: #c53030;
 
     --warning-50: rgba(255, 181, 71, 0.14);
     --warning-500: #FFB547;
 
-    --shadow-sm: 0 2px 4px rgba(112, 144, 176, 0.06);
-    --shadow-md: 0 4px 12px rgba(112, 144, 176, 0.08);
-    --shadow-lg: 14px 17px 40px 4px rgba(112, 144, 176, 0.08);
+    /* Horizon UI Signature Shadows */
+    --card-shadow: 14px 17px 40px 4px rgba(112, 144, 176, 0.18);
+    --shadow-sm: 0 1px 4px 0 rgba(112, 144, 176, 0.1);
+    --shadow-md: 0 4px 12px -2px rgba(112, 144, 176, 0.15), 0 2px 6px -2px rgba(112, 144, 176, 0.08);
+    --shadow-lg: 14px 17px 40px 4px rgba(112, 144, 176, 0.18);
+    --shadow-modal: 14px 17px 40px 4px rgba(112, 144, 176, 0.18), 0 2px 6px rgba(67, 24, 255, 0.08);
 }
 
 .dark, html.dark {
-    /* Horizon Bespoke Dark Black OLED Tokens */
-    --bg-base: #050507;                 /* deepest pitch black canvas */
-    --bg-surface: #0c0c10;              /* bespoke dark obsidian */
-    --bg-surface-alt: #17171f;          /* elevated / active obsidian */
-    --bg-glass: rgba(12, 12, 16, 0.85); /* obsidian glass with subtle blur */
+    /* Horizon UI Obsidian Dark Tokens */
+    --bg-base: #0b0b0f;
+    --bg-surface: #0d0d12;
+    --bg-surface-alt: #111116;
+    --bg-glass: rgba(11, 11, 15, 0.92);
 
-    --border-color: #1f1f28;            /* crisp dark graphite border */
-    --border-subtle: rgba(255, 255, 255, 0.05);
-    --border-hover: #2e2e3d;
+    --border-color: #1e1e28;
+    --border-subtle: #111116;
+    --border-hover: #2d2d3a;
 
-    --text-primary: #ffffff;            /* crisp pure white */
-    --text-secondary: #94a3b8;          /* soft cool silver-gray */
-    --text-muted: #64748b;              /* clean dim gray */
+    --text-primary: #ffffff;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
 
-    --brand-50: #17171f;
+    --brand-50: rgba(67, 24, 255, 0.15);
     --brand-100: rgba(117, 81, 255, 0.25);
     --brand-400: #7551FF;
-    --brand-500: #7551FF;
-    --brand-600: #583be8;
-    --brand-700: #4318FF;
+    --brand-500: #4318FF;
+    --brand-600: #3311DB;
+    --brand-700: #2111A5;
 
     --success-50: rgba(5, 205, 153, 0.15);
     --success-500: #05CD99;
-    --success-700: #10b981;
+    --success-700: #01B574;
 
     --danger-50: rgba(238, 93, 80, 0.15);
     --danger-500: #EE5D50;
-    --danger-700: #f43f5e;
+    --danger-700: #c53030;
 
     --warning-50: rgba(255, 181, 71, 0.15);
     --warning-500: #FFB547;
+
+    --card-shadow: 14px 17px 40px 4px rgba(0, 0, 0, 0.4);
+    --shadow-sm: 0 1px 4px 0 rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 12px -2px rgba(0, 0, 0, 0.35), 0 2px 6px -2px rgba(0, 0, 0, 0.2);
+    --shadow-lg: 14px 17px 40px 4px rgba(0, 0, 0, 0.4);
+    --shadow-modal: 14px 17px 40px 4px rgba(0, 0, 0, 0.5), 0 2px 6px rgba(117, 81, 255, 0.15);
 }
 
 body {
     background-color: var(--bg-base);
     color: var(--text-primary);
-    font-family: var(--font-sans, 'DM Sans', sans-serif);
-    transition: background-color 0.25s ease, color 0.25s ease;
+    font-family: var(--font-sans, 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif);
+    line-height: 1.55;
+    transition: background-color 0.2s ease, color 0.2s ease;
     min-height: 100vh;
-    letter-spacing: -0.4px;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-heading, 'Poppins', sans-serif);
-    letter-spacing: -0.4px;
+    font-family: var(--font-sans, 'DM Sans', sans-serif);
+    font-weight: 700;
 }
 
 /* Monospace Utilities - SQL code, formulas, and data tables */
@@ -107,161 +114,168 @@ h1, h2, h3, h4, h5, h6 {
     letter-spacing: normal;
 }
 
-/* Glass Header with Horizon Blur */
+/* Glass Header */
 .glass-nav {
     background: var(--bg-glass);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border-color);
 }
 
-/* Horizon Tab Navigation Button */
+/* Tab Navigation Button — Horizon UI pill style */
 .nav-tab-btn {
     position: relative;
-    padding: 0.55rem 1rem;
+    padding: 0.45rem 0.85rem;
     font-size: 0.8125rem;
-    font-family: 'DM Sans', sans-serif;
+    font-family: var(--font-sans, 'DM Sans', sans-serif);
     font-weight: 500;
     color: var(--text-secondary);
-    border-radius: 0.75rem;
+    border-radius: 9999px;
     border: 1px solid transparent;
-    transition: all 0.2s ease-in-out;
+    transition: all 0.15s ease-in-out;
     white-space: nowrap;
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
     cursor: pointer;
-    letter-spacing: -0.4px;
 }
 .nav-tab-btn:hover {
     color: var(--text-primary);
-    background-color: var(--bg-surface-alt);
-    border-color: var(--border-color);
+    background-color: rgba(67, 24, 255, 0.06);
+    border-color: rgba(67, 24, 255, 0.2);
 }
 .nav-tab-btn.active {
-    color: var(--brand-500);
-    background-color: var(--brand-50);
-    border-color: rgba(66, 42, 251, 0.2);
+    color: #ffffff;
+    background: linear-gradient(to right, #4318FF, #7551FF);
+    border-color: transparent;
     font-weight: 700;
+    box-shadow: 0 8px 20px -4px rgba(117, 81, 255, 0.45);
 }
 .dark .nav-tab-btn.active,
 html.dark .nav-tab-btn.active {
     color: #ffffff;
-    background-color: #17171f;
-    border-color: rgba(117, 81, 255, 0.4);
+    background: linear-gradient(to right, #4318FF, #7551FF);
+    border-color: transparent;
+    box-shadow: 0 8px 20px -4px rgba(117, 81, 255, 0.45);
 }
 
-/* Horizon App Card */
+/* Horizon UI App Card (20px radius, signature shadow) */
 .app-card {
     background-color: var(--bg-surface);
     border: 1px solid var(--border-color);
     border-radius: 20px;
-    box-shadow: var(--shadow-lg);
-    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    box-shadow: var(--card-shadow);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
     overflow: hidden;
 }
 .dark .app-card,
 html.dark .app-card {
-    background-color: #0c0c10 !important;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
-    border: 1px solid #1f1f28 !important;
+    background-color: #0d0d12 !important;
+    border: 1px solid #1e1e28 !important;
+    box-shadow: var(--card-shadow) !important;
 }
-.dark .app-card:hover,
-html.dark .app-card:hover {
-    border-color: #2e2e3d !important;
+.app-card:hover {
+    border-color: rgba(117, 81, 255, 0.4);
+    transform: translateY(-1px);
+    box-shadow: 0 15px 40px -8px rgba(117, 81, 255, 0.2);
 }
 
-/* Horizon Data Table Container */
+/* Data Table Container (12px radius) */
 .data-table-container {
     border: 1px solid var(--border-color);
-    border-radius: 20px;
+    border-radius: 12px;
     background-color: var(--bg-surface);
     overflow: hidden;
 }
 .dark .data-table-container,
 html.dark .data-table-container {
-    background-color: #0c0c10 !important;
-    border: 1px solid #1f1f28 !important;
+    background-color: #0d0d12 !important;
+    border: 1px solid #1e1e28 !important;
 }
 .data-table-container table {
     width: 100%;
     border-collapse: separate;
     border-spacing: 0;
-    font-family: 'DM Sans', sans-serif;
+    font-family: var(--font-sans, 'DM Sans', sans-serif);
     font-size: 0.8125rem;
 }
 .data-table-container th {
-    background-color: transparent;
-    color: #A3AED0;
-    font-weight: 700;
+    background-color: var(--bg-surface-alt);
+    color: var(--text-muted);
+    font-weight: 600;
     text-transform: uppercase;
-    font-size: 0.75rem;
-    letter-spacing: -0.4px;
-    padding: 0.85rem 1.1rem;
+    font-size: 0.6875rem;
+    letter-spacing: 0.05em;
+    padding: 0.75rem 1rem;
     border-bottom: 1px solid var(--border-color);
     text-align: left;
 }
 .dark .data-table-container th,
 html.dark .data-table-container th {
-    color: #94a3b8 !important;
-    border-bottom: 1px solid #1f1f28 !important;
+    background-color: #111116 !important;
+    color: #64748b !important;
+    border-bottom: 1px solid #1e1e28 !important;
 }
 .data-table-container td {
-    padding: 0.85rem 1.1rem;
+    padding: 0.75rem 1rem;
     border-bottom: 1px solid var(--border-subtle);
     color: var(--text-primary);
-    font-weight: 500;
-    letter-spacing: -0.4px;
+    font-weight: 400;
 }
 .dark .data-table-container td,
 html.dark .data-table-container td {
-    border-bottom: 1px solid #17171f !important;
-    color: #ffffff !important;
+    border-bottom: 1px solid #111116 !important;
+    color: #f0f0ef !important;
 }
 .data-table-container tr:last-child td {
     border-bottom: none;
 }
 .data-table-container tr:hover td {
-    background-color: rgba(66, 42, 251, 0.04);
+    background-color: rgba(67, 24, 255, 0.03);
 }
 .dark .data-table-container tr:hover td,
 html.dark .data-table-container tr:hover td {
-    background-color: rgba(23, 23, 31, 0.7) !important;
+    background-color: rgba(255, 255, 255, 0.03) !important;
 }
 
-/* Horizon Badge System */
+/* ═══════════════════════════════════════════════════════════════
+   BADGE SYSTEM — Horizon UI Pill Badges (9999px radius)
+   ═══════════════════════════════════════════════════════════════ */
 .badge {
     display: inline-flex;
     align-items: center;
     gap: 0.375rem;
-    padding: 0.25rem 0.75rem;
+    padding: 0.2rem 0.65rem;
     border-radius: 9999px;
-    font-family: 'DM Sans', sans-serif;
+    font-family: var(--font-mono, monospace);
     font-size: 0.6875rem;
     font-weight: 700;
     line-height: 1;
-    letter-spacing: -0.4px;
     text-transform: uppercase;
-    border: none;
+    border: 1px solid transparent;
 }
+/* Primary Purple Badge */
 .badge-indigo,
 .badge-brand {
-    background-color: #E9E3FF;
-    color: #422AFB;
+    background-color: rgba(67, 24, 255, 0.1);
+    color: #7551FF;
+    border-color: rgba(67, 24, 255, 0.25);
 }
 .dark .badge-indigo,
 .dark .badge-brand,
 html.dark .badge-indigo,
 html.dark .badge-brand {
     background-color: rgba(117, 81, 255, 0.15) !important;
-    color: #7551FF !important;
-    border: 1px solid rgba(117, 81, 255, 0.25) !important;
+    color: #A195FD !important;
+    border-color: rgba(117, 81, 255, 0.3) !important;
 }
 
+/* Emerald Success Badge */
 .badge-emerald,
 .badge-success {
-    background-color: rgba(5, 205, 153, 0.12);
+    background-color: rgba(5, 205, 153, 0.1);
     color: #05CD99;
+    border-color: rgba(5, 205, 153, 0.25);
 }
 .dark .badge-emerald,
 .dark .badge-success,
@@ -269,13 +283,15 @@ html.dark .badge-emerald,
 html.dark .badge-success {
     background-color: rgba(5, 205, 153, 0.15) !important;
     color: #05CD99 !important;
-    border: 1px solid rgba(5, 205, 153, 0.25) !important;
+    border-color: rgba(5, 205, 153, 0.3) !important;
 }
 
+/* Coral Danger Badge */
 .badge-rose,
 .badge-danger {
-    background-color: rgba(238, 93, 80, 0.12);
+    background-color: rgba(238, 93, 80, 0.1);
     color: #EE5D50;
+    border-color: rgba(238, 93, 80, 0.25);
 }
 .dark .badge-rose,
 .dark .badge-danger,
@@ -283,13 +299,15 @@ html.dark .badge-rose,
 html.dark .badge-danger {
     background-color: rgba(238, 93, 80, 0.15) !important;
     color: #EE5D50 !important;
-    border: 1px solid rgba(238, 93, 80, 0.25) !important;
+    border-color: rgba(238, 93, 80, 0.3) !important;
 }
 
+/* Amber Warning Badge */
 .badge-amber,
 .badge-warning {
-    background-color: rgba(255, 181, 71, 0.14);
+    background-color: rgba(255, 181, 71, 0.1);
     color: #FFB547;
+    border-color: rgba(255, 181, 71, 0.25);
 }
 .dark .badge-amber,
 .dark .badge-warning,
@@ -297,54 +315,60 @@ html.dark .badge-amber,
 html.dark .badge-warning {
     background-color: rgba(255, 181, 71, 0.15) !important;
     color: #FFB547 !important;
-    border: 1px solid rgba(255, 181, 71, 0.25) !important;
+    border-color: rgba(255, 181, 71, 0.3) !important;
 }
 
+/* Cyan/Blue Badge */
 .badge-cyan {
-    background-color: rgba(33, 212, 253, 0.12);
-    color: #0891b2;
+    background-color: rgba(33, 212, 253, 0.1);
+    color: #21D4FD;
+    border-color: rgba(33, 212, 253, 0.25);
 }
 .dark .badge-cyan,
 html.dark .badge-cyan {
     background-color: rgba(33, 212, 253, 0.15) !important;
-    color: #21d4fd !important;
-    border: 1px solid rgba(33, 212, 253, 0.25) !important;
+    color: #21D4FD !important;
+    border-color: rgba(33, 212, 253, 0.3) !important;
 }
 
-/* Horizon Monospace SQL Code Block */
+/* ═══════════════════════════════════════════════════════════════
+   CODE BLOCK — Obsidian dark terminal (both light + dark modes)
+   ═══════════════════════════════════════════════════════════════ */
 .code-block {
-    background-color: #050507;
-    color: #ffffff;
+    background-color: #050507 !important;
+    color: #e2e8f0 !important;
     font-family: var(--font-mono, 'JetBrains Mono', monospace) !important;
     font-size: 0.8125rem;
     line-height: 1.6;
     padding: 1rem 1.25rem;
-    border-radius: 16px;
+    border-radius: 12px;
     overflow-x: auto;
-    border: 1px solid #1f1f28;
+    border: 1px solid #1e1e28 !important;
 }
 html.light .code-block {
-    background-color: #F4F7FE;
-    color: #1B2559;
-    border-color: #E2E8F0;
+    background-color: #050507 !important;
+    color: #e2e8f0 !important;
+    border-color: #1e1e28 !important;
 }
 
-/* Pulse animation */
+/* Subtle Pulse */
 @keyframes pulseSubtle {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.95; transform: scale(1.02); }
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
 }
 .pulse-step {
     animation: pulseSubtle 2.5s infinite ease-in-out;
 }
 
-/* Horizon Modal Overlay */
+/* ═══════════════════════════════════════════════════════════════
+   MODAL — Horizon UI 20px radius, signature shadow
+   ═══════════════════════════════════════════════════════════════ */
 .modal-overlay {
     position: fixed;
     inset: 0;
-    background-color: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background-color: rgba(11, 11, 15, 0.75);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -365,16 +389,16 @@ html.light .code-block {
     max-width: 680px;
     max-height: 90vh;
     overflow-y: auto;
-    box-shadow: 14px 17px 40px 4px rgba(112, 144, 176, 0.18);
-    transform: scale(0.96);
+    box-shadow: var(--shadow-modal);
+    transform: scale(0.97);
     transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .dark .modal-content,
 html.dark .modal-content {
     background-color: #0c0c10 !important;
-    border: 1px solid #1f1f28 !important;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8) !important;
-    color: #ffffff;
+    border: 1px solid #1e1e28 !important;
+    box-shadow: var(--shadow-modal) !important;
+    color: #f0f0ef;
 }
 .modal-overlay.open .modal-content {
     transform: scale(1);
@@ -384,7 +408,7 @@ html.dark .modal-content {
 @media print {
     html, body {
         background-color: #ffffff !important;
-        color: #1B2559 !important;
+        color: #1B254B !important;
         font-size: 10pt !important;
         height: auto !important;
         min-height: auto !important;
@@ -406,12 +430,12 @@ html.dark .modal-content {
         border-radius: 12px !important;
     }
     .data-table-container th, .tech-data-table th, .horizon-table th {
-        background-color: #F4F7FE !important;
-        color: #1B2559 !important;
-        border-bottom: 1.5px solid #CBD5E0 !important;
+        background-color: #EFF4FB !important;
+        color: #1B254B !important;
+        border-bottom: 1px solid #E2E8F0 !important;
     }
     .data-table-container td, .tech-data-table td, .horizon-table td {
-        color: #1B2559 !important;
+        color: #1B254B !important;
         border-bottom: 1px solid #E2E8F0 !important;
     }
     div, main, section, article {
