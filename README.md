@@ -179,3 +179,4 @@ The local development server is running and accessible:
 * 📊 **Dashboard Hub:** 👉 **[http://localhost:8000/dashboard.html](http://localhost:8000/dashboard.html)**
 * ⚡ **Simulation Workspace:** 👉 **[http://localhost:8000/simulation.html](http://localhost:8000/simulation.html)**
 * 📖 **Technical Documentation:** 👉 **[http://localhost:8000/documentation.html](http://localhost:8000/documentation.html)**
+Deployment sync.
